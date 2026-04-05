@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pristinee's Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
@@ -16,11 +16,11 @@
             --inner-off-white: #d6d6d6;
         }
 
-        /* 50% ZOOM LOGIC */
+        /* 67% ZOOM LOGIC */
         html {
-            zoom: 50%; 
-            -moz-transform: scale(0.5);
-            -moz-transform-origin: top center; /* Keeps it centered while scaling */
+            zoom: 67%; 
+            -moz-transform: scale(0.67);
+            -moz-transform-origin: 0 0;
         }
 
         /* STARTUP ANIMATIONS */
@@ -337,7 +337,7 @@
                             <h1 style="font-style: italic; font-size: 32px; margin-bottom: 5px;">My Profile</h1>
                             <div class="content-rect">
                                 <div style="font-size: 20px; line-height: 1.4;">
-                                    Hiii!!! my name is Pristinee &lt;33 I'm an aspiring game developer from the Philippines who studies in PSAU!! Welcome to my space!
+                                    Hiii!!! my name is Pristinee &lt;33 I'm an aspiring game developer from the Philippines who studies in PSAU!! Welcome to my space! Here's where I store all mi stuff n my projects so far in MS101 :DD
                                 </div>
                             </div>
                             <p style="font-weight:bold; color:#4a628a; margin-top:15px; font-size: 20px;">@Bluebell_UA</p>
@@ -379,6 +379,7 @@
     </div>
 
 <script>
+    // STARTUP LOGIC
     window.addEventListener('load', function() {
         setTimeout(() => {
             const startup = document.getElementById('startup-screen');
@@ -389,7 +390,7 @@
                 startup.style.display = 'none';
                 main.style.display = 'block';
             }, 500);
-        }, 2200);
+        }, 2200); // Wait for loading animation to finish
     });
 
     function showTab(tabName) {
