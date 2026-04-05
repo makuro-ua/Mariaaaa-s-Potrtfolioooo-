@@ -2,140 +2,108 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro Portfolio</title>
+    <title>Maria's Portfolio</title>
     <style>
-        * { box-sizing: border-box; }
-        body { background-color: #f0f0f0; font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 0; }
+        body { background-color: #f1f6f9; font-family: 'Courier New', Courier, monospace; display: flex; flex-direction: column; align-items: center; padding: 20px 0; }
         
-        .window { background-color: #E1EAF7; border: 2px solid #577FB0; width: 1100px; max-width: 95%; height: 700px; max-height: 95vh; margin: 20px auto; overflow: hidden; display: flex; flex-direction: column; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 8px 8px 0 0; }
+        .card { width: 600px; max-width: 95%; background: white; border: 10px solid white; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 20px; }
         
-        .title-bar { background: linear-gradient(180deg, #A7C5EA 0%, #688FC4 100%); padding: 8px 15px; color: #fff; font-weight: bold; font-size: 16px; border-bottom: 2px solid #577FB0; flex-shrink: 0; border-radius: 6px 6px 0 0; }
-        .menu-bar { background-color: #EBF1FA; padding: 5px 15px; border-bottom: 2px solid #577FB0; font-size: 14px; color: #333; flex-shrink: 0; }
+        .url-bar { background: #7a92b1; color: white; padding: 5px 15px; font-size: 14px; font-weight: bold; }
+        .header-img { width: 100%; height: 120px; object-fit: cover; border-bottom: 5px solid #d9e3f0; }
         
-        .main-content { flex: 1; display: flex; overflow: hidden; }
+        .nav-tabs { display: flex; background: #d9e3f0; gap: 5px; padding: 10px; }
+        .tab { background: #fdf6e3; padding: 5px 15px; border-radius: 5px; flex: 1; text-align: center; font-weight: bold; color: #8e9cad; font-size: 12px; }
+
+        .about-card { margin-top: -10px; display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 10px; padding: 15px; }
+        .col-title { color: #7a92b1; border-bottom: 2px solid #d9e3f0; margin-bottom: 10px; font-size: 16px; font-weight: bold; }
+        .about-text { font-size: 11px; line-height: 1.6; color: #333; }
         
-        .left-panel { width: 35%; display: flex; flex-direction: column; background-color: #E1EAF7; border-right: 2px solid #577FB0; }
+        .fav-songs { margin-top: 15px; }
+        .song-item { background: #fdf6e3; padding: 5px; border-radius: 5px; font-size: 11px; margin-bottom: 5px; border-left: 3px solid #7a92b1; font-weight: bold; color: #333; }
         
-        .profile-container { flex: 1; display: flex; flex-direction: column; }
+        .pfp-box { text-align: center; font-size: 9px; color: #7a92b1; }
+        .pfp-img { width: 100%; border-radius: 5px; border: 1px solid #d9e3f0; margin-top: 5px; }
         
-        .profile-pfp-area { padding: 15px; border-bottom: 2px solid #577FB0; }
-        .profile-name { font-size: 20px; font-weight: bold; color: #333; margin-left: 10px; }
-        .aa-img { width: 100px; height: 100px; border-radius: 50%; border: 3px solid #688FC4; }
-        .pinterest-handle { font-size: 14px; color: #666; margin-top: 5px; }
+        .info-footer { background: #7a92b1; color: #d9e3f0; text-align: center; font-size: 10px; padding: 5px; margin-top: auto; }
         
-        .personal-data-pane { padding: 15px; overflow-y: auto; flex: 1; border-top: 2px solid #577FB0; background-color: #D2E0F2; }
-        .personal-data-pane strong { display: block; margin-top: 10px; font-size: 1.1em; }
-        
-        .right-panel { flex: 1; display: flex; flex-direction: column; background-color: #FFF; padding: 20px; position: relative; }
-        
-        .top-music-bar { display: flex; justify-content: flex-end; gap: 15px; margin-bottom: 10px; padding: 5px; position: absolute; top: 0; right: 20px; }
-        .music-btn { border: 1px solid #688FC4; border-radius: 5px; background: none; color: #577FB0; padding: 2px 10px; font-size: 12px; cursor: pointer; }
-        
-        .vil-img { width: 100%; height: 350px; object-fit: cover; border-radius: 8px; border: 3px solid #A7C5EA; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        
-        .song-list { padding: 0 15px; margin-top: 10px; }
-        .song-entry { margin-bottom: 10px; display: flex; align-items: center; }
-        .song-label { flex: 1; font-weight: bold; color: #577FB0; }
-        .links-bar { text-align: right; }
-        .links-bar a { text-decoration: none; color: #FFF; background-color: #688FC4; padding: 3px 10px; border-radius: 12px; font-size: 12px; margin-left: 5px; }
-        
-        .bottom-sections { display: flex; flex: 1; overflow: hidden; border-top: 2px solid #577FB0; }
-        
-        .comment-section { width: 35%; background-color: #D2E0F2; padding: 15px; overflow-y: auto; border-right: 2px solid #577FB0; flex-shrink: 0; }
-        .placeholder-comment { font-style: italic; color: #777; margin-top: 20px; }
-        
-        .projects-section { flex: 1; background-color: #FFF; padding: 20px; overflow-y: auto; }
-        .projects-section a { display: block; color: #333; text-decoration: none; border-bottom: 1px solid #577FB0; padding: 8px 0; }
+        .player-section { background: #EBF1FA; padding: 10px; display: flex; align-items: center; justify-content: space-between; font-size: 10px; color: #7a92b1; }
+        .player-info { flex: 1; margin-right: 15px; }
+        .art-credit-box { background: white; padding: 10px; border-radius: 8px; border: 1px solid #d9e3f0; width: 35%; flex-shrink: 0; color: #333; line-height: 1.6; font-size: 10px; }
+        .lab-list { font-size: 11px; list-style: none; padding: 0; margin-top: 10px; border-top: 1px solid #d9e3f0; }
+        .lab-list li { margin: 5px 0; border-bottom: 1px solid #eee; padding-bottom: 2px; }
+        .lab-list a { text-decoration: none; color: black; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="window">
-        <div class="title-bar">
-            <span>Retro-Blue Path</span>
-            <span style="float: right">X</span>
+
+<div class="card">
+    <div class="url-bar">www.makuro-ua.github.io/Mariaaaa-s-Potrfolioooo-/</div>
+    <img src="Mari/Images/PNG1.png" class="header-img" alt="Header">
+    <div class="nav-tabs">
+        <div class="tab">About Me</div>
+        <div class="tab">Labtasks</div>
+    </div>
+</div>
+
+<div class="card" style="padding: 0;">
+    <div class="about-card">
+        <div>
+            <div class="col-title">What I like!!!!</div>
+            <ul class="about-text" style="padding-left: 15px;">
+                <li>Drawing</li>
+                <li>Singing</li>
+                <li>Writing</li>
+                <li>Cosplaying</li>
+            </ul>
+            <div class="col-title fav-songs">Favorite Songs :</div>
+            <div class="song-item">Butcher Vanity</div>
+            <div class="song-item">Looping the Rooms</div>
         </div>
-        
-        <div class="menu-bar">
-            <span>文件 (F)</span> <span>朋友 (B)</span> <span>功能 (A)</span> <span>设置 (T)</span>
+
+        <div>
+            <div class="col-title">My Profile</div>
+            <p class="about-text">
+                Hiii!!! my name is Pristinee &lt;33<br>
+                I'm an aspiring game developer from the Philippines who studies in PSAU!!<br>
+                Welcome to my Portfolioo!!! Hope u enjoy scrolling thru here &gt;:DD
+            </p>
+            <p class="about-text" style="font-weight: bold; margin-top: 15px;">@Bluebell_UA</p>
         </div>
-        
-        <div class="main-content">
-            <div class="left-panel">
-                <div class="profile-container">
-                    <div class="profile-pfp-area">
-                        <img src="Mari/Images/aa.png" alt="Profile" class="aa-img">
-                        <div class="profile-name">
-                            <span>⭐ Name Placeholder</span><br>
-                            <span class="pinterest-handle">@Bluebell_UA on Pinterest</span>
-                        </div>
-                    </div>
-                    <div class="personal-data-pane">
-                        <strong>My Data Profile:</strong>
-                        pronouns: your pronouns<br>
-                        age: minor<br>
-                        unlabeled: yes<br>
-                        eng/中文/id OK<br>
-                        date: 5/20<br>
-                        sign: taurus<br>
-                        personality: entp<br>
-                        heritage: asian<br>
-                        mix: ch+ind
-                        
-                        <strong>BYI:</strong>
-                        [Your 'Before You Interact' information goes here. Replace this template with your own list, like 'DMs are open,' 'please respect tone,' etc.]
-                        
-                        <strong>DNI:</strong>
-                        [Your 'Do Not Interact' information goes here. Replace this template with your basic criteria, like 'anti my groups,' 'homophobic,' etc.]
-                    </div>
-                </div>
-            </div>
-            
-            <div class="right-panel">
-                <div class="top-music-bar">
-                    <button class="music-btn">最近播放 (Recently Played)</button>
-                    <button class="music-btn">你的推荐 (Recommended)</button>
-                </div>
-                
-                <img src="[Link to Vil Schoenheit Image]" alt="Vil Schoenheit from Twst Wonderland" class="vil-img">
-                
-                <div class="song-list">
-                    <div class="song-entry">
-                        <span class="song-label">▶️ Looping the rooms</span>
-                        <div class="links-bar">
-                            <a href="[Your BGM Link Here]">Play BGM</a>
-                        </div>
-                    </div>
-                    
-                    <div class="song-entry">
-                        <span class="song-label">▶️ Butcher Vanity</span>
-                        <div class="links-bar">
-                            <a href="[Your BGM Link Here]">Play BGM</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="bottom-sections">
-            <div class="comment-section">
-                <strong>Additional Comments:</strong>
-                <div class="placeholder-comment">
-                    Placeholder for your additional notes, quotes, or descriptions. Add your thoughts here when ready!
-                </div>
-            </div>
-            
-            <div class="projects-section">
-                <strong>Project List (Outputs 1-6):</strong>
-                <a href="Mari/HTML/1st Lab.html">1. The Beginning</a>
-                <a href="Mari/HTML/2nd Lab.html">2. Layouts</a>
-                <a href="Mari/HTML/3rd Lab.html">3. Styling</a>
-                <a href="Mari/HTML/4th labtask.html">4. Components</a>
-                <a href="Mari/HTML/5TH Labtask.html">5. Advanced</a>
-                <a href="Mari/HTML/6th Labtask.html">6. Final Midterm</a>
-                <a href="Mari/HTML/waow.html">Special: Waow!</a>
+
+        <ul class="lab-list">
+    <li>• <a href="Mari/HTML/1st Lab.html">LABTASK 1 -- Resume</a></li>
+    <li>• <a href="Mari/HTML/2nd Lab.html">LABTASK 2 -- Nested List</a></li>
+    <li>• <a href="Mari/HTML/3rd Lab.html">LABTASK 3 -- Image Maps</a></li>
+    <li>• <a href="Mari/HTML/4th labtask.html">LABTASK 4 -- HTML Forms</a></li>
+    <li>• <a href="Mari/HTML/5TH Labtask.html">LABTASK 5 -- Applying CSS</a></li>
+    <li>• <a href="Mari/HTML/6th Labtask.html">LABTASK 6 -- CSS Display</a></li>
+        </ul>
+
+        <div class="pfp-box">
+            ⚙️ Profile Picture
+            <img src="Mari/Images/PNG2.png" class="pfp-img" alt="Vil Schoenheit">
+            <div style="margin-top:10px;">
+                <button style="font-size:10px; background:#7a92b1; color:white; border:none; padding:3px 10px; border-radius:3px; cursor:pointer;">Request</button>
             </div>
         </div>
     </div>
+    
+    <div class="info-footer">
+        My Portfolioo!!! || This Github is Intended for school purposes only &gt;&lt;
+    </div>
+    
+    <div class="player-section">
+        <div class="player-info">
+            <div>Dreamscape - Satoshi Onishi</div>
+            <div style="height: 4px; background: white; margin: 5px 0;"><div style="width: 30%; height: 100%; background: #7a92b1;"></div></div>
+            <div style="display:flex; justify-content: space-between;"><span>0:54</span><span>3:30</span></div>
+        </div>
+        <div class="art-credit-box">
+            Not every image here is by me &lt;33<br>
+            I own Bluebell's eye art though :))
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
