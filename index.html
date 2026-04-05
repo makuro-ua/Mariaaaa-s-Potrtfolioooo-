@@ -16,13 +16,70 @@
             --inner-off-white: #d6d6d6;
         }
 
-        /* 67% ZOOM LOGIC */
-        html {
-            zoom: 67%; 
-            -moz-transform: scale(0.67);
-            -moz-transform-origin: 0 0;
+        /* STARTUP ANIMATIONS */
+        @keyframes loadingBar {
+            0% { width: 0%; }
+            20% { width: 10%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
         }
 
+        @keyframes windowBlink {
+            0% { opacity: 0; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1.02); }
+            70% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* STARTUP OVERLAY */
+        #startup-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: var(--bg-dark);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loader-box {
+            width: 300px;
+            background: var(--win-grey);
+            border: 2px solid;
+            border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
+            padding: 15px;
+            color: black;
+            text-align: center;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 20px;
+            background: #eee;
+            border: 2px inset #aaa;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--win-blue);
+            width: 0%;
+            animation: loadingBar 2s forwards;
+        }
+
+        /* MAIN CONTENT HIDDEN INITIALLY */
+        #main-content {
+            display: none;
+            animation: windowBlink 0.4s ease-out;
+        }
+
+        /* BACKGROUND ELEMENTS */
         @keyframes tinyStarScroll {
             from { background-position: 0 0, 40px 40px, 0 0; }
             to { background-position: 100px 100px, 140px 140px, 100px 100px; }
@@ -110,7 +167,6 @@
             filter: grayscale(10%);
         }
 
-        /* EXTENDED CHECKERED PATTERN */
         .tab-wrapper {
             background-color: #7d96b8; 
             background-image: 
@@ -166,7 +222,6 @@
             border-radius: 4px;
         }
 
-        /* DASHED RECTANGLE STYLE */
         .content-rect {
             background-color: #b8c2d1; 
             border: 1px dashed #5b7fb3;
@@ -217,94 +272,120 @@
 </head>
 <body>
 
+    <div id="startup-screen">
+        <div class="loader-box">
+            <div style="font-size: 24px; margin-bottom: 5px;">Starting Pristinee.exe...</div>
+            <div style="font-size: 18px; color: #555;">Please wait &lt;33</div>
+            <div class="progress-container">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="big-star" style="top: 5%; left: 10%; animation-delay: 0s;"></div>
     <div class="big-star" style="top: 15%; right: 5%; animation-delay: 1s;"></div>
     <div class="big-star" style="bottom: 10%; left: 5%; animation-delay: 2s;"></div>
     <div class="big-star" style="bottom: 20%; right: 12%; animation-delay: 0.5s;"></div>
 
-<div class="window">
-    <div class="title-bar">
-        <div class="title-bar-text">✿ Pristinee_Portfolio.exe</div>
-        <div class="title-bar-controls">
-            <button class="hover-cute">_</button>
-            <button class="hover-cute">□</button>
-            <button class="hover-cute">X</button>
-        </div>
-    </div>
-
-    <img src="a.jpg" class="banner" alt="Banner">
-
-    <div class="tab-wrapper">
-        <button class="nav-btn active hover-cute" onclick="showTab('about')">About Me</button>
-        <button class="nav-btn hover-cute" onclick="showTab('labs')">Labtasks</button>
-    </div>
-
-    <div class="window-body">
-        <div id="about" class="tab-content active">
-            <div class="grid-layout">
-                <div class="retro-box hover-cute">
-                    <h3>What I like!!!!</h3>
-                    <div class="content-rect">
-                        <ul style="font-size: 21px; padding-left: 20px; line-height: 1.5; margin: 0;">
-                            <li>Drawing</li>
-                            <li>Singing</li>
-                            <li>Writing</li>
-                            <li>Cosplaying</li>
-                        </ul>
-                    </div>
-
-                    <div class="content-rect" style="margin-top: 15px;">
-                        <p style="color:#4a628a; font-weight:bold; margin:0; font-size: 20px;">Favorite Songs :</p>
-                        <div class="song-item">Butcher Vanity</div>
-                        <div class="song-item">Looping the Rooms</div>
-                    </div>
+    <div id="main-content">
+        <div class="window">
+            <div class="title-bar">
+                <div class="title-bar-text">✿ Pristinee_Portfolio.exe</div>
+                <div class="title-bar-controls">
+                    <button class="hover-cute">_</button>
+                    <button class="hover-cute">□</button>
+                    <button class="hover-cute">X</button>
                 </div>
+            </div>
 
-                <div class="retro-box hover-cute">
-                    <h1 style="font-style: italic; font-size: 32px; margin-bottom: 5px;">My Profile</h1>
-                    <div class="content-rect">
-                        <div style="font-size: 20px; line-height: 1.4;">
-                            Hiii!!! my name is Pristinee &lt;33 I'm an aspiring game developer from the Philippines who studies in PSAU!! Welcome to my space! Here's where I store all mi stuff n my projects so far in MS101 :DD
+            <img src="a.jpg" class="banner" alt="Banner">
+
+            <div class="tab-wrapper">
+                <button class="nav-btn active hover-cute" onclick="showTab('about')">About Me</button>
+                <button class="nav-btn hover-cute" onclick="showTab('labs')">Labtasks</button>
+            </div>
+
+            <div class="window-body">
+                <div id="about" class="tab-content active">
+                    <div class="grid-layout">
+                        <div class="retro-box hover-cute">
+                            <h3>What I like!!!!</h3>
+                            <div class="content-rect">
+                                <ul style="font-size: 21px; padding-left: 20px; line-height: 1.5; margin: 0;">
+                                    <li>Drawing</li>
+                                    <li>Singing</li>
+                                    <li>Writing</li>
+                                    <li>Cosplaying</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-rect" style="margin-top: 15px;">
+                                <p style="color:#4a628a; font-weight:bold; margin:0; font-size: 20px;">Favorite Songs :</p>
+                                <div class="song-item">Butcher Vanity</div>
+                                <div class="song-item">Looping the Rooms</div>
+                            </div>
+                        </div>
+
+                        <div class="retro-box hover-cute">
+                            <h1 style="font-style: italic; font-size: 32px; margin-bottom: 5px;">My Profile</h1>
+                            <div class="content-rect">
+                                <div style="font-size: 20px; line-height: 1.4;">
+                                    Hiii!!! my name is Pristinee &lt;33 I'm an aspiring game developer from the Philippines who studies in PSAU!! Welcome to my space! Here's where I store all mi stuff n my projects so far in MS101 :DD
+                                </div>
+                            </div>
+                            <p style="font-weight:bold; color:#4a628a; margin-top:15px; font-size: 20px;">@Bluebell_UA</p>
+                        </div>
+
+                        <div class="pfp-container hover-cute">
+                            <div style="font-size: 14px; margin-bottom: 5px; color:#666">[It's Me!!! &lt;33]</div>
+                            <img src="aa2.jpg" class="pfp-img" alt="PFP">
                         </div>
                     </div>
-                    <p style="font-weight:bold; color:#4a628a; margin-top:15px; font-size: 20px;">@Bluebell_UA</p>
-                </div>
 
-                <div class="pfp-container hover-cute">
-                    <div style="font-size: 14px; margin-bottom: 5px; color:#666">[It's Me!!! &lt;33]</div>
-                    <img src="aa2.jpg" class="pfp-img" alt="PFP">
-                </div>
-            </div>
-
-            <div class="footer-widgets">
-                <div class="music-player hover-cute">
-                    <strong>Butcher Vanity - Flavor Foley</strong>
-                    <div class="progress-line"><span class="heart-marker">♡</span></div>
-                    <div style="display:flex; justify-content:space-between; font-size:16px;">
-                        <span>0:54</span><span>3:30</span>
+                    <div class="footer-widgets">
+                        <div class="music-player hover-cute">
+                            <strong>Dreamscape - Satoshi Onishi</strong>
+                            <div class="progress-line"><span class="heart-marker">♡</span></div>
+                            <div style="display:flex; justify-content:space-between; font-size:16px;">
+                                <span>0:54</span><span>3:30</span>
+                            </div>
+                            <div style="font-size:26px; letter-spacing:8px; text-align:center;">⇄ ◃◃ Ⅱ ▹▹ ↻</div>
+                        </div>
+                        <div class="disclaimer-bubble hover-cute">
+                            Not every image here is by me &lt;33<br>
+                            I own Bluebell's eye art though :))
+                        </div>
                     </div>
-                    <div style="font-size:26px; letter-spacing:8px; text-align:center;">⇄ ◃◃ Ⅱ ▹▹ ↻</div>
                 </div>
-                <div class="disclaimer-bubble hover-cute">
-                    Not every image here is by me &lt;33<br>
-                    I own Bluebell's eye art though :))
-                </div>
-            </div>
-        </div>
 
-        <div id="labs" class="tab-content">
-            <div style="background:#b8c2d1; padding:30px; border:2px inset; border-radius:15px; height:350px;">
-                <ul style="font-size: 24px; list-style: '✧ '; line-height: 2;">
-                    <li><a href="HTML/1st Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 1: My Resume</a></li>
-                    <li><a href="HTML/2nd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 2: Nested Lists</a></li>
-                    <li><a href="HTML/3rd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 3: Image Maps</a></li>
-                </ul>
+                <div id="labs" class="tab-content">
+                    <div style="background:#b8c2d1; padding:30px; border:2px inset; border-radius:15px; height:350px;">
+                        <ul style="font-size: 24px; list-style: '✧ '; line-height: 2;">
+                            <li><a href="HTML/1st Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 1: My Resume</a></li>
+                            <li><a href="HTML/2nd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 2: Nested Lists</a></li>
+                            <li><a href="HTML/3rd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 3: Image Maps</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 <script>
+    // STARTUP LOGIC
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            const startup = document.getElementById('startup-screen');
+            const main = document.getElementById('main-content');
+            
+            startup.style.opacity = '0';
+            setTimeout(() => {
+                startup.style.display = 'none';
+                main.style.display = 'block';
+            }, 500);
+        }, 2200); // Wait for loading animation to finish
+    });
+
     function showTab(tabName) {
         document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
         document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
