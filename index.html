@@ -16,6 +16,12 @@
             --inner-off-white: #d6d6d6;
         }
 
+        html {
+            zoom: 50%; 
+            -moz-transform: scale(0.5);
+            -moz-transform-origin: top center; /* Keeps it centered while scaling */
+        }
+
         /* STARTUP ANIMATIONS */
         @keyframes loadingBar {
             0% { width: 0%; }
