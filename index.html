@@ -43,7 +43,6 @@
             position: relative;
         }
 
-        /* BIG STARS */
         .big-star {
             position: absolute;
             width: 30px;
@@ -92,14 +91,6 @@
 
         @keyframes bootLoad { to { width: 100%; } }
 
-        /* THE BLINK UP ENTRANCE */
-        @keyframes windowAppear {
-            0% { opacity: 0; transform: scale(0.9); }
-            10% { opacity: 1; transform: scale(1.02); }
-            20% { opacity: 0.5; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
         #main-content {
             display: none;
             position: relative;
@@ -112,7 +103,6 @@
             border: 3px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
             padding: 3px;
-            animation: windowAppear 0.6s ease-out forwards;
             box-shadow: 0 0 30px rgba(255,255,255,0.1);
         }
 
@@ -132,11 +122,13 @@
             background: var(--win-grey);
             border: 1px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
+            font-family: 'VT323', monospace;
+            cursor: pointer;
         }
 
         .banner {
             width: 100%;
-            height: 180px;
+            height: 160px;
             object-fit: cover;
             border: 2px inset #808080;
             margin-top: 4px;
@@ -156,10 +148,10 @@
             background: #c9c0ac; 
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            padding: 6px 25px;
+            padding: 6px 15px;
             border-radius: 8px 8px 0 0;
             font-family: 'VT323', monospace;
-            font-size: 24px;
+            font-size: 22px;
             cursor: pointer;
         }
 
@@ -173,45 +165,56 @@
             background: var(--inner-off-white);
             border: 2px inset #808080;
             margin: 0 15px 15px 15px;
-            padding: 25px;
-            min-height: 400px;
+            padding: 20px;
+            height: 420px;
+            overflow-y: scroll;
+            scrollbar-color: var(--win-grey) var(--win-shadow);
         }
+
+        /* CUSTOM RETRO SCROLLBAR */
+        .window-body::-webkit-scrollbar { width: 16px; }
+        .window-body::-webkit-scrollbar-track { background: #dfdfdf; border: 1px solid #808080; }
+        .window-body::-webkit-scrollbar-thumb { background: var(--win-grey); border: 2px solid; border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white); }
 
         .grid-layout {
             display: grid;
             grid-template-columns: 1fr 1.2fr 0.9fr;
-            gap: 20px;
+            gap: 15px;
         }
 
-        .retro-box { background: #cbd5e0; border: 1px solid #a0aec0; padding: 15px; }
-        .content-rect { background: #b8c2d1; border: 2px dashed #5b7fb3; padding: 12px; margin-top: 10px; }
+        .retro-box { background: #cbd5e0; border: 1px solid #a0aec0; padding: 12px; }
+        .content-rect { background: #b8c2d1; border: 2px dashed #5b7fb3; padding: 12px; margin-top: 10px; text-align: justify; }
 
-        h1 { font-size: 36px; color: #4a628a; margin: 0; }
-        h3 { font-size: 28px; color: #4a628a; margin: 0; }
-        .song-item { background: #e0e0e0; border: 1px inset #bbb; padding: 5px 10px; margin: 6px 0; font-size: 20px; }
-        .pfp-img { width: 100%; height: 280px; object-fit: cover; border: 2px solid #333; }
+        h1 { font-size: 32px; color: #4a628a; margin: 0; }
+        h3 { font-size: 24px; color: #4a628a; margin: 0; }
+        .song-item { background: #e0e0e0; border: 1px inset #bbb; padding: 5px 10px; margin: 6px 0; font-size: 18px; }
+        .pfp-img { width: 100%; height: 260px; object-fit: cover; border: 2px solid #333; }
 
         .footer-widgets {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 25px;
-            padding-top: 20px;
+            margin-top: 20px;
+            padding-top: 15px;
             border-top: 1px solid #aaa;
         }
 
-        .music-player { flex: 1.5; font-size: 20px; }
+        .music-player { flex: 1.5; font-size: 18px; }
         .disclaimer-bubble {
             background: #cbd5e0;
             border: 1px solid #888;
-            border-radius: 15px;
-            padding: 12px 20px;
-            font-size: 18px;
-            margin-left: 40px;
+            border-radius: 12px;
+            padding: 10px 15px;
+            font-size: 16px;
+            margin-left: 20px;
         }
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
+        
+        /* QNA Specific Styles */
+        .qna-question { font-weight: bold; font-size: 24px; color: var(--win-blue); margin-bottom: 5px; }
+        .qna-answer { font-size: 20px; line-height: 1.4; margin-bottom: 20px; text-align: justify; }
     </style>
 </head>
 <body>
@@ -225,10 +228,8 @@
         </div>
     </div>
 
-    <div class="big-star" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
-    <div class="big-star" style="top: 20%; right: 10%; animation-delay: 1s;"></div>
-    <div class="big-star" style="bottom: 15%; left: 10%; animation-delay: 2s;"></div>
-    <div class="big-star" style="bottom: 25%; right: 15%; animation-delay: 0.5s;"></div>
+    <div class="big-star" style="top: 10%; left: 15%;"></div>
+    <div class="big-star" style="bottom: 15%; right: 10%;"></div>
 
     <div id="main-content">
         <div class="window">
@@ -244,6 +245,7 @@
 
             <div class="tab-wrapper">
                 <button class="nav-btn active" onclick="showTab('about')">About Me</button>
+                <button class="nav-btn" onclick="showTab('qna')">QNA!!</button>
                 <button class="nav-btn" onclick="showTab('labs')">Labtasks</button>
             </div>
 
@@ -253,7 +255,7 @@
                         <div class="retro-box">
                             <h3>What I like!!!!</h3>
                             <div class="content-rect">
-                                <ul style="font-size: 22px; padding-left: 20px; line-height: 1.5; margin: 0;">
+                                <ul style="font-size: 20px; padding-left: 20px; line-height: 1.4; margin: 0;">
                                     <li>Drawing</li>
                                     <li>Singing</li>
                                     <li>Writing</li>
@@ -261,7 +263,7 @@
                                 </ul>
                             </div>
                             <div class="content-rect">
-                                <p style="font-weight:bold; color:#4a628a; margin:0; font-size: 20px;">Favorite Songs :</p>
+                                <p style="font-weight:bold; color:#4a628a; margin:0; font-size: 18px;">Favorite Songs :</p>
                                 <div class="song-item">Butcher Vanity</div>
                                 <div class="song-item">Looping the Rooms</div>
                             </div>
@@ -270,15 +272,15 @@
                         <div class="retro-box">
                             <h1 style="font-style: italic;">My Profile</h1>
                             <div class="content-rect">
-                                <div style="font-size: 22px; line-height: 1.4;">
+                                <div style="font-size: 20px; line-height: 1.4;">
                                     Hiii!!! my name is Pristinee &lt;33 I'm an aspiring game developer from the Philippines who studies in PSAU!! Welcome to my space!
                                 </div>
                             </div>
-                            <p style="font-weight:bold; color:#4a628a; margin-top:15px; font-size: 22px;">@Bluebell_UA</p>
+                            <p style="font-weight:bold; color:#4a628a; margin-top:15px; font-size: 20px;">@Bluebell_UA</p>
                         </div>
 
                         <div class="retro-box" style="text-align: center;">
-                            <div style="font-size: 16px; margin-bottom: 5px;">[It's Me!!!]</div>
+                            <div style="font-size: 14px; margin-bottom: 5px;">[It's Me!!!]</div>
                             <img src="aa2.jpg" class="pfp-img" alt="PFP">
                         </div>
                     </div>
@@ -289,23 +291,42 @@
                             <div style="background:#999; height:4px; margin:10px 0; position:relative;">
                                 <div style="position:absolute; left:40%; top:-8px; background:var(--inner-off-white); padding:0 3px;">♡</div>
                             </div>
-                            <div style="display:flex; justify-content:space-between; font-size:16px;">
-                                <span>1:04</span><span>3:30</span>
-                            </div>
                         </div>
                         <div class="disclaimer-bubble">
-                            Not every image here is by me &lt;33<br>
                             I own Bluebell's eye art though :))
                         </div>
                     </div>
                 </div>
 
+                <div id="qna" class="tab-content">
+                    <div class="retro-box">
+                        <div class="content-rect">
+                            <div class="qna-question">1. Who am I?</div>
+                            <div class="qna-answer">Pristine Angel A. Arcilla</div>
+
+                            <div class="qna-question">2. Where to find me?</div>
+                            <div class="qna-answer">
+                                Email: meriunknown4@gmail.com<br>
+                                Phone: 09455634594<br>
+                                Address: Sitio San Martin, Bamban, Tarlac<br>
+                                LinkedIn: linkedin.com/in/maririCareer Objective
+                            </div>
+
+                            <div class="qna-question">3. Why did I do this?</div>
+                            <div class="qna-answer">
+                                I would like to be a game developer one day. In which I will make as many visual novels as id like- not only that but id like to make stories of my own that will give people hope and inspirations into the art that they create. Not only that- but I'd really just like to be a rolemodel for my fellow artists out there.<br><br>
+                                As my area of expertise would be story writing, I would like to talk about the kinds of genres that I like doing. In which, I'd often like to work on stories that implement both horror and fantasy in them, as well as sci-fi.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="labs" class="tab-content">
-                    <div style="background:#b8c2d1; padding:40px; border:2px inset; min-height:300px;">
-                        <ul style="font-size: 32px; list-style: '✧ '; line-height: 2.5;">
-                            <li><a href="Mari/HTML/1st Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 1: My Resume</a></li>
-                            <li><a href="Mari/HTML/2nd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 2: Nested Lists</a></li>
-                            <li><a href="Mari/HTML/3rd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 3: Image Maps</a></li>
+                    <div style="background:#b8c2d1; padding:30px; border:2px inset; min-height:300px;">
+                        <ul style="font-size: 28px; list-style: '✧ '; line-height: 2;">
+                            <li><a href="HTML/1st Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 1: My Resume</a></li>
+                            <li><a href="HTML/2nd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 2: Nested Lists</a></li>
+                            <li><a href="HTML/3rd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 3: Image Maps</a></li>
                         </ul>
                     </div>
                 </div>
