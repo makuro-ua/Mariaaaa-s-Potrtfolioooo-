@@ -10,38 +10,25 @@
             --win-grey: #c0c0c0;
             --win-white: #ffffff;
             --win-shadow: #808080;
-            --win-blue: #000080; /* Classic Win95 Title Bar Blue */
-            
-            /* Darkened Background Theme Blue */
-            --bg-blue-dark: #3a4d6e; 
-            
-            /* Lighter Blue-grey for floating elements pattern */
-            --floating-light: #f1f6ff;
+            --win-blue: #000080;
+            --bg-dark: #1a2639; /* Even darker blue */
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-5px);}
-            60% {transform: translateY(-3px);}
+        /* Animated Background Pattern */
+        @keyframes floatBackground {
+            from { background-position: 0 0; }
+            to { background-position: 100px 100px; }
         }
 
         body {
-            /* Set the darkened base color */
-            background-color: var(--bg-blue-dark); 
-            
-            /* CSS Background Pattern of Floating Stars and Ribbons.
-              The logic creates simple repeating pixelated shapes.
-              You can adjust size and positioning as needed.
-            */
+            background-color: var(--bg-dark);
+            /* Floating stars and ribbons pattern */
             background-image: 
-                /* Stars */
-                radial-gradient(var(--floating-light) 1px, transparent 1px),
-                radial-gradient(var(--floating-light) 1px, transparent 1px),
-                /* Ribbons (simple diagonal lines) */
-                linear-gradient(45deg, var(--floating-light) 2px, transparent 2px);
-            background-size: 50px 50px, 30px 30px, 60px 60px;
-            background-position: 0 0, 15px 15px, 0 30px;
-            
+                radial-gradient(white 1px, transparent 1px),
+                radial-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
+                linear-gradient(45deg, transparent 48%, #4a628a 50%, transparent 52%);
+            background-size: 60px 60px, 30px 30px, 80px 80px;
+            animation: floatBackground 10s linear infinite;
             font-family: 'VT323', monospace;
             display: flex;
             justify-content: center;
@@ -51,30 +38,27 @@
             overflow: hidden;
         }
 
-        /* Centered Window with Glow */
+        /* Window Styling */
         .window {
             width: 750px; 
             background-color: var(--win-grey);
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.5); /* Boosted Glow */
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.2);
             padding: 3px;
         }
 
-        /* Cute Hover Effect for specified elements */
+        /* Cute Hover: Glow and slight lift (no slanting!) */
         .hover-cute {
-            transition: transform 0.2s ease-in-out;
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
         .hover-cute:hover {
-            transform: scale(1.05) rotate(-2deg); /* Scales up and tilts */
+            filter: brightness(1.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
         }
 
-        /* Bouncy Button Animation */
-        .bouncy {
-            animation: bounce 1s infinite ease-in-out;
-        }
-
-        /* Title Bar */
         .title-bar {
             background: var(--win-blue);
             color: white;
@@ -92,13 +76,9 @@
             border: 1px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
             font-family: 'VT323', monospace;
-            font-weight: bold;
             cursor: pointer;
-            line-height: 1;
-            font-size: 14px;
         }
 
-        /* Banner Image */
         .banner {
             width: 100%;
             height: 160px;
@@ -108,7 +88,7 @@
             display: block;
         }
 
-        /* Checkered Navigation Area */
+        /* Checkered Navigation */
         .tab-wrapper {
             background-image: linear-gradient(45deg, #7d96b8 25%, transparent 25%), 
                               linear-gradient(-45deg, #7d96b8 25%, transparent 25%), 
@@ -137,10 +117,8 @@
             padding-bottom: 8px;
             margin-bottom: -2px;
             z-index: 2;
-            animation: none; /* Active tab doesn't bounce constantly */
         }
 
-        /* White Inner Sheet */
         .window-body {
             background-color: var(--win-white);
             border: 2px inset;
@@ -152,7 +130,6 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* Grid */
         .grid-layout {
             display: grid;
             grid-template-columns: 1fr 1.3fr 1fr;
@@ -160,24 +137,21 @@
         }
 
         .retro-box {
-            background-color: #f0f4f8; /* Light blue-grey tint */
+            background-color: #f0f4f8;
             border: 1px solid #808080;
             padding: 12px;
         }
 
         .playlist-rect {
-            background-color: #d8dee9; /* Light grey-blue rectangle behind playlist */
+            background-color: #d8dee9;
             border: 1px solid #808080;
             padding: 10px;
             margin-top: 10px;
         }
 
         h1, h3 { color: #5b7fb3; margin-top: 0; }
-        h1 { font-size: 28px; font-style: italic; border-bottom: 1px solid #5b7fb3; }
-
         .song-item { background: white; border: 1px inset; padding: 2px 8px; margin: 4px 0; font-size: 16px; }
 
-        /* PFP Area */
         .pfp-container {
             background: #f5f1e6;
             border: 1px solid #808080;
@@ -191,7 +165,6 @@
             border: 1px solid black; 
         }
 
-        /* Bottom Widgets */
         .footer-widgets {
             display: flex;
             justify-content: space-between;
@@ -215,22 +188,12 @@
             font-size: 15px;
             max-width: 250px;
         }
-
-        /* Labtasks Styling */
-        .labtask-overlay {
-            background-color: #deeaf6;
-            padding: 20px;
-            border: 2px inset;
-            height: 100%;
-        }
-        .labtask-list { list-style: square; font-size: 20px; color: #333; }
-        .labtask-list a { color: #000080; text-decoration: none; }
-        .labtask-list a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
-<div class="window hover-cute"> <div class="title-bar">
+<div class="window">
+    <div class="title-bar">
         <div class="title-bar-text">Pristinee_Portfolio.exe</div>
         <div class="title-bar-controls">
             <button class="hover-cute">_</button>
@@ -242,15 +205,15 @@
     <img src="Images/a.jpg" class="banner" alt="Banner">
 
     <div class="tab-wrapper">
-        <button class="nav-btn active bouncy hover-cute" onclick="showTab('about')">About Me</button>
-        <button class="nav-btn bouncy hover-cute" onclick="showTab('labs')">Labtasks</button>
+        <button class="nav-btn active hover-cute" onclick="showTab('about')">About Me</button>
+        <button class="nav-btn hover-cute" onclick="showTab('labs')">Labtasks</button>
     </div>
 
     <div class="window-body">
         <div id="about" class="tab-content active">
             <div class="grid-layout">
                 <div class="retro-box hover-cute">
-                    <h3 style="font-size: 20px;">What I like!!!!</h3>
+                    <h3>What I like!!!!</h3>
                     <ul style="font-size: 18px; padding-left: 15px;">
                         <li>Drawing</li>
                         <li>Singing</li>
@@ -260,7 +223,7 @@
                 </div>
 
                 <div class="retro-box hover-cute">
-                    <h1>My Profile</h1>
+                    <h1 style="font-style: italic;">My Profile</h1>
                     <div style="font-size: 18px; line-height: 1.3;">
                         Hiii!!! my name is Pristinee <33 I'm an aspiring game developer from the Philippines who studies in PSAU!!
                     </div>
@@ -296,14 +259,11 @@
         </div>
 
         <div id="labs" class="tab-content">
-            <div class="labtask-overlay hover-cute">
-                <ul class="labtask-list">
-                    <li><a href="HTML/1st Lab.html">LABTASK 1 -- Resume</a></li>
-                    <li><a href="HTML/2nd Lab.html">LABTASK 2 -- Nested List</a></li>
-                    <li><a href="HTML/3rd Lab.html">LABTASK 3 -- Image Maps</a></li>
-                    <li><a href="HTML/4th labtask.html">LABTASK 4 -- HTML Forms</a></li>
-                    <li><a href="HTML/5TH Labtask.html">LABTASK 5 -- Applying CSS</a></li>
-                    <li><a href="HTML/6th Labtask.html">LABTASK 6 -- CSS Display</a></li>
+            <div style="background:#deeaf6; padding:20px; border:2px inset; height:100%;">
+                <ul style="font-size: 20px; list-style: square;">
+                    <li><a href="HTML/1st Lab.html" class="hover-cute">LABTASK 1 -- Resume</a></li>
+                    <li><a href="HTML/2nd Lab.html" class="hover-cute">LABTASK 2 -- Nested List</a></li>
+                    <li><a href="HTML/3rd Lab.html" class="hover-cute">LABTASK 3 -- Image Maps</a></li>
                 </ul>
             </div>
         </div>
@@ -314,7 +274,6 @@
     function showTab(tabName) {
         document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
         document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-        
         document.getElementById(tabName).classList.add('active');
         event.currentTarget.classList.add('active');
     }
