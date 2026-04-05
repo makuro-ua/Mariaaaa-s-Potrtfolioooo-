@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Layout</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        #header, #footer {
+            background-color: rgb(143, 143, 179);
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        ul {
+            list-style-type: none;
+            background-color: rgb(214, 208, 230);
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: rgb(10, 42, 70);
+            text-align: center;
+            padding: 20px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: rgb(94, 94, 170);
+            color: white;
+        }
+
+        #main {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        #aside {
+            background-color: rgb(208, 189, 230);
+            width: 20%;
+            padding: 15px;
+        }
+
+        #section {
+            background-color: rgb(201, 184, 220);
+            width: 40%;
+            padding: 15px;
+        }
+
+        #article {
+            background-color: rgb(208, 191, 228);
+            width: 40%;
+            padding: 15px;
+        }
+
+        p {
+            overflow-wrap: break-word;
+        }
+
+        @media screen and (max-width: 800px) {
+            #aside, #section, #article {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <h1>Welcome to my Page</h1>
+    </div>
+    
+    <div id="nav">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </div>
+
+    <div id="main">
+        <div id="aside">
+            <h2>Aside</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Totam adipisci, nobis laudantium vero debitis corporis facere unde fugiat qui repellendus nesciunt, quibusdam rerum enim eveniet, ducimus ipsum sapiente odio saepeeeeeeeeeee?</p>
+        </div>
+        <div id="section">
+            <h2>Section</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere non fuga officia, a ut odio aliquid error optio fugiat similique laborum. Non aspernatur error repellat quis, in et expedita asperiores.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae tenetur repellendus voluptate sint consequatur ullam quas nemo illo inventore earum. Vel placeat sequi aut modi accusamus eligendi corporis quaerat necessitatibus.</p>
+        </div>
+        <div id="article">
+            <h2>Article</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui soluta quam laudantium, vero dignissimos rerum ducimus ratione cumque doloremque, eveniet aliquam iusto? Sint sed aliquam recusandae consectetur repudiandae eos tenetur!</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolor expedita neque enim esse aut, voluptates sit atque quisquam aliquid iste id repellat doloribus excepturi eveniet. Sapiente eos ducimus expedita harum.</p>
+        </div>
+    </div>
+
+    <div id="footer">
+        <h1>This is my Footer Line</h1>
+    </div>
+
+</body>
+</html>
