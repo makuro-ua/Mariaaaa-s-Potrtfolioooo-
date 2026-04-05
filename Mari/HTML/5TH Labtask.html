@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Work Resume</title>
+    <style>
+        :root {
+            --coquette-blue: #d6eaff;
+            --ribbon-blue: #a4c8e1;
+            --text-blue: #4a6fa5;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 50px 20px;
+            font-family: "Georgia", serif;
+            color: var(--text-blue);
+            background-color: #f0f7ff;
+            background-image: radial-gradient(#d6eaff 1px, transparent 1px);
+            background-size: 25px 25px;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .decor {
+            position: fixed;
+            opacity: 0.6;
+            font-size: 22px;
+            animation: float 12s linear infinite;
+            z-index: 1;
+            color: var(--ribbon-blue);
+            pointer-events: none;
+        }
+
+        .decor:nth-child(1){ left:5%; animation-delay:0s; }
+        .decor:nth-child(2){ left:15%; animation-delay:2s; }
+        .decor:nth-child(3){ left:25%; animation-delay:4s; }
+        .decor:nth-child(4){ left:35%; animation-delay:6s; }
+        .decor:nth-child(5){ left:45%; animation-delay:8s; }
+        .decor:nth-child(6){ left:55%; animation-delay:1s; }
+        .decor:nth-child(7){ left:65%; animation-delay:3s; }
+        .decor:nth-child(8){ left:75%; animation-delay:5s; }
+        .decor:nth-child(9){ left:85%; animation-delay:7s; }
+        .decor:nth-child(10){ left:95%; animation-delay:9s; }
+
+        @keyframes float {
+            0% { top: -10%; transform: rotate(0deg); }
+            100% { top: 110%; transform: rotate(360deg); }
+        }
+
+        .main-container {
+            max-width: 750px;
+            background: var(--white);
+            padding: 40px;
+            border: 10px double var(--ribbon-blue);
+            border-radius: 5px;
+            box-shadow: 0 5px 25px rgba(164, 200, 225, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-container::before {
+            content: "୨୧";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 35px;
+            background: white;
+            padding: 0 15px;
+            color: var(--ribbon-blue);
+        }
+
+        h2 {
+            text-align: center;
+            letter-spacing: 2px;
+            font-weight: normal;
+            margin-top: 10px;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            border: 4px solid var(--ribbon-blue);
+            padding: 5px;
+            border-radius: 50%;
+            width: 150px;
+            background: white;
+        }
+
+        .header-info {
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        details {
+            background-color: #fafdff;
+            border: 1.5px dashed var(--ribbon-blue);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            padding: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        details:hover {
+            transform: scale(1.01);
+            background-color: #f4faff;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            outline: none;
+            color: var(--text-blue);
+        }
+
+        summary::after {
+            content: "✧";
+            font-size: 14px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: white;
+        }
+
+        td {
+            border: 1px solid var(--ribbon-blue);
+            padding: 10px;
+            font-size: 13px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background-image: linear-gradient(to right, transparent, var(--ribbon-blue), transparent);
+            margin: 25px 0;
+        }
+
+        ul {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="decor">୨୧</div>
+    <div class="decor">✧</div>
+    <div class="decor">ʚ♡ɞ</div>
+    <div class="decor">☆</div>
+    <div class="decor">୨୧</div>
+    <div class="decor">✧</div>
+    <div class="decor">ʚ♡ɞ</div>
+    <div class="decor">☆</div>
+    <div class="decor">୨୧</div>
+    <div class="decor">✧</div>
+
+    <div class="main-container">
+        <h2>( ˘͈ ᵕ ˘͈ ) MY WORK RESUME</h2>
+        
+        <img src="../Images/aa.PNG">
+
+        <div class="header-info">
+            <h4>Pristine Angel A. Arcilla</h4>
+            <b>Email:</b> meriunknown4@gmail.com
+            <br><b>Phone:</b> 09455634594
+            <br><b>Address:</b> Sitio San Martin, Bamban, Tarlac
+            <br><b>LinkedIn:</b> linkedin.com/in/mariri
+        </div>
+
+        <details>
+            <summary>Career Objective</summary>
+            <ul type="round">
+                <li>To know what kind of work that I've taken experience in as an applicant.</li>
+            </ul>
+        </details>
+
+        <details>
+            <summary>Expertise BIO</summary>
+            <p>I would like to be a game developer one day. In which I will make as many visual novels as id like- not only that but id like to make stories of my own that will give people hope and inspirations into the art that they create. Not only that- but I'd really just like to be a rolemodel for my fellow artists out there.</p>
+            <p>As my area of expertise would be story writing, I would like to talk about the kinds of genres that I like doing. In which, I'd often like to work on stories that implement both horror and fantasy in them, as well as sci-fi.</p>
+        </details>
+
+        <details>
+            <summary>Education</summary>
+            <ul type="round">
+                <li>BS Information Technology, PSAU, 2030</li>
+                <li>HUMSS, SNA, 2025</li>
+                <li>Grade 6-10 PHS, 2020-2024</li>
+            </ul>
+        </details>
+
+        <details>
+            <summary>Work Experience or Seminars and Workshops</summary>
+            <p><I>Visual Arts Society 2025-2026 Vice President External</I></P>
+            <ul type="round">
+                <p>In which ive been a major officer in one of the non-collegiate orgs of PSAU.</p>
+                <li>I have created events with my fellow student leaders that include things such as making workshops and galleries.</li>
+            </ul>
+        </details>
+
+        <details>
+            <summary>Hardware & Software Skills</summary>
+            <p><b>Hardware Skills:</b> In which I have worked on a few such as disassembling laptops.</p>
+            <p><b>Software Skills:</b> In which I have worked on a few Visual Novel games as a coder using renpy.</p>
+        </details>
+
+        <details>
+            <summary>Additional Skills</summary>
+            <ul type="round">
+                 <li>Writing</li>
+                 <li>Drawing</li>
+                 <li>Producing</li>
+                 <li>Animating</li>
+                 <li>Bookbinding</li>
+            </ul>
+        </details>
+
+        <details>
+            <summary>Character References</summary>
+            <table border="1">
+                <tr>
+                    <td><b>Full Name</b></td>
+                    <td><b>Designation</b></td>
+                    <td><b>Email</b></td>
+                    <td><b>Contact Number</b></td>
+                </tr>
+                <tr>
+                    <td>Canon Ryba</td>
+                    <td>The Square</td>
+                    <td>canonryba@gmail.com</td>    
+                    <td>0923893234</td>   
+                </tr>
+                <tr>
+                    <td>L'Vinaya Ryba</td>
+                    <td>The Square</td>
+                    <td>lvinayaryba@gmail.com</td>    
+                    <td>092383424</td>  
+                </tr>
+                <tr>
+                    <td>Mariribells</td>
+                    <td>San Fernando, Pampanga</td>
+                    <td>prsxangel23@gmail.com</td>   
+                    <td>0924533234</td>   
+                </tr>
+                <tr>
+                    <td>Michelle Serrano</td>
+                    <td>Bamban, Tarlac</td>
+                    <td>unreadabell@gmail.com</td>   
+                    <td>0923893345</td>   
+                </tr>
+            </table>
+        </details>
+
+        <hr>
+        <p style="text-align: center; font-size: 13px;">
+            <i><u>I HEREBY CERTIFY</u> that the information provided in this form is complete, true, and correct to the best of my knowledge.</i>
+        </p>
+    </div>
+
+</body>
+</html>

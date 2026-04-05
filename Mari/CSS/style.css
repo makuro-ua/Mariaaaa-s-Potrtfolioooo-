@@ -1,0 +1,24 @@
+body {
+  font-family: "Times New Roman", Times, serif;
+}
+h1 {
+  color: orange;
+}
+.form {
+  width: 500px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 10px;
+}
+li{
+  list-style-type: none;
+}
+.row textarea {
+  vertical-align: middle;
+  margin-left: auto;
+  margin-top: auto; 
+  margin-bottom: auto;
+} 
