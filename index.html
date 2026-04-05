@@ -146,7 +146,7 @@
             background-size: 16px 16px;
             padding: 10px 15px 0 15px;
             display: flex;
-            gap: 8px; /* Slightly more gap for wider appearance */
+            gap: 10px; 
             border-top: 2px solid var(--win-shadow);
         }
 
@@ -154,12 +154,13 @@
             background: #c9c0ac; 
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            padding: 6px 35px; /* Widened the tabs here */
+            padding: 6px 0;
             border-radius: 8px 8px 0 0;
             font-family: 'VT323', monospace;
             font-size: 24px;
             cursor: pointer;
-            min-width: 120px; /* Ensures a baseline width */
+            flex: 1; /* Makes all 4 tabs equally wide to fill the bar */
+            text-align: center;
         }
 
         .nav-btn.active {
@@ -198,6 +199,27 @@
         .song-item { background: #e0e0e0; border: 1px inset #bbb; padding: 5px 10px; margin: 6px 0; font-size: 20px; }
         .pfp-img { width: 100%; height: 280px; object-fit: cover; border: 2px solid #333; }
 
+        /* LABS STYLING */
+        .lab-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--win-shadow);
+        }
+        .lab-item:last-child { border-bottom: none; }
+        .lab-btn {
+            background: var(--win-grey);
+            border: 2px solid;
+            border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
+            padding: 5px 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+        }
+        .lab-btn:active { border-color: var(--win-shadow) var(--win-white) var(--win-white) var(--win-shadow); transform: translate(1px, 1px); }
+
         .footer-widgets {
             display: flex;
             justify-content: space-between;
@@ -208,7 +230,7 @@
         }
 
         .music-player { flex: 1.5; font-size: 20px; }
-        .player-controls { display: flex; align-items: center; gap: 15px; margin-top: 5px; font-size: 24px; }
+        .player-controls { display: flex; align-items: center; gap: 15px; font-size: 24px; }
         
         .disclaimer-bubble {
             background: #cbd5e0;
@@ -242,9 +264,7 @@
     </div>
 
     <div class="big-star" style="top: 10%; left: 15%;"></div>
-    <div class="big-star" style="top: 20%; right: 10%;"></div>
-    <div class="big-star" style="bottom: 15%; left: 10%;"></div>
-    <div class="big-star" style="bottom: 25%; right: 15%;"></div>
+    <div class="big-star" style="bottom: 15%; right: 10%;"></div>
 
     <div id="main-content">
         <div class="window">
@@ -307,7 +327,6 @@
                         <div class="content-rect">
                             <div class="qna-q">1. Who am I?</div>
                             <div class="qna-a">Pristine Angel A. Arcilla</div>
-
                             <div class="qna-q">2. Where to find me?</div>
                             <div class="qna-a">
                                 Email: meriunknown4@gmail.com<br>
@@ -315,11 +334,9 @@
                                 Address: Sitio San Martin, Bamban, Tarlac<br>
                                 LinkedIn: linkedin.com/in/maririCareer Objective
                             </div>
-
                             <div class="qna-q">3. Why did I do this?</div>
                             <div class="qna-a">
-                                I would like to be a game developer one day. In which I will make as many visual novels as id like- not only that but id like to make stories of my own that will give people hope and inspirations into the art that they create. Not only that- but I'd really just like to be a rolemodel for my fellow artists out there.<br><br>
-                                As my area of expertise would be story writing, I would like to talk about the kinds of genres that I like doing. In which, I'd often like to work on stories that implement both horror and fantasy in them, as well as sci-fi.
+                                I would like to be a game developer one day. In which I will make as many visual novels as id like... I'd really just like to be a rolemodel for my fellow artists out there.
                             </div>
                         </div>
                     </div>
@@ -332,37 +349,50 @@
                                 <li>BS Information Technology, PSAU, 2030</li>
                                 <li>HUMSS, SNA, 2025</li>
                                 <li>Grade 6-10 PHS, 2020-2024</li>
-                            </ul>
-                            
-                            <h3 style="margin-top: 20px;">Work Experience / Seminars</h3>
-                            <ul class="edu-list">
                                 <li>Visual Arts Society 2025-2026 Vice President External</li>
                             </ul>
-                            
-                            <div class="qna-a" style="margin-top: 10px;">
-                                In which I've been a major officer in one of the non-collegiate orgs of PSAU. I have created events with my fellow student leaders that include things such as making workshops and galleries.
-                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div id="labs" class="tab-content">
-                    <div style="background:#b8c2d1; padding:40px; border:2px inset; min-height:300px;">
-                        <ul style="font-size: 32px; list-style: '✧ '; line-height: 2.5;">
-                            <li><a href="HTML/1st Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 1: My Resume</a></li>
-                            <li><a href="HTML/2nd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 2: Nested Lists</a></li>
-                            <li><a href="HTML/3rd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 3: Image Maps</a></li>
-                        </ul>
+                    <div class="retro-box">
+                        <div class="content-rect">
+                            <div class="lab-item">
+                                <span style="font-size: 22px;">Task 1: My Resume</span>
+                                <a href="HTML/1st Lab.html" class="lab-btn">Launch</a>
+                            </div>
+                            <div class="lab-item">
+                                <span style="font-size: 22px;">Task 2: Nested Lists</span>
+                                <a href="HTML/2nd Lab.html" class="lab-btn">Launch</a>
+                            </div>
+                            <div class="lab-item">
+                                <span style="font-size: 22px;">Task 3: Image Maps</span>
+                                <a href="HTML/3rd Lab.html" class="lab-btn">Launch</a>
+                            </div>
+                            <div class="lab-item">
+                                <span style="font-size: 22px;">Task 4: Labtask Four</span>
+                                <a href="HTML/4th labtask.html" class="lab-btn">Launch</a>
+                            </div>
+                            <div class="lab-item">
+                                <span style="font-size: 22px;">Task 5: Labtask Five</span>
+                                <a href="HTML/5TH Labtask.html" class="lab-btn">Launch</a>
+                            </div>
+                            <div class="lab-item">
+                                <span style="font-size: 22px;">Task 6: Labtask Six</span>
+                                <a href="HTML/6th Labtask.html" class="lab-btn">Launch</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="footer-widgets">
                     <div class="music-player">
-                        <strong>Butcher Vanity - Flavor Foley</strong>
-                        <div style="background:#999; height:4px; margin:10px 0; position:relative;">
-                            <div style="position:absolute; left:40%; top:-8px; background:var(--inner-off-white); padding:0 3px;">♡</div>
+                        <strong style="display:block; margin-bottom: 8px;">Butcher Vanity - Flavor Foley</strong>
+                        <div style="background:#999; height:4px; position:relative; margin-bottom: 10px;">
+                            <div style="position:absolute; left:40%; top:-10px; background:var(--inner-off-white); padding:0 3px;">♡</div>
                         </div>
-                        <div style="display:flex; justify-content:space-between; font-size:16px; margin-top: 5px;">
+                        <div style="display:flex; justify-content:space-between; align-items: center; font-size:18px;">
                             <span>0:54</span>
                             <div class="player-controls">
                                 <span>⇄</span> <span>◁◁</span> <span>II</span> <span>▷▷</span>
