@@ -19,6 +19,7 @@
             background-color: #b4c7e7;
             border: 2px solid white;
             box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+            position: relative;
         }
 
         .url-bar {
@@ -27,7 +28,6 @@
             padding: 8px 15px;
             font-size: 14px;
             border-bottom: 2px solid white;
-            text-align: left;
         }
 
         .banner {
@@ -41,7 +41,7 @@
             display: flex;
             gap: 15px;
             padding: 10px 15px;
-            background-image: linear-gradient(to bottom, #b4c7e7 50%, #ffffff 50%);
+            background-color: #b4c7e7;
         }
 
         .nav-btn {
@@ -52,13 +52,23 @@
             font-weight: bold;
             color: #4a4a4a;
             font-size: 16px;
+            cursor: pointer;
         }
 
         .white-sheet {
             background-color: white;
             margin: 0 10px 10px 10px;
             padding: 20px;
-            min-height: 450px;
+            min-height: 480px;
+            position: relative;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         .grid-layout {
@@ -67,125 +77,66 @@
             gap: 20px;
         }
 
-        /* Left Column */
-        .col-left h3 {
-            margin-top: 0;
-            font-weight: 800;
-        }
+        .col-left h3 { margin-top: 0; }
+        .col-left ul { list-style: none; padding: 0; }
+        .col-left li { padding: 3px 0; border-bottom: 1px solid #eee; }
+        .col-left li::before { content: "• "; }
 
-        .col-left ul {
-            list-style: none;
-            padding: 0;
-        }
+        .song-header { color: #5b7fb3; font-weight: bold; margin-top: 15px; }
+        .song-box { background: #f0f0f0; padding: 6px 10px; margin: 5px 0; font-size: 14px; border-bottom: 1px solid #ccc; }
 
-        .col-left li {
-            padding: 3px 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
+        .col-mid h1 { font-style: italic; color: #5b7fb3; margin-top: 0; }
+        .handle { margin-top: 30px; font-weight: bold; }
 
-        .col-left li::before {
-            content: "• ";
-        }
+        .pfp-box { background-color: #f5f1e6; padding: 10px; border-radius: 5px; }
+        .pfp-img { width: 100%; background: white; display: block; }
 
-        .song-header {
-            color: #5b7fb3;
-            font-weight: bold;
-            margin-top: 15px;
-        }
-
-        .song-box {
-            background: #f0f0f0;
-            padding: 6px 10px;
-            margin: 5px 0;
-            font-size: 14px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        /* Middle Column */
-        .col-mid {
-            text-align: left;
-            padding: 0 10px;
-        }
-
-        .col-mid h1 {
-            font-style: italic;
-            color: #5b7fb3;
-            font-size: 28px;
-            margin-top: 0;
-        }
-
-        .profile-text {
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .handle {
-            margin-top: 30px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        /* Right Column */
-        .pfp-box {
-            background-color: #f5f1e6;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .pfp-header {
-            font-size: 11px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-bottom: 5px;
-        }
-
-        .pfp-img {
-            width: 100%;
-            background: white;
-            display: block;
-        }
-
-        /* Footer and Widgets */
         .blue-footer {
             background-color: #5b7fb3;
             color: white;
             text-align: center;
             padding: 6px;
             margin: 20px 0;
-            font-size: 12px;
-            border-radius: 2px;
+            font-size: 11px;
         }
 
-        .bottom-widgets {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+        .bottom-widgets { display: flex; justify-content: space-between; align-items: flex-end; }
+        .music-player { font-size: 12px; color: #666; }
+        .disclaimer-bubble { background-color: #f8f9fa; border-radius: 15px; padding: 10px 15px; font-size: 11px; }
+
+        /* Labtasks Overlay */
+        .labtask-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background-color: #deeaf6;
+            border-radius: 40px;
+            padding: 40px;
+            z-index: 5;
         }
 
-        .music-player {
-            font-size: 13px;
-            color: #666;
-            width: 50%;
+        .labtask-list { list-style: none; padding: 0; margin: 0; }
+        .labtask-list li { padding: 12px 0; border-bottom: 1px solid #a4badb; }
+        .labtask-list a { text-decoration: none; color: black; font-size: 16px; display: block; }
+
+        .scroll-indicator {
+            position: absolute;
+            right: 20px;
+            top: 40px;
+            bottom: 40px;
+            width: 8px;
+            background-color: #a4badb;
+            border-radius: 10px;
         }
 
-        .progress-bar {
-            margin: 5px 0;
-        }
-
-        .controls {
-            font-size: 18px;
-            margin-top: 5px;
-        }
-
-        .disclaimer-bubble {
-            background-color: #f8f9fa;
-            border-radius: 15px;
-            padding: 12px 20px;
-            font-size: 12px;
-            text-align: left;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
-            max-width: 250px;
+        .scroll-handle {
+            width: 100%;
+            height: 30%;
+            background-color: #ffffff;
+            border-radius: 10px;
+            border: 1px solid #5b7fb3;
         }
     </style>
 </head>
@@ -194,62 +145,86 @@
 <div class="container">
     <div class="url-bar">www.makuro-ua.github.io/Mariaaaa-s-Potrfolioooo-/</div>
     
-    <img src="PNG 1" alt="Latte Art Banner" class="banner">
+    <img src="PNG 1" class="banner">
 
     <div class="nav">
-        <button class="nav-btn">About Me</button>
-        <button class="nav-btn">Labtasks</button>
+        <button class="nav-btn" onclick="showTab('about')">About Me</button>
+        <button class="nav-btn" onclick="showTab('labs')">Labtasks</button>
     </div>
 
     <div class="white-sheet">
-        <div class="grid-layout">
-            <div class="col-left">
-                <h3>What I like!!!!</h3>
-                <ul>
-                    <li>Drawing</li>
-                    <li>Singing</li>
-                    <li>Writing</li>
-                    <li>Cosplaying</li>
+        
+        <div id="about" class="tab-content active">
+            <div class="grid-layout">
+                <div class="col-left">
+                    <h3>What I like!!!!</h3>
+                    <ul>
+                        <li>Drawing</li>
+                        <li>Singing</li>
+                        <li>Writing</li>
+                        <li>Cosplaying</li>
+                    </ul>
+                    <p class="song-header">Favorite Songs :</p>
+                    <div class="song-box">Butcher Vanity</div>
+                    <div class="song-box">Looping the Rooms</div>
+                </div>
+
+                <div class="col-mid">
+                    <h1>My Profile</h1>
+                    <p>Hiii!!! my name is Pristinee <33 I'm an aspiring game developer from the Philippines who studies in PSAU!! Welcome to my Portfolioo!!! Hope u enjoy scrolling thru here >:DD</p>
+                    <div class="handle">@Bluebell_UA</div>
+                </div>
+
+                <div class="col-right">
+                    <div class="pfp-box">
+                        <div style="font-size: 10px; margin-bottom: 5px;">📷 Profile Picture</div>
+                        <img src="PNG 2" class="pfp-img">
+                    </div>
+                </div>
+            </div>
+
+            <div class="blue-footer">
+                My Portfolioo!!! || This Github is Intended for school purposes only ><
+            </div>
+
+            <div class="bottom-widgets">
+                <div class="music-player">
+                    <strong>Dreamscape - Satoshi Onishi</strong><br>
+                    0:54 ———♡————— 3:30<br>
+                    ⇄ ◃◃ Ⅱ ▹▹ ↻
+                </div>
+                <div class="disclaimer-bubble">
+                    Not every image here is by me <33<br>
+                    I own Bluebell's eye art though :))
+                </div>
+            </div>
+        </div>
+
+        <div id="labs" class="tab-content">
+            <div class="labtask-overlay">
+                <div class="scroll-indicator"><div class="scroll-handle"></div></div>
+                <ul class="labtask-list">
+                    <li><a href="HTML/1st Lab.html">• <strong>LABTASK 1</strong> -- Resume -- My Resume!!!</a></li>
+                    <li><a href="HTML/2nd Lab.html">• <strong>LABTASK 2</strong> -- Nested List -- Lists!!!</a></li>
+                    <li><a href="HTML/3rd Lab.html">• <strong>LABTASK 3</strong> -- Image Maps -- Maps!!!</a></li>
+                    <li><a href="HTML/4th labtask.html">• <strong>LABTASK 4</strong> -- HTML Forms -- Add an Input!!!</a></li>
+                    <li><a href="HTML/5TH Labtask.html">• <strong>LABTASK 5</strong> -- Applying CSS -- Resume with CSS!!!</a></li>
+                    <li><a href="HTML/6th Labtask.html">• <strong>LABTASK 6</strong> -- CSS Display -- CSS Tests!!!</a></li>
                 </ul>
-                <p class="song-header">Favorite Songs :</p>
-                <div class="song-box">Butcher Vanity</div>
-                <div class="song-box">Looping the Rooms</div>
-            </div>
-
-            <div class="col-mid">
-                <h1>My Profile</h1>
-                <div class="profile-text">
-                    Hiii!!! my name is Pristinee <33 I'm an aspiring game developer from the Philippines who studies in PSAU!! Welcome to my Portfolioo!!! Hope u enjoy scrolling thru here >:DD
-                </div>
-                <div class="handle">@Bluebell_UA</div>
-            </div>
-
-            <div class="col-right">
-                <div class="pfp-box">
-                    <div class="pfp-header">📷 Profile Picture</div>
-                    <img src="PNG 2" alt="Profile" class="pfp-img">
-                </div>
+                <div style="margin-top: 40px; border-top: 1px solid #5b7fb3; width: 100%;"></div>
             </div>
         </div>
 
-        <div class="blue-footer">
-            My Portfolioo!!! || This Github is Intended for school purposes only ><
-        </div>
-
-        <div class="bottom-widgets">
-            <div class="music-player">
-                <strong>Dreamscape - Satoshi Onishi</strong><br>
-                <div class="progress-bar">0:54 ———♡————— 3:30</div>
-                <div class="controls">⇄ ◃◃ Ⅱ ▹▹ ↻</div>
-            </div>
-            
-            <div class="disclaimer-bubble">
-                Not every image here is by me <33<br>
-                I own Bluebell's eye art though :))
-            </div>
-        </div>
     </div>
 </div>
+
+<script>
+    function showTab(tabName) {
+        document.getElementById('about').classList.remove('active');
+        document.getElementById('labs').classList.remove('active');
+        document.getElementById(tabName).classList.add('active');
+    }
+</script>
 
 </body>
 </html>
