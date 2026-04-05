@@ -4,113 +4,111 @@
     <meta charset="UTF-8">
     <title>Maria's Portfolio</title>
     <style>
+        html { scroll-behavior: smooth; }
         body { background-color: #f1f6f9; font-family: 'Courier New', Courier, monospace; display: flex; flex-direction: column; align-items: center; padding: 20px 0; }
-        .card { width: 600px; max-width: 95%; background: white; border: 10px solid white; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+        
+        .card { width: 600px; max-width: 95%; background: white; border: 10px solid white; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 25px; }
+        
         .url-bar { background: #7a92b1; color: white; padding: 5px 15px; font-size: 14px; font-weight: bold; }
         .header-img { width: 100%; height: 120px; object-fit: cover; border-bottom: 5px solid #d9e3f0; }
-        .nav-tabs { display: flex; background: #d9e3f0; gap: 5px; padding: 10px; }
-        .tab { background: #fdf6e3; padding: 8px 15px; border-radius: 5px; flex: 1; text-align: center; font-weight: bold; color: #8e9cad; font-size: 12px; cursor: pointer; border: none; }
-        .tab.active { background: #7a92b1; color: white; }
         
-        .page { display: none; padding: 15px; }
-        .page.active { display: grid; }
+        .nav-tabs { display: flex; background: #d9e3f0; gap: 5px; padding: 10px; }
+        .tab-link { background: #fdf6e3; padding: 8px 15px; border-radius: 5px; flex: 1; text-align: center; font-weight: bold; color: #8e9cad; font-size: 12px; text-decoration: none; border: none; }
+        .tab-link:hover { background: #cbd8e9; }
 
-        /* Page 1: About Me */
-        .about-grid { grid-template-columns: 1fr 1.5fr 1fr; gap: 10px; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 10px; padding: 15px; }
         .col-title { color: #7a92b1; border-bottom: 2px solid #d9e3f0; margin-bottom: 10px; font-size: 16px; font-weight: bold; }
         .text-small { font-size: 11px; line-height: 1.6; color: #333; }
+        
         .song-item { background: #fdf6e3; padding: 5px; border-radius: 5px; font-size: 11px; margin-bottom: 5px; border-left: 3px solid #7a92b1; font-weight: bold; }
+        
         .pfp-box { text-align: center; font-size: 9px; color: #7a92b1; }
         .pfp-img { width: 100%; border-radius: 5px; border: 1px solid #d9e3f0; margin-top: 5px; }
 
-        /* Page 2: Projects */
-        .projects-page { padding: 20px; background-image: radial-gradient(#d9e3f0 1px, transparent 1px); background-size: 20px 20px; }
+        .projects-section { padding: 20px; background-image: radial-gradient(#d9e3f0 1px, transparent 1px); background-size: 20px 20px; }
         .lab-list { list-style: none; padding: 0; }
-        .lab-list li { margin: 12px 0; border-bottom: 1px solid #7a92b1; padding-bottom: 5px; font-size: 13px; }
+        .lab-list li { margin: 12px 0; border-bottom: 1px solid #7a92b1; padding-bottom: 5px; font-size: 12px; color: #333; }
         .lab-list a { text-decoration: none; color: black; font-weight: bold; }
 
         .info-footer { background: #7a92b1; color: #d9e3f0; text-align: center; font-size: 10px; padding: 5px; margin-top: 10px; }
+        
         .player-section { background: #EBF1FA; padding: 10px; display: flex; align-items: center; justify-content: space-between; font-size: 10px; color: #7a92b1; }
-        .art-credit-box { background: white; padding: 10px; border-radius: 8px; border: 1px solid #d9e3f0; width: 35%; font-size: 10px; color: #333; }
+        .art-credit-box { background: white; padding: 10px; border-radius: 8px; border: 1px solid #d9e3f0; width: 35%; font-size: 9px; color: #333; line-height: 1.4; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div class="url-bar">www.makuro-ua.github.io/Mariaaaa-s-Potrfolioooo-/</div>
-    <img src="Mari/Images/PNG1.png" class="header-img">
-    
-    <div class="nav-tabs">
-        <button class="tab active" onclick="showPage('about')">About Me</button>
-        <button class="tab" onclick="showPage('projects')">Labtasks</button>
+    <div class="card">
+        <div class="url-bar">www.makuro-ua.github.io/Mariaaaa-s-Potrfolioooo-/</div>
+        <img src="Mari/Images/PNG1.png" class="header-img" alt="Header">
+        <div class="nav-tabs">
+            <a href="#about-me" class="tab-link">About Me</a>
+            <a href="#labtasks" class="tab-link">Labtasks</a>
+        </div>
     </div>
 
-    <div id="about" class="page active about-grid">
-        <div>
-            <div class="col-title">What I like!!!!</div>
-            <ul class="text-small" style="padding-left: 15px;">
-                <li>Drawing</li>
-                <li>Singing</li>
-                <li>Writing</li>
-                <li>Cosplaying</li>
+    <div class="card" style="padding: 0;">
+        
+        <div id="about-me" class="about-grid">
+            <div>
+                <div class="col-title">What I like!!!!</div>
+                <ul class="text-small" style="padding-left: 15px;">
+                    <li>Drawing</li>
+                    <li>Singing</li>
+                    <li>Writing</li>
+                    <li>Cosplaying</li>
+                </ul>
+                <div class="col-title" style="margin-top:15px;">Favorite Songs :</div>
+                <div class="song-item">Butcher Vanity</div>
+                <div class="song-item">Looping the Rooms</div>
+            </div>
+
+            <div>
+                <div class="col-title">My Profile</div>
+                <p class="text-small">
+                    Hiii!!! my name is Pristinee &lt;33<br>
+                    I'm an aspiring game developer from the Philippines who studies in PSAU!!<br>
+                    Welcome to my Portfolioo!!! Hope u enjoy scrolling thru here &gt;:DD
+                </p>
+                <p class="text-small" style="font-weight: bold; margin-top: 15px;">@Bluebell_UA</p>
+            </div>
+
+            <div class="pfp-box">
+                ⚙️ Profile Picture
+                <img src="Mari/Images/PNG2.png" class="pfp-img" alt="PFP">
+                <button style="font-size:10px; background:#7a92b1; color:white; border:none; padding:3px 10px; border-radius:3px; margin-top:10px; cursor:pointer;">Request</button>
+            </div>
+        </div>
+
+        <div id="labtasks" class="projects-section">
+            <div class="col-title">Labtasks</div>
+            <ul class="lab-list">
+                <li>• <a href="Mari/HTML/1st Lab.html">LABTASK 1 -- Resume -- My Resume!!!</a></li>
+                <li>• <a href="Mari/HTML/2nd Lab.html">LABTASK 2 -- Nested List -- Lists!!!</a></li>
+                <li>• <a href="Mari/HTML/3rd Lab.html">LABTASK 3 -- Image Maps -- Maps!!!</a></li>
+                <li>• <a href="Mari/HTML/4th labtask.html">LABTASK 4 -- HTML Forms -- Add an Input!!!</a></li>
+                <li>• <a href="Mari/HTML/5TH Labtask.html">LABTASK 5 -- Applying CSS -- Resume with CSS!!!</a></li>
+                <li>• <a href="Mari/HTML/6th Labtask.html">LABTASK 6 -- CSS Display -- CSS Tests!!!</a></li>
+                <li>• <a href="Mari/HTML/waow.html">LABTASK 7 -- Special -- waow!!!</a></li>
             </ul>
-            <div class="col-title" style="margin-top:15px;">Favorite Songs :</div>
-            <div class="song-item">Butcher Vanity</div>
-            <div class="song-item">Looping the Rooms</div>
         </div>
-        <div>
-            <div class="col-title">My Profile</div>
-            <p class="text-small">
-                Hiii!!! my name is Pristinee &lt;33<br>
-                I'm an aspiring game developer from the Philippines who studies in PSAU!!<br>
-                Welcome to my Portfolioo!!! Hope u enjoy scrolling thru here &gt;:DD
-            </p>
-            <p class="text-small" style="font-weight: bold; margin-top: 15px;">@Bluebell_UA</p>
-        </div>
-        <div class="pfp-box">
-            ⚙️ Profile Picture
-            <img src="Mari/Images/PNG2.png" class="pfp-img">
-            <button style="font-size:10px; background:#7a92b1; color:white; border:none; padding:3px 10px; border-radius:3px; margin-top:10px;">Request</button>
-        </div>
-    </div>
 
-    <div id="projects" class="page projects-page">
-        <div class="col-title">My Labtasks</div>
-        <ul class="lab-list">
-            <li>• <a href="Mari/HTML/1st Lab.html">LABTASK 1 -- Resume -- My Resume!!!</a></li>
-            <li>• <a href="Mari/HTML/2nd Lab.html">LABTASK 2 -- Nested List -- Lists!!!</a></li>
-            <li>• <a href="Mari/HTML/3rd Lab.html">LABTASK 3 -- Image Maps -- Maps!!!</a></li>
-            <li>• <a href="Mari/HTML/4th labtask.html">LABTASK 4 -- HTML Forms -- Add an Input!!!</a></li>
-            <li>• <a href="Mari/HTML/5TH Labtask.html">LABTASK 5 -- Applying CSS -- Resume with CSS!!!</a></li>
-            <li>• <a href="Mari/HTML/6th Labtask.html">LABTASK 6 -- CSS Display -- CSS Tests!!!</a></li>
-        </ul>
-    </div>
-
-    <div class="info-footer">
-        My Portfolioo!!! || This Github is Intended for school purposes only &gt;&lt;
-    </div>
-    
-    <div class="player-section">
-        <div style="flex: 1; margin-right: 15px;">
-            <div>Dreamscape - Satoshi Onishi</div>
-            <div style="height: 4px; background: white; margin: 5px 0;"><div style="width: 30%; height: 100%; background: #7a92b1;"></div></div>
-            <div style="display:flex; justify-content: space-between;"><span>0:54</span><span>3:30</span></div>
+        <div class="info-footer">
+            My Portfolioo!!! || This Github is Intended for school purposes only &gt;&lt;
         </div>
-        <div class="art-credit-box">
-            Not every image here is by me &lt;33<br>
-            I own Bluebell's eye art though :))
+        
+        <div class="player-section">
+            <div style="flex: 1; margin-right: 15px;">
+                <div>Dreamscape - Satoshi Onishi</div>
+                <div style="height: 4px; background: white; margin: 5px 0;"><div style="width: 30%; height: 100%; background: #7a92b1;"></div></div>
+                <div style="display:flex; justify-content: space-between;"><span>0:54</span><span>3:30</span></div>
+            </div>
+            <div class="art-credit-box">
+                Not every image here is by me &lt;33<br>
+                I own Bluebell's eye art though :))
+            </div>
         </div>
     </div>
-</div>
-
-<script>
-    function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
-        event.currentTarget.classList.add('active');
-    }
-</script>
 
 </body>
 </html>
