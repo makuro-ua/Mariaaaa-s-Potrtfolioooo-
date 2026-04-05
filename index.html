@@ -11,17 +11,16 @@
             --win-white: #ffffff;
             --win-shadow: #808080;
             --win-blue: #000080;
-            --bg-dark: #121a2b; /* Deep night blue */
+            --bg-dark: #0a111f; /* Even darker for sparkle contrast */
             --cute-glow: rgba(180, 199, 231, 0.6);
         }
 
-        /* Subtle floating for the whole window */
-        @keyframes windowFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+        /* Shimmering Pixel Stars */
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* Animated stars and ribbons background */
         @keyframes bgScroll {
             from { background-position: 0 0; }
             to { background-position: 100px 100px; }
@@ -30,11 +29,10 @@
         body {
             background-color: var(--bg-dark);
             background-image: 
-                radial-gradient(circle, #fff 1px, transparent 1px),
-                radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 1.5px),
-                linear-gradient(45deg, transparent 45%, rgba(125, 150, 184, 0.1) 50%, transparent 55%);
-            background-size: 50px 50px, 100px 100px, 150px 150px;
-            animation: bgScroll 20s linear infinite;
+                radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(45deg, transparent 45%, rgba(125, 150, 184, 0.05) 50%, transparent 55%);
+            background-size: 80px 80px, 150px 150px;
+            animation: bgScroll 30s linear infinite;
             font-family: 'VT323', monospace;
             display: flex;
             justify-content: center;
@@ -42,28 +40,39 @@
             margin: 0;
             min-height: 100vh;
             overflow: hidden;
+            position: relative;
         }
 
-        /* The Window with THE GLOW */
+        /* Creating big pixel sparkles around the window */
+        .sparkle {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: white;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            box-shadow: 0 0 10px white;
+            animation: shimmer 3s infinite ease-in-out;
+            z-index: -1;
+        }
+
+        /* Compact Window Styling */
         .window {
-            width: 760px; 
+            width: 620px; /* Smaller width so text looks bigger */
             background-color: var(--win-grey);
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            box-shadow: 0 0 40px 10px var(--cute-glow); /* The funny glow is back! */
+            box-shadow: 0 0 45px 5px var(--cute-glow);
             padding: 3px;
-            animation: windowFloat 5s ease-in-out infinite;
+            position: relative;
         }
 
-        /* Cute Hover: Squish & Soft Glow */
         .hover-cute {
             transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
         }
         .hover-cute:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 15px var(--cute-glow);
-            filter: brightness(1.05);
+            transform: scale(1.02);
+            filter: brightness(1.08);
         }
 
         .title-bar {
@@ -84,26 +93,24 @@
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
             font-family: 'VT323', monospace;
             font-size: 12px;
-            margin-left: 2px;
         }
 
         .banner {
             width: 100%;
-            height: 165px;
+            height: 140px; /* Shorter banner */
             object-fit: cover;
             border: 2px inset #eee;
             margin-top: 4px;
             display: block;
         }
 
-        /* Tab Navigation */
         .tab-wrapper {
             background-image: linear-gradient(45deg, #7d96b8 25%, transparent 25%), 
                               linear-gradient(-45deg, #7d96b8 25%, transparent 25%), 
                               linear-gradient(45deg, transparent 75%, #7d96b8 75%), 
                               linear-gradient(-45deg, transparent 75%, #7d96b8 75%);
             background-size: 16px 16px;
-            padding: 10px 12px 0 12px;
+            padding: 8px 12px 0 12px;
             display: flex;
             gap: 5px;
         }
@@ -112,10 +119,10 @@
             background-color: #e3d9c0;
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            padding: 6px 22px;
-            border-radius: 8px 8px 0 0;
+            padding: 4px 18px;
+            border-radius: 6px 6px 0 0;
             font-family: 'VT323', monospace;
-            font-size: 21px;
+            font-size: 20px;
         }
 
         .nav-btn.active {
@@ -128,9 +135,9 @@
         .window-body {
             background-color: var(--win-white);
             border: 2px inset;
-            margin: 0 10px 10px 10px;
-            padding: 18px;
-            min-height: 410px;
+            margin: 0 8px 8px 8px;
+            padding: 15px;
+            min-height: 380px;
         }
 
         .tab-content { display: none; }
@@ -138,36 +145,39 @@
 
         .grid-layout {
             display: grid;
-            grid-template-columns: 1fr 1.3fr 1fr;
-            gap: 15px;
+            grid-template-columns: 1fr 1fr; /* 2 columns for smaller window */
+            gap: 12px;
         }
 
         .retro-box {
             background-color: #f4f7fa;
             border: 1px solid #b4c7e7;
-            padding: 12px;
+            padding: 10px;
             border-radius: 4px;
         }
 
         .playlist-rect {
             background-color: #dbe4f0;
             border: 1px dashed #5b7fb3;
-            padding: 10px;
-            margin-top: 12px;
+            padding: 8px;
+            margin-top: 10px;
         }
 
-        h1, h3 { color: #5b7fb3; margin-top: 0; }
-        .song-item { background: white; border: 1px inset #eee; padding: 3px 10px; margin: 5px 0; font-size: 17px; border-radius: 2px; }
+        h1, h3 { color: #5b7fb3; margin: 0 0 5px 0; }
+        .song-item { background: white; border: 1px inset #eee; padding: 2px 8px; margin: 4px 0; font-size: 18px; }
 
         .pfp-container {
+            grid-column: span 2; /* PFP takes full width or stays small */
+            display: flex;
+            align-items: center;
             background: #f5f1e6;
             border: 1px solid var(--win-shadow);
             padding: 8px;
-            text-align: center;
+            gap: 15px;
         }
         .pfp-img { 
-            width: 100%; 
-            height: 260px; 
+            width: 100px; 
+            height: 100px; 
             object-fit: cover; 
             border: 1px solid #333; 
         }
@@ -176,27 +186,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 25px;
-            padding-top: 12px;
+            margin-top: 20px;
+            padding-top: 10px;
             border-top: 1px solid #e1e7ed;
         }
 
-        .music-player { width: 230px; font-size: 17px; color: #444; }
-        .progress-line { width: 100%; height: 2px; background: #ccc; margin: 10px 0; position: relative; }
-        .heart-marker { position: absolute; left: 35%; top: -10px; background: white; padding: 0 4px; font-size: 14px; }
+        .music-player { width: 210px; font-size: 18px; }
+        .progress-line { width: 100%; height: 2px; background: #ccc; margin: 8px 0; position: relative; }
+        .heart-marker { position: absolute; left: 35%; top: -8px; background: white; padding: 0 4px; }
 
         .disclaimer-bubble {
             background-color: #f9fbff;
             border: 1px solid #ced4da;
-            border-radius: 15px 15px 2px 15px;
-            padding: 10px 18px;
+            border-radius: 12px;
+            padding: 8px 15px;
             font-size: 16px;
-            max-width: 260px;
-            line-height: 1.4;
+            max-width: 240px;
         }
     </style>
 </head>
 <body>
+
+    <div class="sparkle" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
+    <div class="sparkle" style="top: 20%; right: 10%; animation-delay: 1s;"></div>
+    <div class="sparkle" style="bottom: 15%; left: 10%; animation-delay: 2s;"></div>
+    <div class="sparkle" style="bottom: 25%; right: 15%; animation-delay: 1.5s;"></div>
 
 <div class="window">
     <div class="title-bar">
@@ -220,7 +234,7 @@
             <div class="grid-layout">
                 <div class="retro-box hover-cute">
                     <h3>Likes! ૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</h3>
-                    <ul style="font-size: 19px; padding-left: 18px; line-height: 1.5;">
+                    <ul style="font-size: 20px; padding-left: 18px; margin: 0;">
                         <li>Drawing</li>
                         <li>Singing</li>
                         <li>Writing</li>
@@ -229,22 +243,23 @@
                 </div>
 
                 <div class="retro-box hover-cute">
-                    <h1 style="font-style: italic; font-size: 30px;">My Profile</h1>
-                    <div style="font-size: 19px; line-height: 1.4;">
-                        Hiii!!! my name is Pristinee &lt;33 I'm an aspiring game developer from the Philippines who studies in PSAU!! 
+                    <h1 style="font-style: italic; font-size: 28px;">My Profile</h1>
+                    <div style="font-size: 19px; line-height: 1.2;">
+                        Hiii!!! my name is Pristinee &lt;33 I'm an aspiring developer! 
                     </div>
-                    
                     <div class="playlist-rect hover-cute">
-                        <p style="color:#5b7fb3; font-weight:bold; margin:0; font-size: 19px;">Fav Songs :</p>
+                        <p style="color:#5b7fb3; font-weight:bold; margin:0; font-size: 18px;">Fav Songs :</p>
                         <div class="song-item">Butcher Vanity</div>
                         <div class="song-item">Looping the Rooms</div>
                     </div>
-                    <p style="font-weight:bold; color:#5b7fb3; margin-top:12px; font-size: 18px;">@Bluebell_UA</p>
                 </div>
 
                 <div class="pfp-container hover-cute">
-                    <div style="font-size: 13px; margin-bottom: 5px;">[aa2.jpg]</div>
                     <img src="Images/aa2.jpg" class="pfp-img" alt="PFP">
+                    <div>
+                        <div style="font-size: 14px; color: var(--win-shadow);">[aa2.jpg]</div>
+                        <p style="font-weight:bold; color:#5b7fb3; margin:5px 0; font-size: 20px;">@Bluebell_UA</p>
+                    </div>
                 </div>
             </div>
 
@@ -252,22 +267,18 @@
                 <div class="music-player hover-cute">
                     <strong>Dreamscape - Satoshi Onishi</strong>
                     <div class="progress-line"><span class="heart-marker">♡</span></div>
-                    <div style="display:flex; justify-content:space-between; font-size:14px; opacity:0.7;">
-                        <span>0:54</span><span>3:30</span>
-                    </div>
-                    <div style="font-size:22px; letter-spacing:6px; text-align:center; margin-top:5px;">⇄ ◃◃ Ⅱ ▹▹ ↻</div>
+                    <div style="font-size:22px; letter-spacing:6px; text-align:center;">⇄ ◃◃ Ⅱ ▹▹ ↻</div>
                 </div>
                 <div class="disclaimer-bubble hover-cute">
                     Not every image here is by me &lt;33<br>
-                    I own Bluebell's eye art though :))
+                    I own Bluebell's art though :))
                 </div>
             </div>
         </div>
 
         <div id="labs" class="tab-content">
-            <div style="background:#deeaf6; padding:25px; border:2px inset; border-radius:15px; height:320px;">
-                <h3 style="margin-bottom:15px;">School Labtasks</h3>
-                <ul style="font-size: 21px; list-style: '✧ '; line-height: 1.8;">
+            <div style="background:#deeaf6; padding:20px; border:2px inset; border-radius:10px;">
+                <ul style="font-size: 22px; list-style: '✧ '; line-height: 1.8;">
                     <li><a href="HTML/1st Lab.html" class="hover-cute" style="color:var(--win-blue); text-decoration:none;">Task 1: My Resume</a></li>
                     <li><a href="HTML/2nd Lab.html" class="hover-cute" style="color:var(--win-blue); text-decoration:none;">Task 2: Nested Lists</a></li>
                     <li><a href="HTML/3rd Lab.html" class="hover-cute" style="color:var(--win-blue); text-decoration:none;">Task 3: Image Maps</a></li>
