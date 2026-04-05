@@ -8,21 +8,26 @@
     <style>
         :root {
             --win-grey: #c0c0c0;
-            --win-white: #e5e4eb; /* Toned down from pure white */
+            --win-white: #e5e4eb; 
             --win-shadow: #808080;
             --win-blue: #000080;
             --bg-dark: #0a111f;
             --cute-glow: rgba(233, 234, 236, 0.7);
-            --inner-off-white: #d6d6d6; /* Darker off-white for the main body */
+            --inner-off-white: #d6d6d6;
         }
 
-        /* 1. TINY MOVING STARS ANIMATION */
+        /* 67% ZOOM LOGIC */
+        html {
+            zoom: 67%; 
+            -moz-transform: scale(0.67);
+            -moz-transform-origin: 0 0;
+        }
+
         @keyframes tinyStarScroll {
             from { background-position: 0 0, 40px 40px, 0 0; }
             to { background-position: 100px 100px, 140px 140px, 100px 100px; }
         }
 
-        /* 2. BIG STAR SHIMMER */
         @keyframes shimmer {
             0%, 100% { opacity: 0.4; transform: scale(1) rotate(0deg); }
             50% { opacity: 1; transform: scale(1.4) rotate(10deg); }
@@ -36,14 +41,13 @@
                 linear-gradient(45deg, transparent 45%, rgba(125, 150, 184, 0.05) 50%, transparent 55%);
             background-size: 60px 60px, 100px 100px, 150px 150px;
             animation: tinyStarScroll 20s linear infinite;
-            
             font-family: 'VT323', monospace;
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 0;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -106,19 +110,23 @@
             filter: grayscale(10%);
         }
 
+        /* EXTENDED CHECKERED PATTERN */
         .tab-wrapper {
-            background-image: linear-gradient(45deg, #7d96b8 25%, transparent 25%), 
-                              linear-gradient(-45deg, #7d96b8 25%, transparent 25%), 
-                              linear-gradient(45deg, transparent 75%, #7d96b8 75%), 
-                              linear-gradient(-45deg, transparent 75%, #7d96b8 75%);
+            background-color: #7d96b8; 
+            background-image: 
+                linear-gradient(45deg, #b4c7e7 25%, transparent 25%), 
+                linear-gradient(-45deg, #b4c7e7 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #b4c7e7 75%), 
+                linear-gradient(-45deg, transparent 75%, #b4c7e7 75%);
             background-size: 20px 20px;
             padding: 10px 15px 0 15px;
             display: flex;
             gap: 6px;
+            border-top: 2px solid var(--win-shadow);
         }
 
         .nav-btn {
-            background-color: #c9c0ac; /* Muted beige */
+            background-color: #c9c0ac; 
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
             padding: 8px 30px;
@@ -152,17 +160,18 @@
         }
 
         .retro-box {
-            background-color: #cbd5e0; /* Muted blue-grey */
+            background-color: #cbd5e0; 
             border: 1px solid #a0aec0;
             padding: 15px;
             border-radius: 4px;
         }
 
-        .playlist-rect {
-            background-color: #b8c2d1; /* Darker muted blue-grey */
+        /* DASHED RECTANGLE STYLE */
+        .content-rect {
+            background-color: #b8c2d1; 
             border: 1px dashed #5b7fb3;
             padding: 12px;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
         h1, h3 { color: #4a628a; margin-top: 0; }
@@ -235,14 +244,16 @@
             <div class="grid-layout">
                 <div class="retro-box hover-cute">
                     <h3>What I like!!!!</h3>
-                    <ul style="font-size: 21px; padding-left: 20px; line-height: 1.5; margin-bottom: 20px;">
-                        <li>Drawing</li>
-                        <li>Singing</li>
-                        <li>Writing</li>
-                        <li>Cosplaying</li>
-                    </ul>
+                    <div class="content-rect">
+                        <ul style="font-size: 21px; padding-left: 20px; line-height: 1.5; margin: 0;">
+                            <li>Drawing</li>
+                            <li>Singing</li>
+                            <li>Writing</li>
+                            <li>Cosplaying</li>
+                        </ul>
+                    </div>
 
-                    <div class="playlist-rect hover-cute">
+                    <div class="content-rect" style="margin-top: 15px;">
                         <p style="color:#4a628a; font-weight:bold; margin:0; font-size: 20px;">Favorite Songs :</p>
                         <div class="song-item">Butcher Vanity</div>
                         <div class="song-item">Looping the Rooms</div>
@@ -250,9 +261,11 @@
                 </div>
 
                 <div class="retro-box hover-cute">
-                    <h1 style="font-style: italic; font-size: 32px;">My Profile</h1>
-                    <div style="font-size: 20px; line-height: 1.4;">
-                        Hiii!!! my name is Pristinee &lt;33 I'm an aspiring game developer from the Philippines who studies in PSAU!! Welcome to my space! Here's where I store all mi stuff n my projects so far in MS101 :DD
+                    <h1 style="font-style: italic; font-size: 32px; margin-bottom: 5px;">My Profile</h1>
+                    <div class="content-rect">
+                        <div style="font-size: 20px; line-height: 1.4;">
+                            Hiii!!! my name is Pristinee &lt;33 I'm an aspiring game developer from the Philippines who studies in PSAU!! Welcome to my space! Here's where I store all mi stuff n my projects so far in MS101 :DD
+                        </div>
                     </div>
                     <p style="font-weight:bold; color:#4a628a; margin-top:15px; font-size: 20px;">@Bluebell_UA</p>
                 </div>
@@ -274,7 +287,7 @@
                 </div>
                 <div class="disclaimer-bubble hover-cute">
                     Not every image here is by me &lt;33<br>
-                    I own Bluebell's art though :))
+                    I own Bluebell's eye art though :))
                 </div>
             </div>
         </div>
