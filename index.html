@@ -8,11 +8,12 @@
     <style>
         :root {
             --win-grey: #c0c0c0;
-            --win-white: #ffffff;
+            --win-white: #e0e0e0; /* Toned down from pure white */
             --win-shadow: #808080;
             --win-blue: #000080;
             --bg-dark: #0a111f;
             --cute-glow: rgba(180, 199, 231, 0.7);
+            --inner-off-white: #d6d6d6; /* Darker off-white for the main body */
         }
 
         /* 1. TINY MOVING STARS ANIMATION */
@@ -29,13 +30,12 @@
 
         body {
             background-color: var(--bg-dark);
-            /* Combining Tiny stars (radial) and Ribbons (linear) */
             background-image: 
-                radial-gradient(circle, #fff 1px, transparent 1px), /* Tiny Star Layer 1 */
-                radial-gradient(circle, rgba(255,255,255,0.3) 1.5px, transparent 1.5px), /* Tiny Star Layer 2 */
+                radial-gradient(circle, #fff 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.3) 1.5px, transparent 1.5px),
                 linear-gradient(45deg, transparent 45%, rgba(125, 150, 184, 0.05) 50%, transparent 55%);
             background-size: 60px 60px, 100px 100px, 150px 150px;
-            animation: tinyStarScroll 20s linear infinite; /* Keeps the tiny stars moving */
+            animation: tinyStarScroll 20s linear infinite;
             
             font-family: 'VT323', monospace;
             display: flex;
@@ -47,7 +47,6 @@
             position: relative;
         }
 
-        /* BIG Pixel Sparkles */
         .big-star {
             position: absolute;
             width: 30px;
@@ -59,13 +58,12 @@
             z-index: -1;
         }
 
-        /* Window Styling */
         .window {
             width: 850px; 
             background-color: var(--win-grey);
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            box-shadow: 0 0 50px 15px var(--cute-glow); /* The OG Glow */
+            box-shadow: 0 0 50px 15px var(--cute-glow);
             padding: 3px;
             position: relative;
         }
@@ -102,9 +100,10 @@
             width: 100%;
             height: 180px;
             object-fit: cover;
-            border: 2px inset #eee;
+            border: 2px inset #aaa;
             margin-top: 4px;
             display: block;
+            filter: grayscale(10%);
         }
 
         .tab-wrapper {
@@ -119,7 +118,7 @@
         }
 
         .nav-btn {
-            background-color: #e3d9c0;
+            background-color: #c9c0ac; /* Muted beige */
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
             padding: 8px 30px;
@@ -129,15 +128,15 @@
         }
 
         .nav-btn.active {
-            background-color: var(--win-white);
-            border-bottom: 2px solid var(--win-white);
+            background-color: var(--inner-off-white);
+            border-bottom: 2px solid var(--inner-off-white);
             margin-bottom: -2px;
             z-index: 2;
         }
 
         .window-body {
-            background-color: var(--win-white);
-            border: 2px inset;
+            background-color: var(--inner-off-white);
+            border: 2px inset #aaa;
             margin: 0 15px 15px 15px;
             padding: 25px;
             min-height: 420px;
@@ -153,24 +152,24 @@
         }
 
         .retro-box {
-            background-color: #f4f7fa;
-            border: 1px solid #b4c7e7;
+            background-color: #cbd5e0; /* Muted blue-grey */
+            border: 1px solid #a0aec0;
             padding: 15px;
             border-radius: 4px;
         }
 
         .playlist-rect {
-            background-color: #dbe4f0;
+            background-color: #b8c2d1; /* Darker muted blue-grey */
             border: 1px dashed #5b7fb3;
             padding: 12px;
             margin-top: 15px;
         }
 
-        h1, h3 { color: #5b7fb3; margin-top: 0; }
-        .song-item { background: white; border: 1px inset #eee; padding: 4px 10px; margin: 6px 0; font-size: 19px; }
+        h1, h3 { color: #4a628a; margin-top: 0; }
+        .song-item { background: #e0e0e0; border: 1px inset #bbb; padding: 4px 10px; margin: 6px 0; font-size: 19px; color: #333; }
 
         .pfp-container {
-            background: #f5f1e6;
+            background: #e2ddd2;
             border: 1px solid var(--win-shadow);
             padding: 10px;
             text-align: center;
@@ -188,21 +187,22 @@
             align-items: center;
             margin-top: 30px;
             padding-top: 15px;
-            border-top: 1px solid #e1e7ed;
+            border-top: 1px solid #aaa;
         }
 
-        .music-player { flex: 1.5; font-size: 20px; }
-        .progress-line { width: 100%; height: 3px; background: #ccc; margin: 12px 0; position: relative; }
-        .heart-marker { position: absolute; left: 30%; top: -10px; background: white; padding: 0 5px; }
+        .music-player { flex: 1.5; font-size: 20px; color: #222; }
+        .progress-line { width: 100%; height: 3px; background: #999; margin: 12px 0; position: relative; }
+        .heart-marker { position: absolute; left: 30%; top: -10px; background: var(--inner-off-white); padding: 0 5px; }
 
         .disclaimer-bubble {
             flex: 1;
-            background-color: #f9fbff;
-            border: 1px solid #ced4da;
+            background-color: #cbd5e0;
+            border: 1px solid #888;
             border-radius: 15px;
             padding: 12px 20px;
             font-size: 18px;
             margin-left: 40px;
+            color: #222;
         }
     </style>
 </head>
@@ -223,7 +223,7 @@
         </div>
     </div>
 
-    <img src="a.jpg" class="banner" alt="Banner">
+    <img src="Images/a.jpg" class="banner" alt="Banner">
 
     <div class="tab-wrapper">
         <button class="nav-btn active hover-cute" onclick="showTab('about')">About Me</button>
@@ -235,37 +235,37 @@
             <div class="grid-layout">
                 <div class="retro-box hover-cute">
                     <h3>What I like!!!!</h3>
-                    <ul style="font-size: 21px; padding-left: 20px; line-height: 1.6;">
+                    <ul style="font-size: 21px; padding-left: 20px; line-height: 1.5; margin-bottom: 20px;">
                         <li>Drawing</li>
                         <li>Singing</li>
                         <li>Writing</li>
                         <li>Cosplaying</li>
                     </ul>
+
+                    <div class="playlist-rect hover-cute">
+                        <p style="color:#4a628a; font-weight:bold; margin:0; font-size: 20px;">Favorite Songs :</p>
+                        <div class="song-item">Butcher Vanity</div>
+                        <div class="song-item">Looping the Rooms</div>
+                    </div>
                 </div>
 
                 <div class="retro-box hover-cute">
                     <h1 style="font-style: italic; font-size: 32px;">My Profile</h1>
                     <div style="font-size: 20px; line-height: 1.4;">
-                        Hiii!!! my name is Pristinee &lt;33 I'm an aspiring game developer from the Philippines who studies in PSAU!!
+                        Hiii!!! my name is Pristinee &lt;33 I'm an aspiring game developer from the Philippines who studies in PSAU!! Welcome to my space!
                     </div>
-                    
-                    <div class="playlist-rect hover-cute">
-                        <p style="color:#5b7fb3; font-weight:bold; margin:0; font-size: 20px;">Favorite Songs :</p>
-                        <div class="song-item">Butcher Vanity</div>
-                        <div class="song-item">Looping the Rooms</div>
-                    </div>
-                    <p style="font-weight:bold; color:#5b7fb3; margin-top:15px; font-size: 20px;">@Bluebell_UA</p>
+                    <p style="font-weight:bold; color:#4a628a; margin-top:15px; font-size: 20px;">@Bluebell_UA</p>
                 </div>
 
                 <div class="pfp-container hover-cute">
-                    <div style="font-size: 14px; margin-bottom: 5px; color:var(--win-shadow)"></div>
-                    <img src="aa2.jpg" class="pfp-img" alt="PFP">
+                    <div style="font-size: 14px; margin-bottom: 5px; color:#666">[aa2.jpg]</div>
+                    <img src="Images/aa2.jpg" class="pfp-img" alt="PFP">
                 </div>
             </div>
 
             <div class="footer-widgets">
                 <div class="music-player hover-cute">
-                    <strong>Dreamscape - Satoshi Onishi</strong>
+                    <strong>Butcher Vanity - Flavor Foley</strong>
                     <div class="progress-line"><span class="heart-marker">♡</span></div>
                     <div style="display:flex; justify-content:space-between; font-size:16px;">
                         <span>0:54</span><span>3:30</span>
@@ -280,7 +280,7 @@
         </div>
 
         <div id="labs" class="tab-content">
-            <div style="background:#deeaf6; padding:30px; border:2px inset; border-radius:15px; height:350px;">
+            <div style="background:#b8c2d1; padding:30px; border:2px inset; border-radius:15px; height:350px;">
                 <ul style="font-size: 24px; list-style: '✧ '; line-height: 2;">
                     <li><a href="HTML/1st Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 1: My Resume</a></li>
                     <li><a href="HTML/2nd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 2: Nested Lists</a></li>
