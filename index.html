@@ -15,24 +15,28 @@
             --cute-glow: rgba(180, 199, 231, 0.7);
         }
 
-        /* BIG Pixel Sparkle Animations */
+        /* 1. TINY MOVING STARS ANIMATION */
+        @keyframes tinyStarScroll {
+            from { background-position: 0 0, 40px 40px, 0 0; }
+            to { background-position: 100px 100px, 140px 140px, 100px 100px; }
+        }
+
+        /* 2. BIG STAR SHIMMER */
         @keyframes shimmer {
             0%, 100% { opacity: 0.4; transform: scale(1) rotate(0deg); }
             50% { opacity: 1; transform: scale(1.4) rotate(10deg); }
         }
 
-        @keyframes bgScroll {
-            from { background-position: 0 0; }
-            to { background-position: 100px 100px; }
-        }
-
         body {
             background-color: var(--bg-dark);
+            /* Combining Tiny stars (radial) and Ribbons (linear) */
             background-image: 
-                radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px),
+                radial-gradient(circle, #fff 1px, transparent 1px), /* Tiny Star Layer 1 */
+                radial-gradient(circle, rgba(255,255,255,0.3) 1.5px, transparent 1.5px), /* Tiny Star Layer 2 */
                 linear-gradient(45deg, transparent 45%, rgba(125, 150, 184, 0.05) 50%, transparent 55%);
-            background-size: 80px 80px, 150px 150px;
-            animation: bgScroll 30s linear infinite;
+            background-size: 60px 60px, 100px 100px, 150px 150px;
+            animation: tinyStarScroll 20s linear infinite; /* Keeps the tiny stars moving */
+            
             font-family: 'VT323', monospace;
             display: flex;
             justify-content: center;
@@ -43,7 +47,7 @@
             position: relative;
         }
 
-        /* The Huge Shimmering Stars */
+        /* BIG Pixel Sparkles */
         .big-star {
             position: absolute;
             width: 30px;
@@ -55,13 +59,13 @@
             z-index: -1;
         }
 
-        /* Restored Window - Slightly Smaller than 1000px */
+        /* Window Styling */
         .window {
             width: 850px; 
             background-color: var(--win-grey);
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            box-shadow: 0 0 50px 15px var(--cute-glow);
+            box-shadow: 0 0 50px 15px var(--cute-glow); /* The OG Glow */
             padding: 3px;
             position: relative;
         }
@@ -142,7 +146,6 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* OG 3-COLUMN LAYOUT */
         .grid-layout {
             display: grid;
             grid-template-columns: 1.1fr 1.3fr 1fr;
@@ -220,7 +223,7 @@
         </div>
     </div>
 
-    <img src="a.jpg" class="banner" alt="Banner">
+    <img src="Images/a.jpg" class="banner" alt="Banner">
 
     <div class="tab-wrapper">
         <button class="nav-btn active hover-cute" onclick="showTab('about')">About Me</button>
@@ -256,7 +259,7 @@
 
                 <div class="pfp-container hover-cute">
                     <div style="font-size: 14px; margin-bottom: 5px; color:var(--win-shadow)">[aa2.jpg]</div>
-                    <img src="aa2.jpg" class="pfp-img" alt="PFP">
+                    <img src="Images/aa2.jpg" class="pfp-img" alt="PFP">
                 </div>
             </div>
 
