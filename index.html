@@ -11,14 +11,14 @@
             --win-white: #ffffff;
             --win-shadow: #808080;
             --win-blue: #000080;
-            --bg-dark: #0a111f; /* Even darker for sparkle contrast */
-            --cute-glow: rgba(180, 199, 231, 0.6);
+            --bg-dark: #0a111f;
+            --cute-glow: rgba(180, 199, 231, 0.7);
         }
 
-        /* Shimmering Pixel Stars */
+        /* BIG Pixel Sparkle Animations */
         @keyframes shimmer {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+            0%, 100% { opacity: 0.4; transform: scale(1) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.4) rotate(10deg); }
         }
 
         @keyframes bgScroll {
@@ -43,36 +43,36 @@
             position: relative;
         }
 
-        /* Creating big pixel sparkles around the window */
-        .sparkle {
+        /* The Huge Shimmering Stars */
+        .big-star {
             position: absolute;
-            width: 15px;
-            height: 15px;
+            width: 30px;
+            height: 30px;
             background: white;
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            box-shadow: 0 0 10px white;
-            animation: shimmer 3s infinite ease-in-out;
+            box-shadow: 0 0 20px white;
+            animation: shimmer 4s infinite ease-in-out;
             z-index: -1;
         }
 
-        /* Compact Window Styling */
+        /* Restored Window - Slightly Smaller than 1000px */
         .window {
-            width: 620px; /* Smaller width so text looks bigger */
+            width: 850px; 
             background-color: var(--win-grey);
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            box-shadow: 0 0 45px 5px var(--cute-glow);
+            box-shadow: 0 0 50px 15px var(--cute-glow);
             padding: 3px;
             position: relative;
         }
 
         .hover-cute {
-            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.2s ease-in-out;
             cursor: pointer;
         }
         .hover-cute:hover {
-            transform: scale(1.02);
-            filter: brightness(1.08);
+            transform: translateY(-3px);
+            filter: brightness(1.1);
         }
 
         .title-bar {
@@ -82,22 +82,21 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         .title-bar-controls button {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             background: var(--win-grey);
             border: 1px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
             font-family: 'VT323', monospace;
-            font-size: 12px;
         }
 
         .banner {
             width: 100%;
-            height: 140px; /* Shorter banner */
+            height: 180px;
             object-fit: cover;
             border: 2px inset #eee;
             margin-top: 4px;
@@ -109,20 +108,20 @@
                               linear-gradient(-45deg, #7d96b8 25%, transparent 25%), 
                               linear-gradient(45deg, transparent 75%, #7d96b8 75%), 
                               linear-gradient(-45deg, transparent 75%, #7d96b8 75%);
-            background-size: 16px 16px;
-            padding: 8px 12px 0 12px;
+            background-size: 20px 20px;
+            padding: 10px 15px 0 15px;
             display: flex;
-            gap: 5px;
+            gap: 6px;
         }
 
         .nav-btn {
             background-color: #e3d9c0;
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            padding: 4px 18px;
-            border-radius: 6px 6px 0 0;
+            padding: 8px 30px;
+            border-radius: 10px 10px 0 0;
             font-family: 'VT323', monospace;
-            font-size: 20px;
+            font-size: 24px;
         }
 
         .nav-btn.active {
@@ -135,49 +134,47 @@
         .window-body {
             background-color: var(--win-white);
             border: 2px inset;
-            margin: 0 8px 8px 8px;
-            padding: 15px;
-            min-height: 380px;
+            margin: 0 15px 15px 15px;
+            padding: 25px;
+            min-height: 420px;
         }
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
+        /* OG 3-COLUMN LAYOUT */
         .grid-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 2 columns for smaller window */
-            gap: 12px;
+            grid-template-columns: 1.1fr 1.3fr 1fr;
+            gap: 20px;
         }
 
         .retro-box {
             background-color: #f4f7fa;
             border: 1px solid #b4c7e7;
-            padding: 10px;
+            padding: 15px;
             border-radius: 4px;
         }
 
         .playlist-rect {
             background-color: #dbe4f0;
             border: 1px dashed #5b7fb3;
-            padding: 8px;
-            margin-top: 10px;
+            padding: 12px;
+            margin-top: 15px;
         }
 
-        h1, h3 { color: #5b7fb3; margin: 0 0 5px 0; }
-        .song-item { background: white; border: 1px inset #eee; padding: 2px 8px; margin: 4px 0; font-size: 18px; }
+        h1, h3 { color: #5b7fb3; margin-top: 0; }
+        .song-item { background: white; border: 1px inset #eee; padding: 4px 10px; margin: 6px 0; font-size: 19px; }
 
         .pfp-container {
-            grid-column: span 2; /* PFP takes full width or stays small */
-            display: flex;
-            align-items: center;
             background: #f5f1e6;
             border: 1px solid var(--win-shadow);
-            padding: 8px;
-            gap: 15px;
+            padding: 10px;
+            text-align: center;
         }
         .pfp-img { 
-            width: 100px; 
-            height: 100px; 
+            width: 100%; 
+            height: 320px; 
             object-fit: cover; 
             border: 1px solid #333; 
         }
@@ -186,31 +183,32 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
-            padding-top: 10px;
+            margin-top: 30px;
+            padding-top: 15px;
             border-top: 1px solid #e1e7ed;
         }
 
-        .music-player { width: 210px; font-size: 18px; }
-        .progress-line { width: 100%; height: 2px; background: #ccc; margin: 8px 0; position: relative; }
-        .heart-marker { position: absolute; left: 35%; top: -8px; background: white; padding: 0 4px; }
+        .music-player { flex: 1.5; font-size: 20px; }
+        .progress-line { width: 100%; height: 3px; background: #ccc; margin: 12px 0; position: relative; }
+        .heart-marker { position: absolute; left: 30%; top: -10px; background: white; padding: 0 5px; }
 
         .disclaimer-bubble {
+            flex: 1;
             background-color: #f9fbff;
             border: 1px solid #ced4da;
-            border-radius: 12px;
-            padding: 8px 15px;
-            font-size: 16px;
-            max-width: 240px;
+            border-radius: 15px;
+            padding: 12px 20px;
+            font-size: 18px;
+            margin-left: 40px;
         }
     </style>
 </head>
 <body>
 
-    <div class="sparkle" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
-    <div class="sparkle" style="top: 20%; right: 10%; animation-delay: 1s;"></div>
-    <div class="sparkle" style="bottom: 15%; left: 10%; animation-delay: 2s;"></div>
-    <div class="sparkle" style="bottom: 25%; right: 15%; animation-delay: 1.5s;"></div>
+    <div class="big-star" style="top: 5%; left: 10%; animation-delay: 0s;"></div>
+    <div class="big-star" style="top: 15%; right: 5%; animation-delay: 1s;"></div>
+    <div class="big-star" style="bottom: 10%; left: 5%; animation-delay: 2s;"></div>
+    <div class="big-star" style="bottom: 20%; right: 12%; animation-delay: 0.5s;"></div>
 
 <div class="window">
     <div class="title-bar">
@@ -233,8 +231,8 @@
         <div id="about" class="tab-content active">
             <div class="grid-layout">
                 <div class="retro-box hover-cute">
-                    <h3>Likes! ૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</h3>
-                    <ul style="font-size: 20px; padding-left: 18px; margin: 0;">
+                    <h3>What I like!!!!</h3>
+                    <ul style="font-size: 21px; padding-left: 20px; line-height: 1.6;">
                         <li>Drawing</li>
                         <li>Singing</li>
                         <li>Writing</li>
@@ -243,23 +241,22 @@
                 </div>
 
                 <div class="retro-box hover-cute">
-                    <h1 style="font-style: italic; font-size: 28px;">My Profile</h1>
-                    <div style="font-size: 19px; line-height: 1.2;">
-                        Hiii!!! my name is Pristinee &lt;33 I'm an aspiring developer! 
+                    <h1 style="font-style: italic; font-size: 32px;">My Profile</h1>
+                    <div style="font-size: 20px; line-height: 1.4;">
+                        Hiii!!! my name is Pristinee &lt;33 I'm an aspiring game developer from the Philippines who studies in PSAU!!
                     </div>
+                    
                     <div class="playlist-rect hover-cute">
-                        <p style="color:#5b7fb3; font-weight:bold; margin:0; font-size: 18px;">Fav Songs :</p>
+                        <p style="color:#5b7fb3; font-weight:bold; margin:0; font-size: 20px;">Favorite Songs :</p>
                         <div class="song-item">Butcher Vanity</div>
                         <div class="song-item">Looping the Rooms</div>
                     </div>
+                    <p style="font-weight:bold; color:#5b7fb3; margin-top:15px; font-size: 20px;">@Bluebell_UA</p>
                 </div>
 
                 <div class="pfp-container hover-cute">
+                    <div style="font-size: 14px; margin-bottom: 5px; color:var(--win-shadow)">[aa2.jpg]</div>
                     <img src="aa2.jpg" class="pfp-img" alt="PFP">
-                    <div>
-                        <div style="font-size: 14px; color: var(--win-shadow);">[aa2.jpg]</div>
-                        <p style="font-weight:bold; color:#5b7fb3; margin:5px 0; font-size: 20px;">@Bluebell_UA</p>
-                    </div>
                 </div>
             </div>
 
@@ -267,7 +264,10 @@
                 <div class="music-player hover-cute">
                     <strong>Dreamscape - Satoshi Onishi</strong>
                     <div class="progress-line"><span class="heart-marker">♡</span></div>
-                    <div style="font-size:22px; letter-spacing:6px; text-align:center;">⇄ ◃◃ Ⅱ ▹▹ ↻</div>
+                    <div style="display:flex; justify-content:space-between; font-size:16px;">
+                        <span>0:54</span><span>3:30</span>
+                    </div>
+                    <div style="font-size:26px; letter-spacing:8px; text-align:center;">⇄ ◃◃ Ⅱ ▹▹ ↻</div>
                 </div>
                 <div class="disclaimer-bubble hover-cute">
                     Not every image here is by me &lt;33<br>
@@ -277,11 +277,11 @@
         </div>
 
         <div id="labs" class="tab-content">
-            <div style="background:#deeaf6; padding:20px; border:2px inset; border-radius:10px;">
-                <ul style="font-size: 22px; list-style: '✧ '; line-height: 1.8;">
-                    <li><a href="HTML/1st Lab.html" class="hover-cute" style="color:var(--win-blue); text-decoration:none;">Task 1: My Resume</a></li>
-                    <li><a href="HTML/2nd Lab.html" class="hover-cute" style="color:var(--win-blue); text-decoration:none;">Task 2: Nested Lists</a></li>
-                    <li><a href="HTML/3rd Lab.html" class="hover-cute" style="color:var(--win-blue); text-decoration:none;">Task 3: Image Maps</a></li>
+            <div style="background:#deeaf6; padding:30px; border:2px inset; border-radius:15px; height:350px;">
+                <ul style="font-size: 24px; list-style: '✧ '; line-height: 2;">
+                    <li><a href="HTML/1st Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 1: My Resume</a></li>
+                    <li><a href="HTML/2nd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 2: Nested Lists</a></li>
+                    <li><a href="HTML/3rd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 3: Image Maps</a></li>
                 </ul>
             </div>
         </div>
