@@ -4,215 +4,213 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pristinee's Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --win-grey: #c0c0c0;
-            --win-white: #ffffff;
-            --win-shadow: #808080;
-            --win-blue: #000080; /* Classic Win95 Title Bar Blue */
-            --bg-blue: #7d96b8;  /* Your custom theme blue */
-        }
-
         body {
-            background-color: var(--bg-blue);
-            font-family: 'VT323', monospace;
+            background-color: #7d96b8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: center; /* Center vertically on the screen */
+            padding: 20px 0;
             margin: 0;
             min-height: 100vh;
-            overflow: hidden;
         }
 
-        /* Smaller, Centered Window */
-        .window {
-            width: 750px; 
-            background-color: var(--win-grey);
-            border: 2px solid;
-            border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4); /* Glow effect */
-            padding: 3px;
+        .container {
+            width: 1000px;
+            background-color: #b4c7e7;
+            border: 2px solid white;
+            position: relative;
+            /* Implementation of the 'glow' effect behind the entire thing */
+            box-shadow: 0 0 35px 10px rgba(255, 255, 255, 0.4); 
+            border-radius: 10px; /* Subtle round for the glow to wrap better */
+            overflow: hidden; /* Keeps checkered border from bleeding */
         }
 
-        /* Title Bar */
-        .title-bar {
-            background: var(--win-blue);
+        .url-bar {
+            background-color: #5b7fb3;
             color: white;
-            padding: 3px 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 18px;
-        }
-
-        .title-bar-controls button {
-            width: 18px;
-            height: 18px;
-            background: var(--win-grey);
-            border: 1px solid;
-            border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            font-family: 'VT323', monospace;
-            font-weight: bold;
-            cursor: pointer;
-            line-height: 1;
+            padding: 8px 15px;
             font-size: 14px;
+            border-bottom: 2px solid white;
         }
 
-        /* Images */
         .banner {
             width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border: 2px inset;
-            margin-top: 4px;
+            height: 220px;
             display: block;
+            object-fit: cover;
         }
 
-        /* Checkered Navigation Area */
-        .tab-wrapper {
+        /* Checkered Navigation Styling from Image 121262 */
+        .nav-container {
+            background-color: #b4c7e7;
+            padding: 5px 0;
+        }
+
+        .checkered-border {
             background-image: linear-gradient(45deg, #7d96b8 25%, transparent 25%), 
                               linear-gradient(-45deg, #7d96b8 25%, transparent 25%), 
                               linear-gradient(45deg, transparent 75%, #7d96b8 75%), 
                               linear-gradient(-45deg, transparent 75%, #7d96b8 75%);
-            background-size: 16px 16px;
-            padding: 8px 10px 0 10px;
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            padding: 15px;
             display: flex;
-            gap: 4px;
+            gap: 15px;
         }
 
         .nav-btn {
             background-color: #e3d9c0;
-            border: 2px solid;
-            border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            padding: 6px 20px;
-            border-radius: 6px 6px 0 0;
-            font-family: 'VT323', monospace;
-            font-size: 20px;
+            border: none;
+            padding: 12px 50px;
+            border-radius: 20px 20px 5px 5px; /* Shaped tabs based on Image 127381 */
+            font-family: serif;
+            font-weight: bold;
+            font-size: 18px;
             cursor: pointer;
+            box-shadow: 2px -2px 5px rgba(0,0,0,0.1);
         }
 
         .nav-btn.active {
-            background-color: var(--win-white);
-            border-bottom: none;
-            padding-bottom: 8px;
-            margin-bottom: -2px;
-            z-index: 2;
+            background-color: white;
+            color: black;
+            cursor: default;
         }
 
-        /* White Inner Sheet */
-        .window-body {
-            background-color: var(--win-white);
-            border: 2px inset;
-            margin: 0 8px 8px 8px;
-            padding: 15px;
-            min-height: 400px;
+        .white-sheet {
+            background-color: white;
+            margin: 0 15px 15px 15px;
+            padding: 30px;
+            min-height: 500px;
+            border-radius: 5px;
         }
 
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* Grid */
+        /* Proportion Grid Layout from PNG 9 */
         .grid-layout {
             display: grid;
-            grid-template-columns: 1fr 1.3fr 1fr;
-            gap: 12px;
-        }
-
-        .retro-box {
-            background-color: #f0f4f8; /* Light blue-grey tint */
-            border: 1px solid #808080;
-            padding: 12px;
-        }
-
-        .playlist-rect {
-            background-color: #d8dee9; /* Light grey-blue rectangle behind playlist */
-            border: 1px solid #808080;
-            padding: 10px;
+            grid-template-columns: 1fr 1fr 1.2fr; /* Widened right column for wide PFP if needed */
+            gap: 20px;
             margin-top: 10px;
         }
 
-        h1, h3 { color: #5b7fb3; margin-top: 0; }
-        h1 { font-size: 28px; font-style: italic; border-bottom: 1px solid #5b7fb3; }
+        .col-left h3 { margin-top: 0; font-weight: 800; font-size: 20px; border-bottom: 2px solid #5b7fb3; display: inline-block;}
+        .col-left ul { list-style: none; padding: 0; margin-bottom: 25px; }
+        .col-left li { padding: 5px 0; border-bottom: 1px solid #e0e0e0; font-size: 15px;}
+        .col-left li::before { content: "• "; font-weight: bold;}
 
-        .song-item { background: white; border: 1px inset; padding: 2px 8px; margin: 4px 0; font-size: 16px; }
-
-        /* PFP Area */
-        .pfp-container {
-            background: #f5f1e6;
-            border: 1px solid #808080;
-            padding: 8px;
-            text-align: center;
+        /* Modified section to group bio and playlist together */
+        .centered-bunch {
+            grid-column: 2 / 3; /* Positions in the center column space */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: flex-start; /* Aligns to top of column */
         }
+
+        .bunch-h1 { font-style: italic; color: #5b7fb3; font-size: 30px; margin-top: 0; text-align: left;}
+
+        /* Bio Container with very very light grey shade rectangle */
+        .bio-box {
+            background-color: #f7f9fb; /* VERY light grey-blue rectangle */
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e0e6ed;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        /* Line divider between bio and playlist */
+        .divider {
+            height: 2px;
+            background-color: #5b7fb3;
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        /* Playlist Container with very very light grey shade rectangle */
+        .playlist-box {
+            background-color: #f7f9fb; /* VERY light grey-blue rectangle */
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e0e6ed;
+            box-shadow: 1px 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .song-header { color: #5b7fb3; font-weight: bold; margin-top: 0px; font-size: 16px; margin-bottom: 10px;}
+        .song-box { background: white; padding: 8px 12px; margin: 5px 0; font-size: 14px; border-bottom: 1px solid #ccc; border-radius: 4px;}
+
+        .handle { margin-top: 25px; font-weight: bold; text-align: left; color: #5b7fb3;}
+
+        .pfp-box { background-color: #f5f1e6; padding: 10px; border-radius: 5px; height: 100%; box-sizing: border-box; text-align: center;}
+        .pfp-header { font-size: 11px; display: flex; align-items: center; justify-content: center; gap: 5px; margin-bottom: 5px; font-weight: bold;}
+        
         .pfp-img { 
             width: 100%; 
-            height: 260px; 
-            object-fit: cover; 
-            border: 1px solid black; 
+            background: white; 
+            display: block; 
+            max-height: 350px;
+            object-fit: contain; /* Keeps character proportion */
+            border: 1px solid #ddd;
         }
 
-        /* Bottom Widgets */
-        .footer-widgets {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding-top: 10px;
-            border-top: 1px solid #ddd;
+        .blue-footer {
+            background-color: #5b7fb3;
+            color: white;
+            text-align: center;
+            padding: 6px;
+            margin: 25px 0;
+            font-size: 11px;
+            border-radius: 2px;
         }
 
-        .music-player { width: 220px; font-size: 16px; }
-        .progress-line {
-            width: 100%; height: 2px; background: #808080; margin: 8px 0; position: relative;
-        }
-        .heart-marker { position: absolute; left: 35%; top: -8px; background: white; padding: 0 2px; }
+        .bottom-widgets { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 10px; }
+        .music-player { font-size: 12px; color: #666; }
+        .disclaimer-bubble { background-color: #f8f9fa; border-radius: 15px; padding: 10px 15px; font-size: 11px; text-align: left; border: 1px solid #eee;}
 
-        .disclaimer-bubble {
-            background-color: #f8f9fa;
-            border: 1px solid #808080;
-            border-radius: 12px;
-            padding: 8px 15px;
-            font-size: 15px;
-            max-width: 250px;
-        }
-
-        /* Labtasks Styling */
+        /* Labtasks Overlay */
         .labtask-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
             background-color: #deeaf6;
-            padding: 20px;
-            border: 2px inset;
-            height: 100%;
+            border-radius: 40px;
+            padding: 40px;
+            z-index: 5;
         }
-        .labtask-list { list-style: square; font-size: 20px; color: #333; }
-        .labtask-list a { color: #000080; text-decoration: none; }
-        .labtask-list a:hover { text-decoration: underline; }
+        .labtask-list { list-style: none; padding: 0; margin: 0; }
+        .labtask-list li { padding: 12px 0; border-bottom: 1px solid #a4badb; }
+        .labtask-list a { text-decoration: none; color: black; font-size: 16px; display: block; }
     </style>
 </head>
 <body>
 
-<div class="window">
-    <div class="title-bar">
-        <div class="title-bar-text">Pristinee_Portfolio.exe</div>
-        <div class="title-bar-controls">
-            <button>_</button>
-            <button>□</button>
-            <button>X</button>
+<div class="container">
+    <div class="url-bar">www.makuro-ua.github.io/Mariaaaa-s-Potrfolioooo-/</div>
+    
+    <img src="Images/PNG 2.jpg" class="banner" alt="Banner">
+
+    <div class="nav-container">
+        <div class="checkered-border">
+            <button class="nav-btn active" onclick="showTab('about')">About Me</button>
+            <button class="nav-btn" onclick="showTab('labs')">Labtasks</button>
         </div>
     </div>
 
-    <img src="Images/a.jpg" class="banner" alt="Banner">
-
-    <div class="tab-wrapper">
-        <button class="nav-btn active" onclick="showTab('about')">About Me</button>
-        <button class="nav-btn" onclick="showTab('labs')">Labtasks</button>
-    </div>
-
-    <div class="window-body">
+    <div class="white-sheet">
+        
         <div id="about" class="tab-content active">
             <div class="grid-layout">
-                <div class="retro-box">
-                    <h3 style="font-size: 20px;">What I like!!!!</h3>
-                    <ul style="font-size: 18px; padding-left: 15px;">
+                <div class="grid-box col-left">
+                    <h3>What I like!!!!</h3>
+                    <ul>
                         <li>Drawing</li>
                         <li>Singing</li>
                         <li>Writing</li>
@@ -220,34 +218,41 @@
                     </ul>
                 </div>
 
-                <div class="retro-box">
-                    <h1>My Profile</h1>
-                    <div style="font-size: 18px; line-height: 1.3;">
-                        Hiii!!! my name is Pristinee <33 I'm an aspiring game developer from the Philippines who studies in PSAU!!
+                <div class="grid-box centered-bunch">
+                    <h1 class="bunch-h1">My Profile</h1>
+                    
+                    <div class="bio-box">
+                        Hiii!!! my name is Pristinee <33 I'm an aspiring game developer from the Philippines who studies in PSAU!! Welcome to my Portfolioo!!! Hope u enjoy scrolling thru here >:DD
                     </div>
                     
-                    <div class="playlist-rect">
-                        <p style="color:#5b7fb3; font-weight:bold; margin:0; font-size: 18px;">Favorite Songs :</p>
-                        <div class="song-item">Butcher Vanity</div>
-                        <div class="song-item">Looping the Rooms</div>
+                    <div class="divider"></div>
+                    
+                    <div class="playlist-box">
+                        <p class="song-header">Favorite Songs :</p>
+                        <div class="song-box">Butcher Vanity</div>
+                        <div class="song-box">Looping the Rooms</div>
                     </div>
-                    <p style="font-weight:bold; color:#5b7fb3; margin-top:10px;">@Bluebell_UA</p>
+
+                    <div class="handle">@Bluebell_UA</div>
                 </div>
 
-                <div class="pfp-container">
-                    <div style="font-size: 12px; margin-bottom: 4px;">[aa2.jpg]</div>
-                    <img src="Images/aa2.jpg" class="pfp-img" alt="PFP">
+                <div class="grid-box col-right">
+                    <div class="pfp-box">
+                        <div class="pfp-header">📷 Profile Picture</div>
+                        <img src="Images/PNG 1.jpg" class="pfp-img" alt="Profile">
+                    </div>
                 </div>
             </div>
 
-            <div class="footer-widgets">
+            <div class="blue-footer">
+                My Portfolioo!!! || This Github is Intended for school purposes only ><
+            </div>
+
+            <div class="bottom-widgets">
                 <div class="music-player">
-                    <strong>Dreamscape - Satoshi Onishi</strong>
-                    <div class="progress-line"><span class="heart-marker">♡</span></div>
-                    <div style="display:flex; justify-content:space-between; font-size:12px;">
-                        <span>0:54</span><span>3:30</span>
-                    </div>
-                    <div style="font-size:20px; letter-spacing:5px; text-align:center;">⇄ ◃◃ Ⅱ ▹▹ ↻</div>
+                    <strong>Dreamscape - Satoshi Onishi</strong><br>
+                    0:54 ———♡————— 3:30<br>
+                    ⇄ ◃◃ Ⅱ ▹▹ ↻
                 </div>
                 <div class="disclaimer-bubble">
                     Not every image here is by me <33<br>
@@ -259,25 +264,28 @@
         <div id="labs" class="tab-content">
             <div class="labtask-overlay">
                 <ul class="labtask-list">
-                    <li><a href="HTML/1st Lab.html">LABTASK 1 -- Resume</a></li>
-                    <li><a href="HTML/2nd Lab.html">LABTASK 2 -- Nested List</a></li>
-                    <li><a href="HTML/3rd Lab.html">LABTASK 3 -- Image Maps</a></li>
-                    <li><a href="HTML/4th labtask.html">LABTASK 4 -- HTML Forms</a></li>
-                    <li><a href="HTML/5TH Labtask.html">LABTASK 5 -- Applying CSS</a></li>
-                    <li><a href="HTML/6th Labtask.html">LABTASK 6 -- CSS Display</a></li>
+                    <li><a href="HTML/1st Lab.html">• <strong>LABTASK 1</strong> -- Resume -- My Resume!!!</a></li>
+                    <li><a href="HTML/2nd Lab.html">• <strong>LABTASK 2</strong> -- Nested List -- Lists!!!</a></li>
+                    <li><a href="HTML/3rd Lab.html">• <strong>LABTASK 3</strong> -- Image Maps -- Maps!!!</a></li>
+                    <li><a href="HTML/4th labtask.html">• <strong>LABTASK 4</strong> -- HTML Forms -- Add an Input!!!</a></li>
+                    <li><a href="HTML/5TH Labtask.html">• <strong>LABTASK 5</strong> -- Applying CSS -- Resume with CSS!!!</a></li>
+                    <li><a href="HTML/6th Labtask.html">• <strong>LABTASK 6</strong> -- CSS Display -- CSS Tests!!!</a></li>
                 </ul>
             </div>
         </div>
+
     </div>
 </div>
 
 <script>
     function showTab(tabName) {
         document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-        
         document.getElementById(tabName).classList.add('active');
-        event.currentTarget.classList.add('active');
+        
+        // Update nav buttons
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        if(tabName === 'about') document.querySelector('.nav-btn:first-child').classList.add('active');
+        if(tabName === 'labs') document.querySelector('.nav-btn:last-child').classList.add('active');
     }
 </script>
 
