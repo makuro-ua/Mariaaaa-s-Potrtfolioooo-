@@ -104,7 +104,7 @@
         }
 
         .window {
-            width: 800px; /* Kept at the size you liked */
+            width: 800px;
             background-color: var(--win-grey);
             border: 3px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
@@ -154,10 +154,10 @@
             background: #c9c0ac; 
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            padding: 6px 25px;
+            padding: 6px 15px;
             border-radius: 8px 8px 0 0;
             font-family: 'VT323', monospace;
-            font-size: 24px;
+            font-size: 22px;
             cursor: pointer;
         }
 
@@ -219,10 +219,13 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* QNA Style */
+        /* QNA & Education Style */
         .qna-wrap { text-align: justify; }
         .qna-q { font-weight: bold; font-size: 24px; color: var(--win-blue); margin-top: 15px; }
         .qna-a { font-size: 22px; line-height: 1.4; margin-bottom: 10px; }
+        
+        .edu-list { list-style: none; padding-left: 0; font-size: 22px; line-height: 1.6; }
+        .edu-list li::before { content: "✧ "; color: var(--win-blue); font-weight: bold; }
     </style>
 </head>
 <body>
@@ -256,6 +259,7 @@
             <div class="tab-wrapper">
                 <button class="nav-btn active" onclick="showTab('about')">About Me</button>
                 <button class="nav-btn" onclick="showTab('qna')">QNA!!</button>
+                <button class="nav-btn" onclick="showTab('edu')">Education</button>
                 <button class="nav-btn" onclick="showTab('labs')">Labtasks</button>
             </div>
 
@@ -314,6 +318,27 @@
                             <div class="qna-a">
                                 I would like to be a game developer one day. In which I will make as many visual novels as id like- not only that but id like to make stories of my own that will give people hope and inspirations into the art that they create. Not only that- but I'd really just like to be a rolemodel for my fellow artists out there.<br><br>
                                 As my area of expertise would be story writing, I would like to talk about the kinds of genres that I like doing. In which, I'd often like to work on stories that implement both horror and fantasy in them, as well as sci-fi.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="edu" class="tab-content">
+                    <div class="retro-box">
+                        <div class="content-rect">
+                            <ul class="edu-list">
+                                <li>BS Information Technology, PSAU, 2030</li>
+                                <li>HUMSS, SNA, 2025</li>
+                                <li>Grade 6-10 PHS, 2020-2024</li>
+                            </ul>
+                            
+                            <h3 style="margin-top: 20px;">Work Experience / Seminars</h3>
+                            <ul class="edu-list">
+                                <li>Visual Arts Society 2025-2026 Vice President External</li>
+                            </ul>
+                            
+                            <div class="qna-a" style="margin-top: 10px;">
+                                In which I've been a major officer in one of the non-collegiate orgs of PSAU. I have created events with my fellow student leaders that include things such as making workshops and galleries.
                             </div>
                         </div>
                     </div>
