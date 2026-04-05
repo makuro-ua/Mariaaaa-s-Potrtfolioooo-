@@ -146,7 +146,7 @@
             background-size: 16px 16px;
             padding: 10px 15px 0 15px;
             display: flex;
-            gap: 5px;
+            gap: 8px; /* Slightly more gap for wider appearance */
             border-top: 2px solid var(--win-shadow);
         }
 
@@ -154,11 +154,12 @@
             background: #c9c0ac; 
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            padding: 6px 15px;
+            padding: 6px 35px; /* Widened the tabs here */
             border-radius: 8px 8px 0 0;
             font-family: 'VT323', monospace;
-            font-size: 22px;
+            font-size: 24px;
             cursor: pointer;
+            min-width: 120px; /* Ensures a baseline width */
         }
 
         .nav-btn.active {
@@ -207,6 +208,8 @@
         }
 
         .music-player { flex: 1.5; font-size: 20px; }
+        .player-controls { display: flex; align-items: center; gap: 15px; margin-top: 5px; font-size: 24px; }
+        
         .disclaimer-bubble {
             background: #cbd5e0;
             border: 1px solid #888;
@@ -219,7 +222,6 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* QNA & Education Style */
         .qna-wrap { text-align: justify; }
         .qna-q { font-weight: bold; font-size: 24px; color: var(--win-blue); margin-top: 15px; }
         .qna-a { font-size: 22px; line-height: 1.4; margin-bottom: 10px; }
@@ -359,6 +361,13 @@
                         <strong>Butcher Vanity - Flavor Foley</strong>
                         <div style="background:#999; height:4px; margin:10px 0; position:relative;">
                             <div style="position:absolute; left:40%; top:-8px; background:var(--inner-off-white); padding:0 3px;">♡</div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; font-size:16px; margin-top: 5px;">
+                            <span>0:54</span>
+                            <div class="player-controls">
+                                <span>⇄</span> <span>◁◁</span> <span>II</span> <span>▷▷</span>
+                            </div>
+                            <span>3:30</span>
                         </div>
                     </div>
                     <div class="disclaimer-bubble">
