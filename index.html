@@ -12,37 +12,29 @@
             --win-shadow: #808080;
             --win-blue: #000080;
             --bg-dark: #0a111f;
-            --cute-glow: rgba(233, 234, 236, 0.7);
+            --cute-glow: rgba(233, 234, 236, 0.4);
             --inner-off-white: #d6d6d6;
         }
 
-        /* STARTUP ANIMATIONS */
-        @keyframes loadingBar {
-            0% { width: 0%; }
-            20% { width: 10%; }
-            50% { width: 70%; }
-            100% { width: 100%; }
+        /* RESETTING EVERYTHING TO 100% */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
         }
 
-        @keyframes windowBlink {
-            0% { opacity: 0; transform: scale(0.95); }
-            50% { opacity: 1; transform: scale(1.02); }
-            70% { opacity: 0.8; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        /* STARTUP OVERLAY */
+        /* STARTUP SCREEN (Full Screen) */
         #startup-screen {
             position: fixed;
             top: 0; left: 0;
-            width: 100vw; height: 100vh;
+            width: 100%; height: 100%;
             background: var(--bg-dark);
             z-index: 9999;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: white;
             transition: opacity 0.5s ease-out;
         }
 
@@ -52,17 +44,16 @@
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
             padding: 15px;
-            color: black;
             text-align: center;
+            font-family: 'VT323', monospace;
         }
 
         .progress-container {
             width: 100%;
-            height: 20px;
+            height: 15px;
             background: #eee;
             border: 2px inset #aaa;
             margin-top: 10px;
-            position: relative;
             overflow: hidden;
         }
 
@@ -70,140 +61,104 @@
             height: 100%;
             background: var(--win-blue);
             width: 0%;
-            animation: loadingBar 2s forwards;
+            animation: loadingBar 2s ease-in-out forwards;
         }
 
-        /* MAIN CONTENT HIDDEN INITIALLY */
+        @keyframes loadingBar { to { width: 100%; } }
+
+        /* WINDOW ANIMATION */
+        @keyframes windowBlink {
+            0% { opacity: 0; transform: scale(0.9); }
+            20% { opacity: 1; transform: scale(1.02); }
+            40% { opacity: 0.6; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
         #main-content {
             display: none;
-            animation: windowBlink 0.4s ease-out;
+            animation: windowBlink 0.5s ease-out forwards;
         }
 
-        /* BACKGROUND ELEMENTS */
+        /* BACKGROUND */
         @keyframes tinyStarScroll {
-            from { background-position: 0 0, 40px 40px, 0 0; }
-            to { background-position: 100px 100px, 140px 140px, 100px 100px; }
-        }
-
-        @keyframes shimmer {
-            0%, 100% { opacity: 0.4; transform: scale(1) rotate(0deg); }
-            50% { opacity: 1; transform: scale(1.4) rotate(10deg); }
+            from { background-position: 0 0; }
+            to { background-position: 100px 100px; }
         }
 
         body {
             background-color: var(--bg-dark);
             background-image: 
                 radial-gradient(circle, #fff 1px, transparent 1px),
-                radial-gradient(circle, rgba(255,255,255,0.3) 1.5px, transparent 1.5px),
-                linear-gradient(45deg, transparent 45%, rgba(125, 150, 184, 0.05) 50%, transparent 55%);
-            background-size: 60px 60px, 100px 100px, 150px 150px;
+                radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 1.5px);
+            background-size: 60px 60px, 100px 100px;
             animation: tinyStarScroll 20s linear infinite;
             font-family: 'VT323', monospace;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
         }
 
-        .big-star {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: white;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            box-shadow: 0 0 20px white;
-            animation: shimmer 4s infinite ease-in-out;
-            z-index: -1;
-        }
-
+        /* MINIMIZED WINDOW SCALE */
         .window {
-            width: 850px; 
+            width: 800px; 
             background-color: var(--win-grey);
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            box-shadow: 0 0 50px 15px var(--cute-glow);
-            padding: 3px;
-            position: relative;
-        }
-
-        .hover-cute {
-            transition: all 0.2s ease-in-out;
-            cursor: pointer;
-        }
-        .hover-cute:hover {
-            transform: translateY(-3px);
-            filter: brightness(1.1);
+            box-shadow: 0 0 40px var(--cute-glow);
+            padding: 2px;
         }
 
         .title-bar {
             background: var(--win-blue);
             color: white;
-            padding: 4px 8px;
+            padding: 3px 8px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-        }
-
-        .title-bar-controls button {
-            width: 20px;
-            height: 20px;
-            background: var(--win-grey);
-            border: 1px solid;
-            border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            font-family: 'VT323', monospace;
+            font-size: 18px;
         }
 
         .banner {
             width: 100%;
-            height: 180px;
+            height: 150px;
             object-fit: cover;
             border: 2px inset #aaa;
-            margin-top: 4px;
+            margin-top: 2px;
             display: block;
-            filter: grayscale(10%);
         }
 
         .tab-wrapper {
             background-color: #7d96b8; 
-            background-image: 
-                linear-gradient(45deg, #b4c7e7 25%, transparent 25%), 
-                linear-gradient(-45deg, #b4c7e7 25%, transparent 25%), 
-                linear-gradient(45deg, transparent 75%, #b4c7e7 75%), 
-                linear-gradient(-45deg, transparent 75%, #b4c7e7 75%);
-            background-size: 20px 20px;
-            padding: 10px 15px 0 15px;
+            background-image: linear-gradient(45deg, #b4c7e7 25%, transparent 25%), linear-gradient(-45deg, #b4c7e7 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #b4c7e7 75%), linear-gradient(-45deg, transparent 75%, #b4c7e7 75%);
+            background-size: 16px 16px;
+            padding: 8px 12px 0 12px;
             display: flex;
-            gap: 6px;
-            border-top: 2px solid var(--win-shadow);
+            gap: 5px;
+            border-top: 1px solid var(--win-shadow);
         }
 
         .nav-btn {
-            background-color: #c9c0ac; 
+            background: #c9c0ac; 
             border: 2px solid;
             border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            padding: 8px 30px;
-            border-radius: 10px 10px 0 0;
+            padding: 5px 20px;
+            border-radius: 8px 8px 0 0;
             font-family: 'VT323', monospace;
-            font-size: 24px;
+            font-size: 20px;
+            cursor: pointer;
         }
 
         .nav-btn.active {
-            background-color: var(--inner-off-white);
+            background: var(--inner-off-white);
             border-bottom: 2px solid var(--inner-off-white);
             margin-bottom: -2px;
-            z-index: 2;
         }
 
         .window-body {
-            background-color: var(--inner-off-white);
+            background: var(--inner-off-white);
             border: 2px inset #aaa;
-            margin: 0 15px 15px 15px;
-            padding: 25px;
-            min-height: 420px;
+            margin: 0 12px 12px 12px;
+            padding: 20px;
+            min-height: 380px;
         }
 
         .tab-content { display: none; }
@@ -211,147 +166,115 @@
 
         .grid-layout {
             display: grid;
-            grid-template-columns: 1.1fr 1.3fr 1fr;
-            gap: 20px;
+            grid-template-columns: 1fr 1.2fr 0.8fr;
+            gap: 15px;
         }
 
-        .retro-box {
-            background-color: #cbd5e0; 
-            border: 1px solid #a0aec0;
-            padding: 15px;
-            border-radius: 4px;
-        }
+        .retro-box { background: #cbd5e0; border: 1px solid #a0aec0; padding: 12px; }
+        .content-rect { background: #b8c2d1; border: 1px dashed #5b7fb3; padding: 10px; margin-top: 10px; }
 
-        .content-rect {
-            background-color: #b8c2d1; 
-            border: 1px dashed #5b7fb3;
-            padding: 12px;
-            margin-top: 10px;
-        }
+        h1 { font-size: 30px; color: #4a628a; margin: 0; }
+        h3 { font-size: 24px; color: #4a628a; margin: 0; }
+        
+        .song-item { background: #e0e0e0; border: 1px inset #bbb; padding: 4px 10px; margin: 5px 0; font-size: 18px; }
 
-        h1, h3 { color: #4a628a; margin-top: 0; }
-        .song-item { background: #e0e0e0; border: 1px inset #bbb; padding: 4px 10px; margin: 6px 0; font-size: 19px; color: #333; }
-
-        .pfp-container {
-            background: #e2ddd2;
-            border: 1px solid var(--win-shadow);
-            padding: 10px;
-            text-align: center;
-        }
-        .pfp-img { 
-            width: 100%; 
-            height: 320px; 
-            object-fit: cover; 
-            border: 1px solid #333; 
-        }
+        .pfp-img { width: 100%; height: 260px; object-fit: cover; border: 1px solid #333; }
 
         .footer-widgets {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 30px;
+            margin-top: 20px;
             padding-top: 15px;
             border-top: 1px solid #aaa;
         }
 
-        .music-player { flex: 1.5; font-size: 20px; color: #222; }
-        .progress-line { width: 100%; height: 3px; background: #999; margin: 12px 0; position: relative; }
-        .heart-marker { position: absolute; left: 30%; top: -10px; background: var(--inner-off-white); padding: 0 5px; }
-
+        .music-player { flex: 1; font-size: 18px; }
         .disclaimer-bubble {
-            flex: 1;
-            background-color: #cbd5e0;
+            background: #cbd5e0;
             border: 1px solid #888;
-            border-radius: 15px;
-            padding: 12px 20px;
-            font-size: 18px;
-            margin-left: 40px;
-            color: #222;
+            border-radius: 12px;
+            padding: 10px 15px;
+            font-size: 16px;
+            margin-left: 30px;
         }
+        
+        button.control { width: 18px; height: 18px; font-size: 12px; background: var(--win-grey); border: 1px solid; border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white); cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div id="startup-screen">
         <div class="loader-box">
-            <div style="font-size: 24px; margin-bottom: 5px;">Starting Pristinee.exe...</div>
-            <div style="font-size: 18px; color: #555;">Please wait &lt;33</div>
+            <div style="font-size: 22px; margin-bottom: 5px;">Starting Pristinee.exe...</div>
             <div class="progress-container">
                 <div class="progress-fill"></div>
             </div>
         </div>
     </div>
 
-    <div class="big-star" style="top: 5%; left: 10%; animation-delay: 0s;"></div>
-    <div class="big-star" style="top: 15%; right: 5%; animation-delay: 1s;"></div>
-    <div class="big-star" style="bottom: 10%; left: 5%; animation-delay: 2s;"></div>
-    <div class="big-star" style="bottom: 20%; right: 12%; animation-delay: 0.5s;"></div>
-
     <div id="main-content">
         <div class="window">
             <div class="title-bar">
-                <div class="title-bar-text">✿ Pristinee_Portfolio.exe</div>
-                <div class="title-bar-controls">
-                    <button class="hover-cute">_</button>
-                    <button class="hover-cute">□</button>
-                    <button class="hover-cute">X</button>
+                <div>✿ Pristinee_Portfolio.exe</div>
+                <div style="display: flex; gap: 3px;">
+                    <button class="control">_</button>
+                    <button class="control">X</button>
                 </div>
             </div>
 
             <img src="a.jpg" class="banner" alt="Banner">
 
             <div class="tab-wrapper">
-                <button class="nav-btn active hover-cute" onclick="showTab('about')">About Me</button>
-                <button class="nav-btn hover-cute" onclick="showTab('labs')">Labtasks</button>
+                <button class="nav-btn active" onclick="showTab('about')">About Me</button>
+                <button class="nav-btn" onclick="showTab('labs')">Labtasks</button>
             </div>
 
             <div class="window-body">
                 <div id="about" class="tab-content active">
                     <div class="grid-layout">
-                        <div class="retro-box hover-cute">
+                        <div class="retro-box">
                             <h3>What I like!!!!</h3>
                             <div class="content-rect">
-                                <ul style="font-size: 21px; padding-left: 20px; line-height: 1.5; margin: 0;">
+                                <ul style="font-size: 18px; padding-left: 20px; line-height: 1.4; margin: 0;">
                                     <li>Drawing</li>
                                     <li>Singing</li>
                                     <li>Writing</li>
                                     <li>Cosplaying</li>
                                 </ul>
                             </div>
-
-                            <div class="content-rect" style="margin-top: 15px;">
-                                <p style="color:#4a628a; font-weight:bold; margin:0; font-size: 20px;">Favorite Songs :</p>
+                            <div class="content-rect">
+                                <p style="color:#4a628a; font-weight:bold; margin:0; font-size: 18px;">Fav Songs :</p>
                                 <div class="song-item">Butcher Vanity</div>
                                 <div class="song-item">Looping the Rooms</div>
                             </div>
                         </div>
 
-                        <div class="retro-box hover-cute">
-                            <h1 style="font-style: italic; font-size: 32px; margin-bottom: 5px;">My Profile</h1>
+                        <div class="retro-box">
+                            <h1 style="font-style: italic;">My Profile</h1>
                             <div class="content-rect">
-                                <div style="font-size: 20px; line-height: 1.4;">
-                                    Hiii!!! my name is Pristinee &lt;33 I'm an aspiring game developer from the Philippines who studies in PSAU!! Welcome to my space! Here's where I store all mi stuff n my projects so far in MS101 :DD
+                                <div style="font-size: 18px; line-height: 1.4;">
+                                    Hiii!!! my name is Pristinee &lt;33 I'm an aspiring game developer from the Philippines who studies in PSAU!! Welcome to my space!
                                 </div>
                             </div>
-                            <p style="font-weight:bold; color:#4a628a; margin-top:15px; font-size: 20px;">@Bluebell_UA</p>
+                            <p style="font-weight:bold; color:#4a628a; margin-top:15px; font-size: 18px;">@Bluebell_UA</p>
                         </div>
 
-                        <div class="pfp-container hover-cute">
-                            <div style="font-size: 14px; margin-bottom: 5px; color:#666">[It's Me!!! &lt;33]</div>
+                        <div class="retro-box" style="text-align: center;">
+                            <div style="font-size: 14px; margin-bottom: 5px;">[It's Me!!!]</div>
                             <img src="aa2.jpg" class="pfp-img" alt="PFP">
                         </div>
                     </div>
 
                     <div class="footer-widgets">
-                        <div class="music-player hover-cute">
-                            <strong>Dreamscape - Satoshi Onishi</strong>
-                            <div class="progress-line"><span class="heart-marker">♡</span></div>
-                            <div style="display:flex; justify-content:space-between; font-size:16px;">
+                        <div class="music-player">
+                            <strong>Butcher Vanity - Flavor Foley</strong>
+                            <div style="background:#999; height:3px; margin:8px 0;"></div>
+                            <div style="display:flex; justify-content:space-between; font-size:14px;">
                                 <span>0:54</span><span>3:30</span>
                             </div>
-                            <div style="font-size:26px; letter-spacing:8px; text-align:center;">⇄ ◃◃ Ⅱ ▹▹ ↻</div>
                         </div>
-                        <div class="disclaimer-bubble hover-cute">
+                        <div class="disclaimer-bubble">
                             Not every image here is by me &lt;33<br>
                             I own Bluebell's eye art though :))
                         </div>
@@ -359,8 +282,8 @@
                 </div>
 
                 <div id="labs" class="tab-content">
-                    <div style="background:#b8c2d1; padding:30px; border:2px inset; border-radius:15px; height:350px;">
-                        <ul style="font-size: 24px; list-style: '✧ '; line-height: 2;">
+                    <div style="background:#b8c2d1; padding:30px; border:2px inset; min-height:280px;">
+                        <ul style="font-size: 22px; list-style: '✧ '; line-height: 2;">
                             <li><a href="HTML/1st Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 1: My Resume</a></li>
                             <li><a href="HTML/2nd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 2: Nested Lists</a></li>
                             <li><a href="HTML/3rd Lab.html" style="color:var(--win-blue); text-decoration:none;">Task 3: Image Maps</a></li>
@@ -372,18 +295,16 @@
     </div>
 
 <script>
-    // STARTUP LOGIC
     window.addEventListener('load', function() {
         setTimeout(() => {
             const startup = document.getElementById('startup-screen');
             const main = document.getElementById('main-content');
-            
             startup.style.opacity = '0';
             setTimeout(() => {
                 startup.style.display = 'none';
                 main.style.display = 'block';
             }, 500);
-        }, 2200); // Wait for loading animation to finish
+        }, 2200);
     });
 
     function showTab(tabName) {
