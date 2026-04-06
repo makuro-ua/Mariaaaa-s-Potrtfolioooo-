@@ -202,7 +202,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 0;
-            border-bottom: 1px solid var(--win-shadow);
+            border-bottom: 2px solid var(--win-shadow);
         }
         .lab-item:last-child { border-bottom: none; }
         .lab-btn {
@@ -214,8 +214,38 @@
             color: black;
             font-size: 20px;
             box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+            min-width: 80px;
+            text-align: center;
+            cursor: pointer;
         }
         .lab-btn:active { border-color: var(--win-shadow) var(--win-white) var(--win-white) var(--win-shadow); transform: translate(1px, 1px); }
+
+        .lab-detail-view { display: none; }
+        .lab-detail-view.active { display: block; }
+        
+        .ss-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .ss-box {
+            background: #000;
+            border: 2px inset #808080;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #0f0;
+            font-size: 14px;
+            overflow: hidden;
+        }
+        .ss-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         .footer-widgets {
             display: flex;
@@ -333,8 +363,7 @@
                             </div>
                             <div class="qna-q">3. Why did I do this?</div>
                             <div class="qna-a">
-                                I would like to be a game developer one day. In which I will make as many visual novels as id like- not only that but id like to make stories of my own that will give people hope and inspirations into the art that they create. Not only that- but I'd really just like to be a rolemodel for my fellow artists out there.<br><br>
-                                As my area of expertise would be story writing, I would like to talk about the kinds of genres that I like doing. In which, I'd often like to work on stories that implement both horror and fantasy in them, as well as sci-fi.
+                                I would like to be a game developer one day. In which I will make as many visual novels as id like- not only that but id like to make stories of my own that will give people hope and inspirations into the art that they create. Not only that- but I'd really just like to be a rolemodel for my fellow artists out there.
                             </div>
                         </div>
                     </div>
@@ -348,12 +377,10 @@
                                 <li>HUMSS, SNA, 2025</li>
                                 <li>Grade 6-10 PHS, 2020-2024</li>
                             </ul>
-                            
                             <h3 style="margin-top: 20px;">Work Experience or Seminars and Workshops Attended</h3>
                             <ul class="edu-list">
                                 <li>Visual Arts Society 2025-2026 Vice President External</li>
                             </ul>
-                            
                             <div class="qna-a" style="margin-top: 10px;">
                                 In which I've been a major officer in one of the non-collegiate orgs of PSAU. I have created events with my fellow student leaders that include things such as making workshops and galleries.
                             </div>
@@ -362,31 +389,54 @@
                 </div>
 
                 <div id="labs" class="tab-content">
-                    <div class="retro-box">
+                    <div id="lab-list-main" class="retro-box">
                         <div class="content-rect">
                             <div class="lab-item">
-                                <span style="font-size: 22px;">Task 1: My Resume</span>
-                                <a href="HTML/1st Lab.html" class="lab-btn">Launch</a>
+                                <span style="font-size: 24px; font-weight: bold;">Project 01: My Resume</span>
+                                <div class="lab-btn" onclick="openLab(1)">LAUNCH</div>
                             </div>
                             <div class="lab-item">
-                                <span style="font-size: 22px;">Task 2: Nested Lists</span>
-                                <a href="HTML/2nd Lab.html" class="lab-btn">Launch</a>
+                                <span style="font-size: 24px; font-weight: bold;">Project 02: Nested Lists</span>
+                                <div class="lab-btn" onclick="openLab(2)">LAUNCH</div>
                             </div>
                             <div class="lab-item">
-                                <span style="font-size: 22px;">Task 3: Image Maps</span>
-                                <a href="HTML/3rd Lab.html" class="lab-btn">Launch</a>
+                                <span style="font-size: 24px; font-weight: bold;">Project 03: Image Maps</span>
+                                <div class="lab-btn" onclick="openLab(3)">LAUNCH</div>
                             </div>
                             <div class="lab-item">
-                                <span style="font-size: 22px;">Task 4: Labtask Four</span>
-                                <a href="HTML/4th labtask.html" class="lab-btn">Launch</a>
+                                <span style="font-size: 24px; font-weight: bold;">Project 04: Formatting Lab</span>
+                                <div class="lab-btn" onclick="openLab(4)">LAUNCH</div>
                             </div>
                             <div class="lab-item">
-                                <span style="font-size: 22px;">Task 5: Labtask Five</span>
-                                <a href="HTML/5TH Labtask.html" class="lab-btn">Launch</a>
+                                <span style="font-size: 24px; font-weight: bold;">Project 05: Forms Lab</span>
+                                <div class="lab-btn" onclick="openLab(5)">LAUNCH</div>
                             </div>
                             <div class="lab-item">
-                                <span style="font-size: 22px;">Task 6: Labtask Six</span>
-                                <a href="HTML/6th Labtask.html" class="lab-btn">Launch</a>
+                                <span style="font-size: 24px; font-weight: bold;">Project 06: Final Task</span>
+                                <div class="lab-btn" onclick="openLab(6)">LAUNCH</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="lab-detail-box" class="lab-detail-view retro-box">
+                        <div class="lab-btn" style="width: fit-content; margin-bottom: 15px;" onclick="closeLab()">◀ BACK</div>
+                        <div class="content-rect">
+                            <h2 id="lab-title" style="margin-top:0; color:var(--win-blue);">Project Title</h2>
+                            <p id="lab-desc" style="font-size:22px; line-height:1.4;">Description goes here.</p>
+                            
+                            <div class="ss-container">
+                                <div class="ss-box">
+                                    <span style="font-size:12px; margin-bottom:5px;">[CODE_SCREENSHOT]</span>
+                                    <img id="lab-ss-code" src="" class="ss-img" alt="Code">
+                                </div>
+                                <div class="ss-box">
+                                    <span style="font-size:12px; margin-bottom:5px;">[OUTPUT_SCREENSHOT]</span>
+                                    <img id="lab-ss-out" src="" class="ss-img" alt="Output">
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top:20px; font-size:22px;">
+                                <strong>Directory:</strong> <a id="lab-link" href="#" style="color:var(--win-blue);" target="_blank">Open HTML File</a>
                             </div>
                         </div>
                     </div>
@@ -415,6 +465,15 @@
     </div>
 
 <script>
+    const labData = {
+        1: { title: "Project 01: My Resume", desc: "A cozy little digital home for my professional journey! This lab focuses on clean structuring and simple layouts to showcase where I've been and where I'm going. ♡", code: "1.png", out: "1output.png", link: "HTML/1st Lab.html" },
+        2: { title: "Project 02: Nested Lists", desc: "Organization is key! This project is all about the art of nesting lists within lists—making complex information look tidy, cute, and super easy to read. ✨", code: "2.png", out: "2output.png", link: "HTML/2nd Lab.html" },
+        3: { title: "Project 03: Image Maps", desc: "Clickable magic! I learned how to turn a single image into a treasure map of links, where different zones take you to different places. It's like an interactive puzzle! ✿", code: "3.png", out: "3output.png", link: "HTML/3rd Lab.html" },
+        4: { title: "Project 04: Formatting Lab", desc: "Playing with style! This task was all about using different text tags to make words look exactly how they should—bold, italic, and full of personality. ✧", code: "4.png", out: "4output.png", link: "HTML/4th labtask.html" },
+        5: { title: "Project 05: Forms Lab", desc: "Let's talk! I built a way for visitors to send messages and info using input fields and buttons. It's the first step to making a site feel alive! ✉", code: "5.png", out: "5output.png", link: "HTML/5TH Labtask.html" },
+        6: { title: "Project 06: Final Task", desc: "The big finale! Combining all my coding spells into one cohesive masterpiece. It’s a little bit of everything I’ve learned so far, made with love! ☾", code: "6.png", out: "6output.png", link: "HTML/6th Labtask.html" }
+    };
+
     window.addEventListener('load', function() {
         setTimeout(() => {
             document.getElementById('startup-screen').style.opacity = '0';
@@ -430,6 +489,24 @@
         document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById(tabName).classList.add('active');
         event.currentTarget.classList.add('active');
+        if(tabName === 'labs') closeLab();
+    }
+
+    function openLab(id) {
+        const data = labData[id];
+        document.getElementById('lab-list-main').style.display = 'none';
+        document.getElementById('lab-detail-box').classList.add('active');
+        
+        document.getElementById('lab-title').innerText = data.title;
+        document.getElementById('lab-desc').innerText = data.desc;
+        document.getElementById('lab-ss-code').src = data.code;
+        document.getElementById('lab-ss-out').src = data.out;
+        document.getElementById('lab-link').href = data.link;
+    }
+
+    function closeLab() {
+        document.getElementById('lab-list-main').style.display = 'block';
+        document.getElementById('lab-detail-box').classList.remove('active');
     }
 </script>
 
