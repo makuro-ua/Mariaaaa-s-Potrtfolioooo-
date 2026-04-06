@@ -237,6 +237,7 @@
             flex-direction: column;
             align-items: center;
             padding: 10px;
+            cursor: zoom-in; /* Indicate clickable */
         }
         .ss-img {
             width: 100%;
@@ -244,6 +245,47 @@
             max-height: 800px;
             object-fit: contain;
             border: 1px solid #333;
+        }
+
+        /* --- LIGHTBOX STYLES --- */
+        #img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 20000;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        #modal-img-container {
+            cursor: grab;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        #modal-img {
+            max-width: 90%;
+            max-height: 90%;
+            transition: transform 0.1s ease-out;
+            transform-origin: center;
+        }
+        #close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--win-grey);
+            border: 3px solid;
+            border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
+            color: black;
+            padding: 5px 15px;
+            font-family: 'VT323', monospace;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 20001;
         }
 
         .footer-widgets {
@@ -287,6 +329,14 @@
                 <div class="progress-fill"></div>
             </div>
         </div>
+    </div>
+
+    <div id="img-modal">
+        <button id="close-modal" onclick="closeModal()">X CLOSE</button>
+        <div id="modal-img-container">
+            <img id="modal-img" src="" alt="Zoomable Image">
+        </div>
+        <div style="color: white; position: absolute; bottom: 10px; font-size: 18px;">Scroll to Zoom | Click & Drag to Move</div>
     </div>
 
     <div class="big-star" style="top: 10%; left: 15%;"></div>
@@ -390,30 +440,12 @@
                 <div id="labs" class="tab-content">
                     <div id="lab-list-main" class="retro-box">
                         <div class="content-rect">
-                            <div class="lab-item">
-                                <span style="font-size: 24px; font-weight: bold;">Project 01: My Resume</span>
-                                <div class="lab-btn" onclick="openLab(1)">LAUNCH</div>
-                            </div>
-                            <div class="lab-item">
-                                <span style="font-size: 24px; font-weight: bold;">Project 02: Nested Lists</span>
-                                <div class="lab-btn" onclick="openLab(2)">LAUNCH</div>
-                            </div>
-                            <div class="lab-item">
-                                <span style="font-size: 24px; font-weight: bold;">Project 03: Image Maps</span>
-                                <div class="lab-btn" onclick="openLab(3)">LAUNCH</div>
-                            </div>
-                            <div class="lab-item">
-                                <span style="font-size: 24px; font-weight: bold;">Project 04: Formatting Lab</span>
-                                <div class="lab-btn" onclick="openLab(4)">LAUNCH</div>
-                            </div>
-                            <div class="lab-item">
-                                <span style="font-size: 24px; font-weight: bold;">Project 05: Forms Lab</span>
-                                <div class="lab-btn" onclick="openLab(5)">LAUNCH</div>
-                            </div>
-                            <div class="lab-item">
-                                <span style="font-size: 24px; font-weight: bold;">Project 06: Final Task</span>
-                                <div class="lab-btn" onclick="openLab(6)">LAUNCH</div>
-                            </div>
+                            <div class="lab-item"><span>Project 01: My Resume</span><div class="lab-btn" onclick="openLab(1)">LAUNCH</div></div>
+                            <div class="lab-item"><span>Project 02: Nested Lists</span><div class="lab-btn" onclick="openLab(2)">LAUNCH</div></div>
+                            <div class="lab-item"><span>Project 03: Image Maps</span><div class="lab-btn" onclick="openLab(3)">LAUNCH</div></div>
+                            <div class="lab-item"><span>Project 04: Formatting Lab</span><div class="lab-btn" onclick="openLab(4)">LAUNCH</div></div>
+                            <div class="lab-item"><span>Project 05: Forms Lab</span><div class="lab-btn" onclick="openLab(5)">LAUNCH</div></div>
+                            <div class="lab-item"><span>Project 06: Final Task</span><div class="lab-btn" onclick="openLab(6)">LAUNCH</div></div>
                         </div>
                     </div>
 
@@ -421,11 +453,8 @@
                         <div class="lab-btn" style="width: fit-content; margin-bottom: 15px;" onclick="closeLab()">◀ BACK</div>
                         <div class="content-rect">
                             <h2 id="lab-title" style="margin-top:0; color:var(--win-blue);">Project Title</h2>
-                            <p id="lab-desc" style="font-size:22px; line-height:1.4;">Description goes here.</p>
-                            
-                            <div id="ss-area" class="ss-container">
-                                </div>
-                            
+                            <p id="lab-desc" style="font-size:22px; line-height:1.4;"></p>
+                            <div id="ss-area" class="ss-container"></div>
                             <div style="margin-top:20px; font-size:22px;">
                                 <strong>Directory:</strong> <a id="lab-link" href="#" style="color:var(--win-blue);" target="_blank">Open HTML File</a>
                             </div>
@@ -447,9 +476,7 @@
                             <span>3:30</span>
                         </div>
                     </div>
-                    <div class="disclaimer-bubble">
-                        I own Bluebell's eye art though :))
-                    </div>
+                    <div class="disclaimer-bubble">I own Bluebell's eye art though :))</div>
                 </div>
             </div>
         </div>
@@ -457,14 +484,65 @@
 
 <script>
     const labData = {
-        1: { title: "Project 01: My Resume", desc: "A cozy little digital home for my professional journey! This lab focuses on clean structuring and simple layouts to showcase where I've been and where I'm going. ♡", codes: ["1.png"], out: "1output.png", link: "Mari/HTML/1st Lab.html" },
-        2: { title: "Project 02: Nested Lists", desc: "Organization is key! This project is all about the art of nesting lists within lists—making complex information look tidy, cute, and super easy to read. ✨", codes: ["2.png"], out: "2output.png", link: "Mari/HTML/2nd Lab.html" },
-        3: { title: "Project 03: Image Maps", desc: "Clickable magic! I learned how to turn a single image into a treasure map of links, where different zones take you to different places. It's like an interactive puzzle! ✿", codes: ["3.png"], out: "3output.png", link: "Mari/HTML/3rd Lab.html" },
-        4: { title: "Project 04: Formatting Lab", desc: "Playing with style! This task was all about using different text tags to make words look exactly how they should—bold, italic, and full of personality. ✧", codes: ["4.png", "44.png"], out: "4output.png", link: "Mari/HTML/4th labtask.html" },
-        5: { title: "Project 05: Forms Lab", desc: "Let's talk! I built a way for visitors to send messages and info using input fields and buttons. It's the first step to making a site feel alive! ✉", codes: ["5.png"], out: "5output.png", link: "Mari/HTML/5TH Labtask.html" },
-        6: { title: "Project 06: Final Task", desc: "The big finale! Combining all my coding spells into one cohesive masterpiece. It’s a little bit of everything I’ve learned so far, made with love! ☾", codes: ["6.png"], out: "6output.png", link: "Mari/HTML/6th Labtask.html" }
+        1: { title: "Project 01: My Resume", desc: "A cozy digital home for my professional journey! ♡", codes: ["1.png"], out: "1output.png", link: "Mari/HTML/1st Lab.html" },
+        2: { title: "Project 02: Nested Lists", desc: "Organization is key! Making lists look tidy and cute. ✨", codes: ["2.png"], out: "2output.png", link: "Mari/HTML/2nd Lab.html" },
+        3: { title: "Project 03: Image Maps", desc: "Clickable magic! I turned an image into a treasure map of links. ✿", codes: ["3.png"], out: "3output.png", link: "Mari/HTML/3rd Lab.html" },
+        4: { title: "Project 04: Formatting Lab", desc: "Using text tags to make words full of personality. ✧", codes: ["4.png", "44.png"], out: "4output.png", link: "Mari/HTML/4th labtask.html" },
+        5: { title: "Project 05: Forms Lab", desc: "Input fields and buttons for visitor interaction! ✉", codes: ["5.png"], out: "5output.png", link: "Mari/HTML/5TH Labtask.html" },
+        6: { title: "Project 06: Final Task", desc: "The big finale! Combining all my coding spells. ☾", codes: ["6.png"], out: "6output.png", link: "Mari/HTML/6th Labtask.html" }
     };
 
+    /* LIGHTBOX LOGIC */
+    let scale = 1;
+    let isDragging = false;
+    let startX, startY, moveX = 0, moveY = 0;
+    const modal = document.getElementById('img-modal');
+    const modalImg = document.getElementById('modal-img');
+    const container = document.getElementById('modal-img-container');
+
+    function openModal(src) {
+        modal.style.display = 'flex';
+        modalImg.src = src;
+        scale = 1;
+        moveX = 0; moveY = 0;
+        updateTransform();
+    }
+
+    function closeModal() { modal.style.display = 'none'; }
+
+    function updateTransform() {
+        modalImg.style.transform = `translate(${moveX}px, ${moveY}px) scale(${scale})`;
+    }
+
+    // Zooming
+    container.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.2 : 0.2;
+        scale = Math.min(Math.max(0.5, scale + delta), 5);
+        updateTransform();
+    });
+
+    // Dragging
+    container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX - moveX;
+        startY = e.clientY - moveY;
+        container.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        moveX = e.clientX - startX;
+        moveY = e.clientY - startY;
+        updateTransform();
+    });
+
+    window.addEventListener('mouseup', () => {
+        isDragging = false;
+        container.style.cursor = 'grab';
+    });
+
+    /* NAVIGATION LOGIC */
     window.addEventListener('load', function() {
         setTimeout(() => {
             document.getElementById('startup-screen').style.opacity = '0';
@@ -487,7 +565,6 @@
         const data = labData[id];
         document.getElementById('lab-list-main').style.display = 'none';
         document.getElementById('lab-detail-box').classList.add('active');
-        
         document.getElementById('lab-title').innerText = data.title;
         document.getElementById('lab-desc').innerText = data.desc;
         document.getElementById('lab-link').href = data.link;
@@ -497,7 +574,7 @@
 
         data.codes.forEach((src, index) => {
             ssArea.innerHTML += `
-                <div class="ss-box">
+                <div class="ss-box" onclick="openModal('${src}')">
                     <span style="font-size:20px; font-weight:bold; color:var(--win-blue); margin-bottom:8px;">[CODE_SCREENSHOT_${index + 1}]</span>
                     <img src="${src}" class="ss-img" alt="Code Section">
                 </div>
@@ -505,7 +582,7 @@
         });
 
         ssArea.innerHTML += `
-            <div class="ss-box">
+            <div class="ss-box" onclick="openModal('${data.out}')">
                 <span style="font-size:20px; font-weight:bold; color:#d9534f; margin-bottom:8px;">[OUTPUT_SCREENSHOT]</span>
                 <img src="${data.out}" class="ss-img" alt="Output Result">
             </div>
