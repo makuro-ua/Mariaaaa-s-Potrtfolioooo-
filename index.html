@@ -24,7 +24,6 @@
                 cursor: var(--cursor-link);
             }
 
-            /* Draggable Cursor for Lightbox */
             #modal-img-container {
                 cursor: grab;
             }
@@ -254,7 +253,7 @@
             flex-direction: column;
             align-items: center;
             padding: 10px;
-            cursor: zoom-in; /* Indicate clickable */
+            cursor: zoom-in;
         }
         .ss-img {
             width: 100%;
@@ -264,7 +263,6 @@
             border: 1px solid #333;
         }
 
-        /* --- LIGHTBOX STYLES --- */
         #img-modal {
             display: none;
             position: fixed;
@@ -510,14 +508,15 @@
         </div>
     </div>
 
+    /* HI YES LOOK UTS THE SCRIIIIPPPPPPTSSS YAEAHHAYAYAYDSKJHFSD im so dying bro*/
 <script>
     const labData = {
-        1: { title: "Project 01: My Resume", desc: "A cozy digital home for my professional journey! ♡", codes: ["1.png"], out: "1output.png", link: "Mari/HTML/1st Lab.html" },
-        2: { title: "Project 02: Nested Lists", desc: "Organization is key! Making lists look tidy and cute. ✨", codes: ["2.png"], out: "2output.png", link: "Mari/HTML/2nd Lab.html" },
-        3: { title: "Project 03: Image Maps", desc: "Clickable magic! I turned an image into a treasure map of links. ✿", codes: ["3.png"], out: "3output.png", link: "Mari/HTML/3rd Lab.html" },
-        4: { title: "Project 04: Formatting Lab", desc: "Using text tags to make words full of personality. ✧", codes: ["4.png", "44.png"], out: "4output.png", link: "Mari/HTML/4th labtask.html" },
-        5: { title: "Project 05: Forms Lab", desc: "Input fields and buttons for visitor interaction! ✉", codes: ["5.png"], out: "5output.png", link: "Mari/HTML/5TH Labtask.html" },
-        6: { title: "Project 06: Final Task", desc: "The big finale! Combining all my coding spells. ☾", codes: ["6.png"], out: "6output.png", link: "Mari/HTML/6th Labtask.html" }
+        1: { title: "Project 01: My Resume", desc: "My Resumee ♡", codes: ["1.png"], out: "1output.png", link: "Mari/HTML/1st Lab.html" },
+        2: { title: "Project 02: Nested Lists", desc: "Nested Lists ehhewhehehejskdfh ✨", codes: ["2.png"], out: "2output.png", link: "Mari/HTML/2nd Lab.html" },
+        3: { title: "Project 03: Image Maps", desc: "MAPS maps MAAAAPS I made MAPS and I made a MAAAP ✿", codes: ["3.png"], out: "3output.png", link: "Mari/HTML/3rd Lab.html" },
+        4: { title: "Project 04: External CSS", desc: "Waow CSS!?>!1//!??!1 Omg im so smart (external css stuf) ✧", codes: ["4.png", "44.png"], out: "4output.png", link: "Mari/HTML/4th labtask.html" },
+        5: { title: "Project 05: CSS Resume", desc: "Resume w CSS LESGOOOO ✉", codes: ["5.png"], out: "5output.png", link: "Mari/HTML/5TH Labtask.html" },
+        6: { title: "Project 06: Imitation", desc: "Googl imitating ahh things U(I imitated things ere) ☾", codes: ["6.png"], out: "6output.png", link: "Mari/HTML/6th Labtask.html" }
     };
 
     /* LIGHTBOX LOGIC */
@@ -570,7 +569,6 @@
         container.style.cursor = 'grab';
     });
 
-    /* NAVIGATION LOGIC */
     window.addEventListener('load', function() {
         setTimeout(() => {
             document.getElementById('startup-screen').style.opacity = '0';
