@@ -6,115 +6,112 @@
     <title>Pristinee's Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --win-grey: #c0c0c0;
-            --win-white: #ffffff; 
-            --win-shadow: #808080;
-            --win-blue: #000080;
-            --bg-dark: #0a111f;
-            --inner-off-white: #d6d6d6;
-            /* Update these URLs if you host your pixel cursor files */
-            --cursor-pointer: url('https://custom-cursor.com/en/collection/color-pixels/waterfall-blue-pixel?winclient=1&utm_source=winapp&utm_medium=link_pack&utm_campaign=list'), auto;
-            --cursor-link: url('https://custom-cursor.com/en/collection/color-pixels/waterfall-blue-pixel?winclient=1&utm_source=winapp&utm_medium=link_pack&utm_campaign=list'), pointer;
-        }
+:root {
+    --win-grey: #c0c0c0;
+    --win-white: #ffffff; 
+    --win-shadow: #808080;
+    --win-blue: #000080;
+    --bg-dark: #0a111f;
+    --inner-off-white: #d6d6d6;
+}
 
-        html, body {
-            cursor: var(--cursor-pointer);
-        }
+    html, body {
+                cursor: var(--cursor-pointer);
+                }
 
-        /* Interaction Cursors */
-        button, .nav-btn, .lab-btn, a, .ss-box {
-            cursor: var(--cursor-link);
-        }
 
-        /* Draggable Cursor for Lightbox */
-        #modal-img-container {
-            cursor: grab;
-        }
-        #modal-img-container:active {
-            cursor: grabbing;
-        }
+            button, .nav-btn, .lab-btn, a, .ss-box {
+                cursor: var(--cursor-link);
+            }
 
-        @keyframes tinyStarScroll {
-            from { background-position: 0 0, 40px 40px; }
-            to { background-position: 100px 100px, 140px 140px; }
-        }
+            /* Draggable Cursor for Lightbox */
+            #modal-img-container {
+                cursor: grab;
+            }
+            #modal-img-container:active {
+                cursor: grabbing;
+            }
 
-        @keyframes shimmer {
-            0%, 100% { opacity: 0.4; transform: scale(1) rotate(0deg); }
-            50% { opacity: 1; transform: scale(1.4) rotate(10deg); }
-        }
+            @keyframes tinyStarScroll {
+                from { background-position: 0 0, 40px 40px; }
+                to { background-position: 100px 100px, 140px 140px; }
+            }
 
-        body {
-            background-color: var(--bg-dark);
-            background-image: 
-                radial-gradient(circle, #fff 1px, transparent 1px),
-                radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 1.5px);
-            background-size: 60px 60px, 100px 100px;
-            animation: tinyStarScroll 20s linear infinite;
-            font-family: 'VT323', monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            overflow-x: hidden;
-            position: relative;
-        }
+            @keyframes shimmer {
+                0%, 100% { opacity: 0.4; transform: scale(1) rotate(0deg); }
+                50% { opacity: 1; transform: scale(1.4) rotate(10deg); }
+            }
 
-        .big-star {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: white;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            box-shadow: 0 0 20px white;
-            animation: shimmer 4s infinite ease-in-out;
-            z-index: 0;
-        }
+            body {
+                background-color: var(--bg-dark);
+                background-image: 
+                    radial-gradient(circle, #fff 1px, transparent 1px),
+                    radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 1.5px);
+                background-size: 60px 60px, 100px 100px;
+                animation: tinyStarScroll 20s linear infinite;
+                font-family: 'VT323', monospace;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                overflow-x: hidden;
+                position: relative;
+            }
 
-        #startup-screen {
-            position: fixed;
-            inset: 0;
-            background: var(--bg-dark);
-            z-index: 10000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+            .big-star {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                background: white;
+                clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+                box-shadow: 0 0 20px white;
+                animation: shimmer 4s infinite ease-in-out;
+                z-index: 0;
+            }
 
-        .loader-box {
-            width: 320px;
-            background: var(--win-grey);
-            border: 2px solid;
-            border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
-            padding: 20px;
-            box-shadow: 8px 8px 0px rgba(0,0,0,0.4);
-        }
+            #startup-screen {
+                position: fixed;
+                inset: 0;
+                background: var(--bg-dark);
+                z-index: 10000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
 
-        .progress-container {
-            width: 100%;
-            height: 20px;
-            background: #ffffff;
-            border: 2px inset #808080;
-            margin-top: 15px;
-        }
+            .loader-box {
+                width: 320px;
+                background: var(--win-grey);
+                border: 2px solid;
+                border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
+                padding: 20px;
+                box-shadow: 8px 8px 0px rgba(0,0,0,0.4);
+            }
 
-        .progress-fill {
-            height: 100%;
-            background: var(--win-blue);
-            width: 0%;
-            animation: bootLoad 2s ease-in-out forwards;
-        }
+            .progress-container {
+                width: 100%;
+                height: 20px;
+                background: #ffffff;
+                border: 2px inset #808080;
+                margin-top: 15px;
+            }
 
-        @keyframes bootLoad { to { width: 100%; } }
+            .progress-fill {
+                height: 100%;
+                background: var(--win-blue);
+                width: 0%;
+                animation: bootLoad 2s ease-in-out forwards;
+            }
 
-        @keyframes windowAppear {
-            0% { opacity: 0; transform: scale(0.9); }
-            10% { opacity: 1; transform: scale(1.02); }
-            20% { opacity: 0.5; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1); }
-        }
+            @keyframes bootLoad { to { width: 100%; } }
+
+            @keyframes windowAppear {
+                0% { opacity: 0; transform: scale(0.9); }
+                10% { opacity: 1; transform: scale(1.02); }
+                20% { opacity: 0.5; transform: scale(1); }
+                100% { opacity: 1; transform: scale(1); }
+            }
 
         #main-content {
             display: none;
@@ -341,6 +338,37 @@
     </style>
 </head>
 <body>
+
+    <div id="player-container" style="
+    font-family: 'VT323', monospace; 
+    background: #c0c0c0; 
+    border: 2px solid; 
+    border-color: #ffffff #808080 #808080 #ffffff; 
+    padding: 15px; 
+    width: 300px;">
+
+    <strong style="display: block; margin-bottom: 5px;">Butcher Vanity - Flavor Foley</strong>
+    
+    <div id="progress-bar-bg" style="background: #808080; height: 6px; position: relative; margin: 15px 0; border: 1px inset #fff;">
+        <div id="music-progress-fill" style="position: absolute; left: 0; top: 0; background: #000080; height: 100%; width: 0%;"></div>
+        <div id="music-handle-heart" style="position: absolute; left: 0%; top: -8px; cursor: pointer; font-size: 18px; transform: translateX(-50%);">♡</div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span id="current-time">0:00</span>
+        
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <button id="play-pause-btn" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; cursor: pointer; padding: 2px 10px; font-family: 'VT323';">▷ PLAY</button>
+            <input type="range" id="vol-control" min="0" max="1" step="0.1" value="0.5" style="width: 60px; cursor: pointer;">
+        </div>
+
+        <span id="total-time">0:00</span>
+    </div>
+
+    <audio id="vanity-audio" loop>
+        <source src="Butcher_Vanity.mp3" type="audio/mpeg">
+    </audio>
+</div>
 
     <div id="startup-screen">
         <div class="loader-box">
@@ -613,6 +641,48 @@
         document.getElementById('lab-list-main').style.display = 'block';
         document.getElementById('lab-detail-box').classList.remove('active');
     }
+
+        const song = document.getElementById('vanity-audio');
+        const btn = document.getElementById('play-pause-btn');
+        const fill = document.getElementById('music-progress-fill');
+        const heart = document.getElementById('music-handle-heart');
+        const vol = document.getElementById('vol-control');
+        const currTxt = document.getElementById('current-time');
+        const totalTxt = document.getElementById('total-time');
+
+        // Play/Pause Toggle
+        btn.onclick = () => {
+            if (song.paused) {
+                song.play();
+                btn.innerText = "II PAUSE";
+            } else {
+                song.pause();
+                btn.innerText = "▷ PLAY";
+            }
+        };
+
+        // Volume Control
+        vol.oninput = (e) => { song.volume = e.target.value; };
+
+        // Update Progress and Timer
+        song.ontimeupdate = () => {
+            const percent = (song.currentTime / song.duration) * 100;
+            fill.style.width = percent + "%";
+            heart.style.left = percent + "%";
+            
+            // Format Current Time
+            let curM = Math.floor(song.currentTime / 60);
+            let curS = Math.floor(song.currentTime % 60);
+            currTxt.innerText = `${curM}:${curS < 10 ? '0' : ''}${curS}`;
+        };
+
+        // Set Total Duration Text
+        song.onloadedmetadata = () => {
+            let totM = Math.floor(song.duration / 60);
+            let totS = Math.floor(song.duration % 60);
+            totalTxt.innerText = `${totM}:${totS < 10 ? '0' : ''}${totS}`;
+        };
+
 </script>
 
 </body>
