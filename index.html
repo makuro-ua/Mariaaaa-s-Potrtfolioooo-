@@ -339,30 +339,24 @@
 </head>
 <body>
 
-    <div id="player-container" style="
-    font-family: 'VT323', monospace; 
-    background: #c0c0c0; 
-    border: 2px solid; 
-    border-color: #ffffff #808080 #808080 #ffffff; 
-    padding: 15px; 
-    width: 300px;">
-
-    <strong style="display: block; margin-bottom: 5px;">Butcher Vanity - Flavor Foley</strong>
+<div class="faux-player" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 10px; width: 350px; font-family: 'VT323', monospace;">
     
-    <div id="progress-bar-bg" style="background: #808080; height: 6px; position: relative; margin: 15px 0; border: 1px inset #fff;">
-        <div id="music-progress-fill" style="position: absolute; left: 0; top: 0; background: #000080; height: 100%; width: 0%;"></div>
-        <div id="music-handle-heart" style="position: absolute; left: 0%; top: -8px; cursor: pointer; font-size: 18px; transform: translateX(-50%);">♡</div>
+    <div style="margin-bottom: 5px;">Butcher Vanity - Flavor Foley</div>
+
+    <div style="position: relative; background: #808080; height: 4px; border-bottom: 1px solid #fff; margin: 15px 0;">
+        <div id="music-progress-fill" style="position: absolute; background: #000080; height: 100%; width: 0%;"></div>
+        <div id="music-handle-heart" style="position: absolute; left: 0%; top: -8px; transform: translateX(-50%); cursor: pointer;">♡</div>
     </div>
 
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <span id="current-time">0:00</span>
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <span id="current-time" style="font-size: 18px;">0:00</span>
         
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <button id="play-pause-btn" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; cursor: pointer; padding: 2px 10px; font-family: 'VT323';">▷ PLAY</button>
-            <input type="range" id="vol-control" min="0" max="1" step="0.1" value="0.5" style="width: 60px; cursor: pointer;">
+        <div style="display: flex; gap: 5px;">
+            <button id="play-pause-btn" style="background: #c0c0c0; border: 2px solid; border-color: #fff #808080 #808080 #fff; padding: 2px 10px; font-family: 'VT323'; cursor: pointer;">II PAUSE</button>
+            <input type="range" id="vol-control" min="0" max="1" step="0.1" value="0.5" style="width: 50px;">
         </div>
 
-        <span id="total-time">0:00</span>
+        <span id="total-time" style="font-size: 18px;">3:05</span>
     </div>
 
     <audio id="vanity-audio" loop>
@@ -641,47 +635,45 @@
         document.getElementById('lab-list-main').style.display = 'block';
         document.getElementById('lab-detail-box').classList.remove('active');
     }
+</script>
 
-        const song = document.getElementById('vanity-audio');
-        const btn = document.getElementById('play-pause-btn');
-        const fill = document.getElementById('music-progress-fill');
-        const heart = document.getElementById('music-handle-heart');
-        const vol = document.getElementById('vol-control');
-        const currTxt = document.getElementById('current-time');
-        const totalTxt = document.getElementById('total-time');
+<script>
+    const song = document.getElementById('vanity-audio');
+    const playBtn = document.getElementById('play-pause-btn');
+    const progressFill = document.getElementById('music-progress-fill');
+    const heartHandle = document.getElementById('music-handle-heart');
+    const currentTimeText = document.getElementById('current-time');
 
-        // Play/Pause Toggle
-        btn.onclick = () => {
-            if (song.paused) {
-                song.play();
-                btn.innerText = "II PAUSE";
-            } else {
-                song.pause();
-                btn.innerText = "▷ PLAY";
-            }
-        };
+    // Make the Play/Pause button work
+    playBtn.onclick = () => {
+        if (song.paused) {
+            song.play();
+            playBtn.innerText = "II PAUSE";
+        } else {
+            song.pause();
+            playBtn.innerText = "▷ PLAY";
+        }
+    };
 
-        // Volume Control
-        vol.oninput = (e) => { song.volume = e.target.value; };
-
-        // Update Progress and Timer
-        song.ontimeupdate = () => {
-            const percent = (song.currentTime / song.duration) * 100;
-            fill.style.width = percent + "%";
-            heart.style.left = percent + "%";
+    // Make the heart move and the blue bar grow
+    song.ontimeupdate = () => {
+        if (song.duration) {
+            const pos = (song.currentTime / song.duration) * 100;
+            progressFill.style.width = pos + "%";
+            heartHandle.style.left = pos + "%";
             
-            // Format Current Time
-            let curM = Math.floor(song.currentTime / 60);
-            let curS = Math.floor(song.currentTime % 60);
-            currTxt.innerText = `${curM}:${curS < 10 ? '0' : ''}${curS}`;
-        };
+            // Update the numbers (0:00)
+            let mins = Math.floor(song.currentTime / 60);
+            let secs = Math.floor(song.currentTime % 60);
+            currentTimeText.innerText = mins + ":" + (secs < 10 ? '0' : '') + secs;
+        }
+    };
 
-        // Set Total Duration Text
-        song.onloadedmetadata = () => {
-            let totM = Math.floor(song.duration / 60);
-            let totS = Math.floor(song.duration % 60);
-            totalTxt.innerText = `${totM}:${totS < 10 ? '0' : ''}${totS}`;
-        };
+    // Volume control logic
+    document.getElementById('vol-control').oninput = (e) => {
+        song.volume = e.target.value;
+    };
+</script>
 
 </script>
 
