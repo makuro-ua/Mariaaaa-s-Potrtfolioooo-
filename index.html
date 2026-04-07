@@ -542,7 +542,6 @@
         modalImg.style.transform = `translate(${moveX}px, ${moveY}px) scale(${scale})`;
     }
 
-    // Zooming
     container.addEventListener('wheel', (e) => {
         e.preventDefault();
         const delta = e.deltaY > 0 ? -0.2 : 0.2;
@@ -550,7 +549,6 @@
         updateTransform();
     });
 
-    // Dragging
     container.addEventListener('mousedown', (e) => {
         isDragging = true;
         startX = e.clientX - moveX;
@@ -629,7 +627,6 @@
     const heartHandle = document.getElementById('music-handle-heart');
     const currentTimeText = document.getElementById('current-time');
 
-    // Make the Play/Pause button work
     playBtn.onclick = () => {
         if (song.paused) {
             song.play();
@@ -640,21 +637,18 @@
         }
     };
 
-    // Make the heart move and the blue bar grow
     song.ontimeupdate = () => {
         if (song.duration) {
             const pos = (song.currentTime / song.duration) * 100;
             progressFill.style.width = pos + "%";
             heartHandle.style.left = pos + "%";
             
-            // Update the numbers (0:00)
             let mins = Math.floor(song.currentTime / 60);
             let secs = Math.floor(song.currentTime % 60);
             currentTimeText.innerText = mins + ":" + (secs < 10 ? '0' : '') + secs;
         }
     };
 
-    // Volume control logic
     document.getElementById('vol-control').oninput = (e) => {
         song.volume = e.target.value;
     };
