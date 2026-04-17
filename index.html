@@ -5,12 +5,338 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pristinee's Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="misc/css.css">
-    <link rel="icon" type="image/x-icon" href="misc/bluebell.ico">
-    <script src="misc/js.js"></script>
+    <style>
+:root {
+    --win-grey: #c0c0c0;
+    --win-white: #ffffff; 
+    --win-shadow: #808080;
+    --win-blue: #000080;
+    --bg-dark: #0a111f;
+    --inner-off-white: #d6d6d6;
+}
+
+    html, body {
+                cursor: var(--cursor-pointer);
+                }
+
+
+            button, .nav-btn, .lab-btn, a, .ss-box {
+                cursor: var(--cursor-link);
+            }
+
+            #modal-img-container {
+                cursor: grab;
+            }
+            #modal-img-container:active {
+                cursor: grabbing;
+            }
+
+            @keyframes tinyStarScroll {
+                from { background-position: 0 0, 40px 40px; }
+                to { background-position: 100px 100px, 140px 140px; }
+            }
+
+            @keyframes shimmer {
+                0%, 100% { opacity: 0.4; transform: scale(1) rotate(0deg); }
+                50% { opacity: 1; transform: scale(1.4) rotate(10deg); }
+            }
+
+            body {
+                background-color: var(--bg-dark);
+                background-image: 
+                    radial-gradient(circle, #fff 1px, transparent 1px),
+                    radial-gradient(circle, rgba(255,255,255,0.2) 1.5px, transparent 1.5px);
+                background-size: 60px 60px, 100px 100px;
+                animation: tinyStarScroll 20s linear infinite;
+                font-family: 'VT323', monospace;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                margin: 0;
+                overflow-x: hidden;
+                position: relative;
+            }
+
+            .big-star {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                background: white;
+                clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+                box-shadow: 0 0 20px white;
+                animation: shimmer 4s infinite ease-in-out;
+                z-index: 0;
+            }
+
+            #startup-screen {
+                position: fixed;
+                inset: 0;
+                background: var(--bg-dark);
+                z-index: 10000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .loader-box {
+                width: 320px;
+                background: var(--win-grey);
+                border: 2px solid;
+                border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
+                padding: 20px;
+                box-shadow: 8px 8px 0px rgba(0,0,0,0.4);
+            }
+
+            .progress-container {
+                width: 100%;
+                height: 20px;
+                background: #ffffff;
+                border: 2px inset #808080;
+                margin-top: 15px;
+            }
+
+            .progress-fill {
+                height: 100%;
+                background: var(--win-blue);
+                width: 0%;
+                animation: bootLoad 2s ease-in-out forwards;
+            }
+
+            @keyframes bootLoad { to { width: 100%; } }
+
+            @keyframes windowAppear {
+                0% { opacity: 0; transform: scale(0.9); }
+                10% { opacity: 1; transform: scale(1.02); }
+                20% { opacity: 0.5; transform: scale(1); }
+                100% { opacity: 1; transform: scale(1); }
+            }
+
+        #main-content {
+            display: none;
+            position: relative;
+            z-index: 10;
+        }
+
+        .window {
+            width: 850px;
+            background-color: var(--win-grey);
+            border: 3px solid;
+            border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
+            padding: 3px;
+            animation: windowAppear 0.6s ease-out forwards;
+            box-shadow: 0 0 30px rgba(255,255,255,0.1);
+        }
+
+        .title-bar {
+            background: var(--win-blue);
+            color: white;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 22px;
+        }
+
+        .title-btn {
+            width: 20px;
+            height: 20px;
+            background: var(--win-grey);
+            border: 1px solid;
+            border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
+            font-family: 'VT323', monospace;
+        }
+
+        .banner {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border: 2px inset #808080;
+            margin-top: 4px;
+        }
+
+        .tab-wrapper {
+            background-color: #7d96b8; 
+            background-image: linear-gradient(45deg, #b4c7e7 25%, transparent 25%), linear-gradient(-45deg, #b4c7e7 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #b4c7e7 75%), linear-gradient(-45deg, transparent 75%, #b4c7e7 75%);
+            background-size: 16px 16px;
+            padding: 10px 15px 0 15px;
+            display: flex;
+            gap: 10px; 
+            border-top: 2px solid var(--win-shadow);
+        }
+
+        .nav-btn {
+            background: #c9c0ac; 
+            border: 2px solid;
+            border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
+            padding: 6px 0;
+            border-radius: 8px 8px 0 0;
+            font-family: 'VT323', monospace;
+            font-size: 24px;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+        }
+
+        .nav-btn.active {
+            background: var(--inner-off-white);
+            border-bottom: 2px solid var(--inner-off-white);
+            margin-bottom: -2px;
+        }
+
+        .window-body {
+            background: var(--inner-off-white);
+            border: 2px inset #808080;
+            margin: 0 15px 15px 15px;
+            padding: 25px;
+            min-height: 400px;
+            max-height: 550px;
+            overflow-y: auto;
+        }
+
+        .window-body::-webkit-scrollbar { width: 16px; }
+        .window-body::-webkit-scrollbar-track { background: #dfdfdf; border: 1px solid #808080; }
+        .window-body::-webkit-scrollbar-thumb { background: var(--win-grey); border: 2px solid; border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white); }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 0.9fr;
+            gap: 20px;
+        }
+
+        .retro-box { background: #cbd5e0; border: 1px solid #a0aec0; padding: 15px; }
+        .content-rect { background: #b8c2d1; border: 2px dashed #5b7fb3; padding: 12px; margin-top: 10px; text-align: justify; }
+
+        h1 { font-size: 36px; color: #4a628a; margin: 0; }
+        h3 { font-size: 28px; color: #4a628a; margin: 0; }
+        
+        .song-item { background: #e0e0e0; border: 1px inset #bbb; padding: 5px 10px; margin: 6px 0; font-size: 20px; }
+        .pfp-img { width: 100%; height: 280px; object-fit: cover; border: 2px solid #333; }
+
+        .lab-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 2px solid var(--win-shadow);
+        }
+        .lab-item:last-child { border-bottom: none; }
+        .lab-btn {
+            background: var(--win-grey);
+            border: 2px solid;
+            border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
+            padding: 5px 20px;
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+            min-width: 80px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .lab-btn:active { border-color: var(--win-shadow) var(--win-white) var(--win-white) var(--win-shadow); transform: translate(1px, 1px); }
+
+        .lab-detail-view { display: none; }
+        .lab-detail-view.active { display: block; }
+        
+        .ss-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .ss-box {
+            background: #ffffff;
+            border: 2px inset #808080;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            cursor: zoom-in;
+        }
+        .ss-img {
+            width: 100%;
+            height: auto;
+            max-height: 800px;
+            object-fit: contain;
+            border: 1px solid #333;
+        }
+
+        #img-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 20000;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        #modal-img-container {
+            cursor: grab;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        #modal-img {
+            max-width: 90%;
+            max-height: 90%;
+            transition: transform 0.1s ease-out;
+            transform-origin: center;
+        }
+        #close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--win-grey);
+            border: 3px solid;
+            border-color: var(--win-white) var(--win-shadow) var(--win-shadow) var(--win-white);
+            color: black;
+            padding: 5px 15px;
+            font-family: 'VT323', monospace;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 20001;
+        }
+
+        .footer-widgets {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #aaa;
+        }
+
+        .music-player { flex: 1.5; font-size: 20px; }
+        .player-controls { display: flex; align-items: center; gap: 15px; font-size: 24px; }
+        
+        .disclaimer-bubble {
+            background: #cbd5e0;
+            border: 1px solid #888;
+            border-radius: 15px;
+            padding: 12px 20px;
+            font-size: 18px;
+            margin-left: 40px;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .qna-wrap { text-align: justify; }
+        .qna-q { font-weight: bold; font-size: 24px; color: var(--win-blue); margin-top: 15px; }
+        .qna-a { font-size: 22px; line-height: 1.4; margin-bottom: 10px; }
+        
+        .edu-list { list-style: none; padding-left: 0; font-size: 22px; line-height: 1.6; }
+        .edu-list li::before { content: "✧ "; color: var(--win-blue); font-weight: bold; }
+    </style>
 </head>
 <body>
-<div>
+
     <div id="startup-screen">
         <div class="loader-box">
             <div style="font-size: 24px; color: #000;">Initializing Pristinee.exe...</div>
@@ -175,7 +501,7 @@
                         </div>
 
                         <audio id="vanity-audio" loop>
-                            <source src="audios/Butcher_Vanity.mp3" type="audio/mpeg">
+                            <source src="/audios/Butcher_Vanity.mp3" type="audio/mpeg">
                         </audio>
                     </div>
                     <div class="disclaimer-bubble">HIII Some stuff arent mine here BUT BUT BUT I own Bluebell's eye art!!!!</div>
@@ -183,6 +509,154 @@
             </div>
         </div>
     </div>
-</div>
+
+<!--HI YES LOOK UTS THE SCRIIIIPPPPPPTSSS YAEAHHAYAYAYDSKJHFSD im so dying bro -->
+<script>
+    const labData = {
+        1: { title: "Project 01: My Resume", desc: "My Resumee ♡", codes: ["pngs/1.png"], out: "pngs/output.png", link: "Mari/HTML/1st Lab.html" },
+        2: { title: "Project 02: Nested Lists", desc: "Nested Lists ehhewhehehejskdfh ✨", codes: ["pngs/2.png"], out: "pngs/2output.png", link: "Mari/HTML/2nd Lab.html" },
+        3: { title: "Project 03: Image Maps", desc: "MAPS maps MAAAAPS I made MAPS and I made a MAAAP ✿", codes: ["pngs/3.png"], out: "pngs/3output.png", link: "Mari/HTML/3rd Lab.html" },
+        4: { title: "Project 04: External CSS", desc: "Waow CSS!?>!1//!??!1 Omg im so smart (external css stuf) ✧", codes: ["pngs/4.png", "pngs/44.png"], out: "pngs/4output.png", link: "Mari/HTML/4th labtask.html" },
+        5: { title: "Project 05: CSS Resume", desc: "Resume w CSS LESGOOOO ✉", codes: ["pngs/5.png"], out: "pngs/5output.png", link: "Mari/HTML/5TH Labtask.html" },
+        6: { title: "Project 06: Imitations", desc: "IMITATIONS IMITATIONS IMITATIONS (I imitated a website and it was funnnn) ✿", codes: ["pngs/6.png"], out: "pngs/6output.png", link: "Mari/HTML/6th Lab.html" },
+        7: { title: "Project 07: Website", desc: "Website Testinggg!!!!! ><", codes: ["pngs/7.png"], out: "pngs/7output.png", link: "Mari/HTML/7th Lab.html" },
+        8: { title: "Project 08: Flexbox", desc: "Flexboxxx!!! (I flexd w/ the funni flexbox) ✿", codes: ["pngs/8html.png", "pngs/8css.png", "pngs/8js.png"], out: "pngs/8output.png", link: "Mari/HTML/stylesheet.html" }
+    };
+
+    let scale = 1;
+    let isDragging = false;
+    let startX, startY, moveX = 0, moveY = 0;
+    const modal = document.getElementById('img-modal');
+    const modalImg = document.getElementById('modal-img');
+    const container = document.getElementById('modal-img-container');
+
+    function openModal(src) {
+        modal.style.display = 'flex';
+        modalImg.src = src;
+        scale = 1;
+        moveX = 0; moveY = 0;
+        updateTransform();
+    }
+
+    function closeModal() { modal.style.display = 'none'; }
+
+    function updateTransform() {
+        modalImg.style.transform = `translate(${moveX}px, ${moveY}px) scale(${scale})`;
+    }
+
+    container.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? -0.2 : 0.2;
+        scale = Math.min(Math.max(0.5, scale + delta), 5);
+        updateTransform();
+    });
+
+    container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX - moveX;
+        startY = e.clientY - moveY;
+        container.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        moveX = e.clientX - startX;
+        moveY = e.clientY - startY;
+        updateTransform();
+    });
+
+    window.addEventListener('mouseup', () => {
+        isDragging = false;
+        container.style.cursor = 'grab';
+    });
+
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            document.getElementById('startup-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('startup-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            }, 500);
+        }, 2200);
+    });
+
+    function showTab(tabName) {
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(tabName).classList.add('active');
+        event.currentTarget.classList.add('active');
+        if(tabName === 'labs') closeLab();
+    }
+
+    function openLab(id) {
+        const data = labData[id];
+        document.getElementById('lab-list-main').style.display = 'none';
+        document.getElementById('lab-detail-box').classList.add('active');
+        document.getElementById('lab-title').innerText = data.title;
+        document.getElementById('lab-desc').innerText = data.desc;
+        document.getElementById('lab-link').href = data.link;
+
+        const ssArea = document.getElementById('ss-area');
+        ssArea.innerHTML = ''; 
+
+        data.codes.forEach((src, index) => {
+            ssArea.innerHTML += `
+                <div class="ss-box" onclick="openModal('${src}')">
+                    <span style="font-size:20px; font-weight:bold; color:var(--win-blue); margin-bottom:8px;">[CODE_SCREENSHOT_${index + 1}]</span>
+                    <img src="${src}" class="ss-img" alt="Code Section">
+                </div>
+            `;
+        });
+
+        ssArea.innerHTML += `
+            <div class="ss-box" onclick="openModal('${data.out}')">
+                <span style="font-size:20px; font-weight:bold; color:#d9534f; margin-bottom:8px;">[OUTPUT_SCREENSHOT]</span>
+                <img src="${data.out}" class="ss-img" alt="Output Result">
+            </div>
+        `;
+    }
+
+    function closeLab() {
+        document.getElementById('lab-list-main').style.display = 'block';
+        document.getElementById('lab-detail-box').classList.remove('active');
+    }
+</script>
+
+<script>
+    const song = document.getElementById('vanity-audio');
+    const playBtn = document.getElementById('play-pause-btn');
+    const progressFill = document.getElementById('music-progress-fill');
+    const heartHandle = document.getElementById('music-handle-heart');
+    const currentTimeText = document.getElementById('current-time');
+
+    playBtn.onclick = () => {
+        if (song.paused) {
+            song.play();
+            playBtn.innerText = "II PAUSE";
+        } else {
+            song.pause();
+            playBtn.innerText = "▷ PLAY";
+        }
+    };
+
+    song.ontimeupdate = () => {
+        if (song.duration) {
+            const pos = (song.currentTime / song.duration) * 100;
+            progressFill.style.width = pos + "%";
+            heartHandle.style.left = pos + "%";
+            
+            let mins = Math.floor(song.currentTime / 60);
+            let secs = Math.floor(song.currentTime % 60);
+            currentTimeText.innerText = mins + ":" + (secs < 10 ? '0' : '') + secs;
+        }
+    };
+
+    document.getElementById('vol-control').oninput = (e) => {
+        song.volume = e.target.value;
+    };
+</script>
+
+</script>
+
 </body>
 </html>
