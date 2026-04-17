@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Same Page Different Stylesheets</title>
+<link rel="stylesheet" href="CSS/stylesheet1.css">
+<script src="SCRIPT/script.js"></script>
+</head>
+<body>
+  <div style="padding: 1rem 0;">
+    <div class="device-tabs">
+      <button class="dev-tab active" onclick="setView('desktop',this)">&#9654; Desktop</button>
+      <button class="dev-tab" onclick="setView('tablet',this)">&#9645; Tablet</button>
+      <button class="dev-tab" onclick="setView('mobile',this)">&#9646; Mobile</button>
+    </div>
+
+    <div class="device-frame" id="frame" style="max-width:820px;">
+      <div id="site">
+        <div id="site-header">
+          <h1 id="hdr-h1">Welcome to My Homepage</h1>
+          <p id="hdr-sub">Use the menu to select different Stylesheets</p>
+        </div>
+        <div id="site-content">
+          <nav id="site-nav">
+            <ul id="nav-list">
+              <li class="snav-active" data-sheet="1"><a onclick="applySheet(1)">Stylesheet 1</a></li>
+              <li data-sheet="2"><a onclick="applySheet(2)">Stylesheet 2</a></li>
+              <li data-sheet="3"><a onclick="applySheet(3)">Stylesheet 3</a></li>
+              <li data-sheet="4"><a onclick="applySheet(4)">Stylesheet 4</a></li>
+              <li data-sheet="0"><a onclick="applySheet(0)">No Stylesheet</a></li>
+
+            </ul>
+          </nav>
+          <main id="site-main">
+            <h2>Same Page Different Stylesheets</h2>
+            <p>This is a demonstration of how different stylesheets can change the layout of your HTML page. You can change the layout by selecting different stylesheets in the menu.</p>
+            <p><a onclick="applySheet(1)">Stylesheet1</a>, <a onclick="applySheet(2)">Stylesheet2</a>, <a onclick="applySheet(3)">Stylesheet3</a>, <a onclick="applySheet(4)">Stylesheet4</a>.</p>
+            <h3>No Styles</h3>
+            <p>This page uses DIV elements to group different sections. Click here to see the page with <a onclick="applySheet(0)">No Stylesheet</a>.</p>
+          </main>
+          <aside id="site-aside">
+            <h4>Side-Bar</h4>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</p>
+          </aside>
+        </div>
+        <footer id="site-footer">
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+        </footer>
+      </div>
+    </div>
+    <p class="fig-label" id="fig-label">Fig. 1 — Desktop · Stylesheet 1</p>
+  </div>
+</body>
+</html>
